@@ -19,7 +19,8 @@ public class Choix {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_choix")
 	private Long id;
-	private String libele;
+	private String designation;
+	private Boolean status;
 	
 	@ManyToOne
     @JoinColumn(name = "id_question")

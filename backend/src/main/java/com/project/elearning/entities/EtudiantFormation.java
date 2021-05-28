@@ -10,15 +10,16 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "etudDevoir")
-public class EtudDevoir {
+@Table(name = "etudiantFormation")
+public class EtudiantFormation {
+
 	@EmbeddedId
-    EtudDevoirKey key;
+    EtudiantFormationKey key;
 
 	@ManyToOne
-	@MapsId("idDevoir")
-    @JoinColumn(name = "id_devoir")
-    private Devoir devoir;
+	@MapsId("idFormation")
+    @JoinColumn(name = "id_formation")
+    private Formation formation;;
 	
 	@ManyToOne
 	@MapsId("idEtudiant")
@@ -26,6 +27,5 @@ public class EtudDevoir {
     private Etudiant etudiant;
     
     
-	private Date dateAjout;
-	private float note;
+	private Date dateInscription;
 }

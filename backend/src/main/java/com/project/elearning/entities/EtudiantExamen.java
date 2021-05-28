@@ -14,16 +14,16 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "etudQcm")
-public class EtudQcm {
+@Table(name = "etudiantExamen")
+public class EtudiantExamen {
 
 	@EmbeddedId
-    EtudiantQcmKey key;
+    EtudiantExamenKey key;
 
 	@ManyToOne
-	@MapsId("idQcm")
-    @JoinColumn(name = "id_qcm")
-    private Qcm qcm;
+	@MapsId("idExamen")
+    @JoinColumn(name = "id_examen")
+    private Examen examen;
 	
 	@ManyToOne
 	@MapsId("idEtudiant")
@@ -33,5 +33,6 @@ public class EtudQcm {
     
 	private Date dateAjout;
 	private float note;
+	private String url_cerificate;
 	
 }

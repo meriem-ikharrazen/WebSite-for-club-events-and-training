@@ -6,12 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class EtudiantQcmKey implements Serializable {
+public class EtudiantFormationKey implements Serializable {
 
 	@Column(name = "id_etudiant")
     Long idEtudiant;
 
-    @Column(name = "id_qcm")
-    Long idQcm;
-
+    @Column(name = "id_formation")
+    Long idFormation;
 }

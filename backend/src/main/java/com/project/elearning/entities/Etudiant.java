@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,28 +29,20 @@ public class Etudiant {
     @Column(name = "id_etudiant")
 	private Long id;
 	private String cne;
-	private String nomEtudiant;
-	private String prenomEtudiant;
-	private Character sexeEtudiant;
+	private String nom;
+	private String prenom;
+	private Character sexe;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	private String emailEtudiant;
-	private String telEtudiant;
-	private String passwordEtudiant;
+	private String email;
+	private String tel;
+	private String password;
 	private String niveau;
 	private String diplomePrepare;
-	private String imageDirecteur;
+	private String image;
 	
 	@OneToMany(mappedBy = "etudiant")
-    private Set<EtudQcm> etudQcm;
+    private Set<EtudiantExamen> etudiantExamen;
+
 	
-	@ManyToOne
-    @JoinColumn(name = "id_classe")
-    private Classe classe;
-	
-	@OneToMany(mappedBy = "etudiant")
-    private List<EtudDevoir> etudDevoir;
-	
-	@OneToMany(mappedBy = "etudiant")
-    private List<Role> role;
 }

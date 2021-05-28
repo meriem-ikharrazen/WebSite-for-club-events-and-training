@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +22,17 @@ public class Club {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_club")
 	private Long id;
-	private String libele;
+	private String designation;
 	private String description;
+	private String logo;
 	
 	@OneToMany(mappedBy = "club")
-    private List<Club> club;
+    private List<Formation> formations;
 	
 	@OneToMany(mappedBy = "club")
     private List<Evenement> evenements;
 	
+	@OneToOne
+    @JoinColumn(name = "id_etudiant")
+    private Etudiant etudiant;
 }

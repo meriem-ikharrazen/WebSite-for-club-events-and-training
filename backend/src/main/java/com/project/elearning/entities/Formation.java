@@ -1,6 +1,7 @@
 package com.project.elearning.entities;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,26 +18,35 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "devoir")
-public class Devoir {
+@Table(name = "formation")
+public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_devoir")
+    @Column(name = "id_formation")
 	private Long id;
 	private String libele;
 	private String description;
-	private String niveau;
-	private String diplome;
-	private String url;
-	private Date dateAjout;
+	private Date dateDebut;
 	private Date dateFin;
 	private Boolean status;
+	private String image;
+	private Date dateAjout;
 	
-	
-	@OneToMany(mappedBy = "devoir")
-    private List<EtudDevoir> etudDevoir;
+	@OneToMany(mappedBy = "formation")
+    private List<Examen> examens;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_professeur")
-    private Professeur professeur;
+    @JoinColumn(name = "id_formateur")
+    private Formateur formateur;
+	
+	@OneToMany(mappedBy = "formation")
+    private List<PartieFormation> parties;
+	
+	@ManyToOne
+    @JoinColumn(name = "id_categorie")
+    private CategorieFormation categorie;
+	
+	@ManyToOne
+    @JoinColumn(name = "id_club")
+    private Club club;
 }

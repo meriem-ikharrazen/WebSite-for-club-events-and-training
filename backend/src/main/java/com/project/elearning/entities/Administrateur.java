@@ -15,20 +15,17 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "directeur")
-public class Directeur {
+public class Administrateur {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_directeur")
+    @Column(name = "id_administrateur")
 	private Long id;
-	private String nomDirecteur;
-	private String prenomDirecteur;
-	private Character sexeDirecteur;
-	@Temporal(TemporalType.DATE)
-	private Date dateNaissance;
-	private String emailDirecteur;
-	private String telDirecteur;
+	private String nom;
+	private String prenom;
+	private Character sexe;
+	private String email;
 	private String passwordDirecteur;
-	private String imageDirecteur;
-
+	private String image;
+	private Boolean isSuper;
 }
