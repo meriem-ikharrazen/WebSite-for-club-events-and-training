@@ -8,28 +8,54 @@
               <p class="card-category">Create new account</p>
             </div>
             <div class="card-body">
-              <form>
+              <form [formGroup] = "formateurFormGroup">
                 <div class="row">
                   <div class="col-md-6">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Username" />
+                      <input matInput formControlName="prenom" name="prenom" placeholder="First name" 
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.prenom.errors}"
+                      />
+
+                      <div *ngIf="submitted && formateurFormGroup.controls.prenom.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.prenom.errors.required">Name is required.</div>
+                        <div *ngIf="formateurFormGroup.controls.prenom.errors.minlength">Must be at least 2 characters.</div>
+                    </div>
                     </mat-form-field>
+                    
                   </div>
                   <div class="col-md-6">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Email address" type="email" />
+                      <input matInput formControlName="nom" name="nom" placeholder="Last name" type="text" 
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.nom.errors}"
+                      />
+                      <div *ngIf="submitted && formateurFormGroup.controls.nom.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.nom.errors.required">Last Name is required.</div>
+                        <div *ngIf="formateurFormGroup.controls.nom.errors?.minlength">Must be at least 2 characters.</div>
+                    </div>
                     </mat-form-field>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="CIN" type="text" />
+                      <input matInput formControlName="email" name="email" placeholder="Email address" type="email"
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.email.errors}"
+                      />
+                      <div *ngIf="submitted && formateurFormGroup.controls.email.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.email.errors.required">Email required.</div>
+                        <div *ngIf="formateurFormGroup.controls.email.errors.email">Email not valid.</div>
+                    </div>
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="CNE" type="text" />
+                      <input matInput formControlName="password" name="password" placeholder="password" type="password"
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.password.errors}"
+                      />
+                      <div *ngIf="submitted && formateurFormGroup.controls.password.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.password.errors.required">Password required.</div>
+                        <div *ngIf="formateurFormGroup.controls.password.errors?.minlength">Must be at least 6 characters.</div>
+                    </div>
                     </mat-form-field>
                   </div>
                 </div>
@@ -38,62 +64,58 @@
                   <div class="col-md-6">
                     <mat-form-field>
                       <mat-label>Are you?</mat-label>
-                      <mat-select>
+                      <mat-select  formControlName="sexe" name="sexe"
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.sexe.errors}"
+                      >
                         <mat-option *ngFor="let s of sexe" [value]="s.value">
                           {{ s.viewValue }}
                         </mat-option>
+
                       </mat-select>
+
+                      <div *ngIf="submitted && formateurFormGroup.controls.sexe.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.sexe.errors.required">sexe required.</div>
+                    </div>
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
                     <mat-form-field>
-                      <mat-label>Date of birthday</mat-label>
-                      <input matInput [matDatepicker]="picker" />
+                      <input matInput [matDatepicker]="picker"placeholder="Date of birthday"  name="date_naissance"
+                      formControlName="date_naissance" (focus)="picker.open()"
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.date_naissance.errors}"
+                      />
                       <mat-datepicker-toggle
                         matSuffix
                         [for]="picker"
                       ></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
+
+                      <div *ngIf="submitted && formateurFormGroup.controls.date_naissance.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.date_naissance.errors.required">
+                          Date of birth required.
+                        </div>
+                    </div>
+                    
                     </mat-form-field>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <mat-label>Select your major</mat-label>
-                      <mat-select>
-                       
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field>
-                      <mat-label>The year</mat-label>
-                      <mat-select>
-                        
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
+                  <div class="col-md-12">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Password" type="password" />
-                    </mat-form-field>
-                  </div>
-                  <div class="col-6">
-                    <mat-form-field class="example-full-width">
-                      <input
-                        matInput
-                        placeholder="Retype password"
-                        type="password"
+                      <input matInput formControlName="tel" name="tel" placeholder="Phone number" 
+                      [ngClass]="{'is-invalid': submitted && formateurFormGroup.controls.tel.errors}"
                       />
+                      <div *ngIf="submitted && formateurFormGroup.controls.tel.errors" class="invalid-feedback">
+                        <div *ngIf="formateurFormGroup.controls.tel.errors.required">Phone number required.</div>
+                    </div>
                     </mat-form-field>
                   </div>
+                  
                 </div>
+               
                 <button
                   mat-raised-button
-                  type="submit"
+                  (click)="createFormateur()"
                   class="btn btn-danger pull-right"
                 >
                   Register

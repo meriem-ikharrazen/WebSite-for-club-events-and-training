@@ -17,11 +17,16 @@ import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GlobalComponent } from './global/global.component';
+import { FormateurService } from 'app/services/formateur.service';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -38,7 +43,9 @@ import { GlobalComponent } from './global/global.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    
+    MatNativeDateModule,
+    MatDatepickerModule,
+        
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
@@ -50,7 +57,7 @@ import { GlobalComponent } from './global/global.component';
     RegisterComponent,
     GlobalComponent,
   ],
-  providers: [],
+  providers: [FormateurService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
