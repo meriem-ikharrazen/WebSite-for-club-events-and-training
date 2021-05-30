@@ -23,7 +23,7 @@ public class EtudiantFormation {
 	
 	@ManyToOne
 	@MapsId("idEtudiant")
-    @JoinColumn(name = "id_etudiant")
+    @JoinColumn(name = "id")
     private Etudiant etudiant;
     
     

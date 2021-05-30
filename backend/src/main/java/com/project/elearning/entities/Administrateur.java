@@ -15,17 +15,6 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "directeur")
-public class Administrateur {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_administrateur")
-	private Long id;
-	private String nom;
-	private String prenom;
-	private Character sexe;
-	private String email;
-	private String passwordDirecteur;
-	private String image;
+public class Administrateur extends User {
 	private Boolean isSuper;
 }

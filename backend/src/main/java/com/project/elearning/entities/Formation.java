@@ -36,7 +36,7 @@ public class Formation {
     private List<Examen> examens;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_formateur")
+    @JoinColumn(name = "id")
     private Formateur formateur;
 	
 	@OneToMany(mappedBy = "formation")
