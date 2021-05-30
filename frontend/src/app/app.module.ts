@@ -25,6 +25,9 @@ import { GlobalComponent } from './global/global.component';
 import { FormateurService } from 'app/services/formateur.service';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { GlobalVariables } from 'GlobalVariables';
+import { AppService } from './services/app.service';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -56,8 +59,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     SigninComponent,
     RegisterComponent,
     GlobalComponent,
+    HomeComponent,
   ],
-  providers: [FormateurService],
+  providers: [
+    FormateurService,
+    GlobalVariables,
+    AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

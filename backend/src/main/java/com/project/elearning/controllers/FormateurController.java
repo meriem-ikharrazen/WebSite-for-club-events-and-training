@@ -3,6 +3,7 @@ package com.project.elearning.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class FormateurController {
 	@Autowired
 	private FormateurRepository formateurRepository;
 	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	 @GetMapping("/formateurs")
 	  List<Formateur> getAll() {
 	    return formateurRepository.findAll();
@@ -33,8 +37,16 @@ public class FormateurController {
 	 
 	 @PostMapping("/formateur")
 	 Formateur add(@RequestBody Formateur formateur) {
-		    return formateurRepository.save(formateur);
+		 
+		 boolean isFormateurExist = formateurRepository.existsByEmail(formateur.getEmail());
+		 if(isFormateurExist) {
+			 return null;
+			 
+		 }else{
+			 formateur.setPassword(passwordEncoder.encode(formateur.getPassword()));
+			    return formateurRepository.save(formateur); 
 		  }
+	 }
 	 
 	 @GetMapping("/formateurs/{id}")
 	  Formateur findById(@PathVariable Long id) {

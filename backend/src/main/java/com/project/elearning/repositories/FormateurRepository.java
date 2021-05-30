@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.project.elearning.entities.Formateur;
 
 public interface FormateurRepository extends JpaRepository<Formateur, Long> {
+	Formateur findByEmail(String email);
+    boolean existsByEmail(String email);
 
 }
