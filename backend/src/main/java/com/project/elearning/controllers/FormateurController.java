@@ -1,7 +1,9 @@
 package com.project.elearning.controllers;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.elearning.Exceptions.NotFound;
 import com.project.elearning.entities.Formateur;
+import com.project.elearning.entities.Role;
 import com.project.elearning.entities.User;
 import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.RoleRepository;
@@ -54,7 +57,9 @@ public class FormateurController {
 			 
 		 }else{
 			 formateur.setPassword(passwordEncoder.encode(formateur.getPassword()));
-			 formateur.setRoles(Arrays.asList(roleRepository.findByName("formateur")));
+				Set<Role> roles = new HashSet<>();
+				roles.add(roleRepository.findRoleByName("formateur"));
+			 formateur.setRoles(roles);
 			    return formateurRepository.save(formateur); 
 		  }
 	 }
