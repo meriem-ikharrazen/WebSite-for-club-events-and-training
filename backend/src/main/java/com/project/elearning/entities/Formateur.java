@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "formateur")
 public class Formateur extends User {
@@ -40,6 +42,7 @@ public class Formateur extends User {
 	@OneToMany(mappedBy = "formateur")
 	private List<Formation> formations;
 
+
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
@@ -49,9 +52,11 @@ public class Formateur extends User {
 		this.dateNaissance = dateNaissance;
 	}
 
+
 	public String getTel() {
 		return tel;
 	}
+
 
 	public void setTel(String tel) {
 		this.tel = tel;
@@ -76,6 +81,7 @@ public class Formateur extends User {
 	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
+
 
 	public Boolean getAccess() {
 		return access;
@@ -115,7 +121,6 @@ public class Formateur extends User {
 	public void setFormations(List<Formation> formations) {
 		this.formations = formations;
 	}
-	
 	
 	
 	
