@@ -20,22 +20,8 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.token.getUser();
+    console.log(this.token);
     console.log(this.currentUser);
 
-    this.getPublicContent().subscribe(
-      data=>{
-        this.content = data;
-        console.log(data);
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    )
-
   }
-
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL, { responseType: 'text' });
-  }
-
 }

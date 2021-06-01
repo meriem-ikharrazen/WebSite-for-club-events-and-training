@@ -20,28 +20,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Role;
-import com.project.elearning.entities.User;
 import com.project.elearning.repositories.UserRepository;
 
-import Enumarations.ERole;
 import payload.JwtResponse;
 import payload.LoginRequest;
-import payload.MessageResponse;
-import payload.SignupRequest;
+import payload.ResponseMsg;
 import services.UserDetailsImpl;
 
 import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.RoleRepository;
 import security.JwtUtils;
-
-import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -61,6 +51,9 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private FormateurRepository formateurRepository;
@@ -87,74 +80,20 @@ public class AuthController {
 												 roles));
 	}
 
-	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Email is already in use!"));
-		}
-
-		// Create new user's account
-		User user = new User();
-		
-		user.setNom(signUpRequest.getUsername());
-		user.setEmail(signUpRequest.getEmail());
-		user.setPassword(encoder.encode(signUpRequest.getPassword()));
-
-		Set<String> strRoles = signUpRequest.getRole();
-		Set<Role> roles = new HashSet<>();
-
-		if (strRoles == null) {
-			Role userRole = roleRepository.findByName("formateur")
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName("admin")
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-
-					break;
-				case "formateur":
-					Role modRole = roleRepository.findByName("formateur")
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(modRole);
-
-					break;
-				default:
-					Role userRole = roleRepository.findByName("etudiant")
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
-				}
-			});
-		}
-
-		user.setRoles(roles);
-		userRepository.save(user);
-
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-	}
-	
-	@PostMapping("/api/formateur/signup")
-	public ResponseEntity<?> registerFormateur(@Valid @RequestBody Formateur formateur) {
-		
-		if (userRepository.existsByEmail(formateur.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Email is already in use!"));
-		}
-		
-		formateur.setPassword(encoder.encode(formateur.getPassword()));
-
-		Set<Role> roles = new HashSet<>();
-		roles.add(roleRepository.findRoleByName("formateur"));
-		
-		formateurRepository.save(formateur);
-
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-	}
+	@PostMapping("/signup/formateur")
+	 ResponseEntity<?> registerFormateur(@RequestBody Formateur formateur) {
+		 
+		 boolean isFormateurExist = formateurRepository.existsByEmail(formateur.getEmail());
+		 if(isFormateurExist) {
+//			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email already in use");
+			 return ResponseEntity.ok(new ResponseMsg(403,"Email already in use."));
+		 }else{
+			 formateur.setPassword(passwordEncoder.encode(formateur.getPassword()));
+				Set<Role> roles = new HashSet<>();
+				roles.add(roleRepository.findRoleByName("formateur"));
+			 formateur.setRoles(roles);
+			 return ResponseEntity.ok(new ResponseMsg(200,formateurRepository.save(formateur)));
+		  }
+	 }
+	 
 }

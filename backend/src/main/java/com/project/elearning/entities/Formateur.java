@@ -27,7 +27,7 @@ import lombok.Data;
 @Table(name = "formateur")
 public class Formateur extends User {
 	@Temporal(TemporalType.DATE)
-	private Date dateNaissance;
+	private Date date_naissance;
 	private String tel;
 	private String diplome;
 	private String specialite;
@@ -43,13 +43,15 @@ public class Formateur extends User {
 	private List<Formation> formations;
 
 
-	public Date getDateNaissance() {
-		return dateNaissance;
+	
+
+	public Date getDate_naissance() {
+		return date_naissance;
 	}
 
 
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
+	public void setDate_naissance(Date date_naissance) {
+		this.date_naissance = date_naissance;
 	}
 
 

@@ -6,14 +6,15 @@
 
         </div>
         <div class="d-flex">
-            <a class="nav-link" [routerLink]="['/signin']"><span class="link">
+
+            <a *ngIf="!isUserConnected()" class="nav-link" [routerLink]="['/signin']"><span class="link">
                 <i class="material-icons">person</i>
                 Sign in</span></a>
-            <a class="nav-link" [routerLink]="['/register']"><span class="link">
+            <a *ngIf="!isUserConnected()"  class="nav-link" [routerLink]="['/register']"><span class="link">
             <i class="material-icons">login</i> Register</span></a>
-            <a class="nav-link" (click)="signOut()"><span class="link">
+            <a *ngIf="isUserConnected()"  class="nav-link" (click)="signOut()"><span class="link">
                 <i class="material-icons">login</i> Sign out</span></a>
-            <a class="nav-link" [routerLink]="['/dashboard']"><span class="link">
+            <a *ngIf="isUserConnected()"  class="nav-link" [routerLink]="['/dashboard']"><span class="link">
                 <i class="material-icons">dashboard</i> Dashboard</span></a>
         </div>
     </nav>

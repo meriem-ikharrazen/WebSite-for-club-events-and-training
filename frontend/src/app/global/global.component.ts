@@ -8,6 +8,7 @@ import { TokenStorageService } from 'app/services/token-storage.service';
 })
 export class GlobalComponent implements OnInit {
 
+
   constructor(private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
@@ -16,6 +17,10 @@ export class GlobalComponent implements OnInit {
   signOut():void{
     console.log("clicked");
     this.tokenStorage.signOut();
+  }
+
+  isUserConnected():boolean{
+    return (this.tokenStorage.getUser()) != null ?true : false;
   }
 
 }
