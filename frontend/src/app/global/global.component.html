@@ -1,7 +1,8 @@
 <div>
     <nav class="nav nav-tabs main-bg d-flex justify-content-between">
-        <div>
+        <div class="d-flex">
             <a class="nav-link" [routerLink]="['/home']"><span class="link">Home</span></a>
+            <a class="nav-link" [routerLink]="['/test']"><span class="link">Test</span></a>
 
         </div>
         <div class="d-flex">
@@ -10,6 +11,8 @@
                 Sign in</span></a>
             <a class="nav-link" [routerLink]="['/register']"><span class="link">
             <i class="material-icons">login</i> Register</span></a>
+            <a class="nav-link" (click)="signOut()"><span class="link">
+                <i class="material-icons">login</i> Sign out</span></a>
             <a class="nav-link" [routerLink]="['/dashboard']"><span class="link">
                 <i class="material-icons">dashboard</i> Dashboard</span></a>
         </div>

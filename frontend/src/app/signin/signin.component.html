@@ -8,13 +8,26 @@
             <p class="card-category">Connect to your account</p>
           </div>
           <div class="card-body p-5">
+           
             <div class="row">
               <div class="col-md-6">
-                <form>
+                <form
+                  [formGroup] = "signinFormGroup"
+                  (ngSubmit)="onSubmit()"
+                >
+                <div class="alert alert-dark" role="alert" *ngIf="errMsg!=''">
+                  {{errMsg}}
+                </div>
                   <div class="row">
                     <div class="col-md-12">
                       <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Email" />
+                        <input matInput formControlName="email" name="email" placeholder="Email address" type="email"
+                        [ngClass]="{'is-invalid': submitted && signinFormGroup.controls.email.errors}"
+                        />
+                        <div *ngIf="submitted && signinFormGroup.controls.email.errors" class="invalid-feedback">
+                          <div *ngIf="signinFormGroup.controls.email.errors.required">Email required.</div>
+                          <div *ngIf="signinFormGroup.controls.email.errors.email">Email not valid.</div>
+                      </div>
                       </mat-form-field>
                     </div>
                   </div>
@@ -22,31 +35,34 @@
                   <div class="row">
                     <div class="col-12">
                       <mat-form-field class="example-full-width">
-                        <input
-                          matInput
-                          placeholder="Password"
-                          type="password"
+                        <input matInput formControlName="password" name="password" placeholder="password" type="password"
+                        [ngClass]="{'is-invalid': submitted && signinFormGroup.controls.password.errors}"
                         />
+                        <div *ngIf="submitted && signinFormGroup.controls.password.errors" class="invalid-feedback">
+                          <div *ngIf="signinFormGroup.controls.password.errors.required">Password required.</div>
+                          <div *ngIf="signinFormGroup.controls.password.errors?.minlength">Must be at least 6 characters.</div>
+                      </div>
                       </mat-form-field>
                     </div>
                   </div>
-                  <button
-                    mat-raised-button
-                    type="submit"
-                    class="btn btn-danger pull-right"
-                  >
+                  <button cli mat-raised-button class="btn btn-danger pull-right">
                     Connect
                   </button>
                   <div class="clearfix"></div>
+                 
                 </form>
               </div>
               <div class="col-md-6">
                 <div class="d-flex p-3">
                   <div class="justify-content-center align-item-center">
-                    <img class="scale-img" src="/assets/img/logo1.png" width="200px"/>
+                    <img
+                      class="scale-img"
+                      src="/assets/img/logo1.png"
+                      width="200px"
+                    />
                   </div>
-              </div>              
-            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

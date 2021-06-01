@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/services/auth.service';
+import { TokenStorageService } from 'app/services/token-storage.service';
 interface Person {
   value: string;
   viewValue: string;
@@ -20,9 +24,56 @@ export class SigninComponent implements OnInit {
 
   ];
 
-  constructor() { }
+  signinFormGroup ?: FormGroup;
+  submitted :boolean = false;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  errMsg = '';
 
-  ngOnInit(): void {
+  constructor(private authService: AuthService,private fb:FormBuilder, private tokenStorage: TokenStorageService,private router:Router) { }
+
+  ngOnInit() {
+
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
+    this.signinFormGroup = this.fb.group({
+      
+      email:["",[Validators.required,Validators.email]],
+      password:["",[Validators.required, Validators.minLength(6)]],
+
+    });
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if(this.signinFormGroup.invalid) return;
+    this.authService.login(this.signinFormGroup.value).subscribe(
+      data => {
+        console.log("Sign in:");
+        console.log(data);
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.router.navigate(["/home"]);
+        // this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+        this.errMsg = "Bad credentiels.";
+      }
+    );
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 
 }

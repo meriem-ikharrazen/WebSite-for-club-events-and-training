@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'app/services/token-storage.service';
 
 @Component({
   selector: 'app-global',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenStorage:TokenStorageService) { }
 
   ngOnInit(): void {
+  }
+
+  signOut():void{
+    console.log("clicked");
+    this.tokenStorage.signOut();
   }
 
 }
