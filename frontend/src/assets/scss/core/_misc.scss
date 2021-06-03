@@ -1,8 +1,22 @@
-body{
-    background-color: #eee;
-    color: $black-color;
-    font-weight: 300;
-}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    background-color: white;
+  }
+  
+  a {
+    color: #1977cc;
+  }
+  
+  a:hover {
+    color: #3291e6;
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway", sans-serif;
+  }
 
 legend {
   border-bottom: 0;
