@@ -1,16 +1,25 @@
 <div>
+<<<<<<< HEAD
     <!-- <nav class="nav nav-tabs main-bg d-flex justify-content-between">
         <div>
+=======
+    <nav class="nav nav-tabs main-bg d-flex justify-content-between">
+        <div class="d-flex">
+>>>>>>> b38c3c9d3a6d47bfd953abdecd889bf03b397aa6
             <a class="nav-link" [routerLink]="['/home']"><span class="link">Home</span></a>
+            <a class="nav-link" [routerLink]="['/test']"><span class="link">Test</span></a>
 
         </div>
         <div class="d-flex">
-            <a class="nav-link" [routerLink]="['/signin']"><span class="link">
+
+            <a *ngIf="!isUserConnected()" class="nav-link" [routerLink]="['/signin']"><span class="link">
                 <i class="material-icons">person</i>
                 Sign in</span></a>
-            <a class="nav-link" [routerLink]="['/register']"><span class="link">
+            <a *ngIf="!isUserConnected()"  class="nav-link" [routerLink]="['/register']"><span class="link">
             <i class="material-icons">login</i> Register</span></a>
-            <a class="nav-link" [routerLink]="['/dashboard']"><span class="link">
+            <a *ngIf="isUserConnected()"  class="nav-link" (click)="signOut()"><span class="link">
+                <i class="material-icons">login</i> Sign out</span></a>
+            <a *ngIf="isUserConnected()"  class="nav-link" [routerLink]="['/dashboard']"><span class="link">
                 <i class="material-icons">dashboard</i> Dashboard</span></a>
         </div>
     </nav> -->

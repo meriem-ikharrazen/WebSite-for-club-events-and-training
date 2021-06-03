@@ -28,6 +28,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { GlobalVariables } from 'GlobalVariables';
 import { AppService } from './services/app.service';
 import { HomeComponent } from './home/home.component';
+import { AuthService } from './services/auth.service';
+import { TokenStorageService } from './services/token-storage.service';
+import { AuthInterceptor, authInterceptorProviders } from './helpers/auth.interceptor';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -60,11 +64,17 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     GlobalComponent,
     HomeComponent,
+    TestComponent,
   ],
   providers: [
     FormateurService,
     GlobalVariables,
-    AppService],
+    AppService,
+    AuthService,
+  TokenStorageService,
+  AuthInterceptor,
+  authInterceptorProviders
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

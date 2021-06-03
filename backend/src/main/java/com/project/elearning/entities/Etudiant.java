@@ -22,24 +22,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "etudiant")
-public class Etudiant {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_etudiant")
-	private Long id;
+public class Etudiant extends User {
+	private int id_etudiant;
 	private String cne;
-	private String nom;
-	private String prenom;
-	private Character sexe;
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	private String email;
 	private String tel;
-	private String password;
 	private String niveau;
 	private String diplomePrepare;
-	private String image;
 	
 	@OneToMany(mappedBy = "etudiant")
     private Set<EtudiantExamen> etudiantExamen;

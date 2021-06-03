@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Formateur } from 'app/models/formateur.model';
@@ -14,6 +15,8 @@ export class FormateurService {
 
   
   private formateurUrl = '/formateur';
+  private signupUrl = '/signup/formateur';
+
 
   constructor(private http:HttpClient,private globalVar:GlobalVariables) {}
 
@@ -27,6 +30,6 @@ export class FormateurService {
   }
 
   public createFormateur(formateur) {
-    return this.http.post<Formateur>(this.globalVar.apiUrl+this.formateurUrl, formateur);
+    return this.http.post<any>(this.globalVar.authApi+this.signupUrl, formateur);
   }
 }
