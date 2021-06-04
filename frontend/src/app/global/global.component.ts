@@ -8,6 +8,7 @@ import { TokenStorageService } from 'app/services/token-storage.service';
 })
 export class GlobalComponent implements OnInit {
 
+  isActive:boolean = false;
 
   constructor(private tokenStorage:TokenStorageService) { }
 
@@ -22,5 +23,4 @@ export class GlobalComponent implements OnInit {
   isUserConnected():boolean{
     return (this.tokenStorage.getUser()) != null ?true : false;
   }
-
 }

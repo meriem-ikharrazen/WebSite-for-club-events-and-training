@@ -4,11 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { SigninComponent } from './signin/signin.component';
-import { RegisterComponent } from './register/register.component';
-import { GlobalRoutes } from './global/global.routing';
 import { GlobalComponent } from './global/global.component';
-import { GlobalModule } from './global/global.module';
 
 const routes: Routes =[
  

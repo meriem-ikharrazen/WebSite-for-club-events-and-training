@@ -368,3 +368,8 @@
     height: auto;
   }
 }
+
+/* the header height is 50px */
+.mt-70{
+margin-top: 70px;
+}

@@ -9,6 +9,4 @@ export const GlobalRoutes:Routes = [
     { path: 'register',      component: RegisterComponent },
     { path: 'home',      component: HomeComponent },
     { path: 'test',      component: TestComponent },
-
-
 ];

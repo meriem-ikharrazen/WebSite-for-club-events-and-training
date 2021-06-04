@@ -69,6 +69,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (data) => {
           // alert("formateur created successfully.");
+          console.log(data);
+
           console.log(data.status);
           if (data.status == 403) {
             console.log(data);

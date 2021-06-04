@@ -92,7 +92,8 @@ public class AuthController {
 				Set<Role> roles = new HashSet<>();
 				roles.add(roleRepository.findRoleByName("formateur"));
 			 formateur.setRoles(roles);
-			 return ResponseEntity.ok(new ResponseMsg(200,formateurRepository.save(formateur)));
+			 formateurRepository.save(formateur);
+			 return ResponseEntity.ok(new ResponseMsg(200,"Formateur added successfully"));
 		  }
 	 }
 	 
