@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.elearning.entities.Administrateur;
 import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Role;
 import com.project.elearning.repositories.UserRepository;
@@ -29,6 +30,7 @@ import payload.LoginRequest;
 import payload.ResponseMsg;
 import services.UserDetailsImpl;
 
+import com.project.elearning.repositories.AdministrateurRepository;
 import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.RoleRepository;
 import security.JwtUtils;
@@ -57,6 +59,9 @@ public class AuthController {
 	
 	@Autowired
 	private FormateurRepository formateurRepository;
+	
+	@Autowired
+	private AdministrateurRepository adminRepository;
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -94,6 +99,22 @@ public class AuthController {
 			 formateur.setRoles(roles);
 			 formateurRepository.save(formateur);
 			 return ResponseEntity.ok(new ResponseMsg(200,"Formateur added successfully"));
+		  }
+	 }
+	
+	@PostMapping("/signup/admin")
+	 ResponseEntity<?> registerAdmin(@RequestBody Administrateur admin) {
+		 
+		 boolean isFormateurExist = adminRepository.existsByEmail(admin.getEmail());
+		 if(isFormateurExist) {
+			 return ResponseEntity.ok(new ResponseMsg(403,"Email already in use."));
+		 }else{
+			 admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+				Set<Role> roles = new HashSet<>();
+				roles.add(roleRepository.findRoleByName("admin"));
+			 admin.setRoles(roles);
+			 adminRepository.save(admin);
+			 return ResponseEntity.ok(new ResponseMsg(200,"Admin added successfully"));
 		  }
 	 }
 	 

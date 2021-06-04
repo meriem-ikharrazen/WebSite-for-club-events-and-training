@@ -5,6 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { GlobalComponent } from './global/global.component';
+import { formateurRoutes } from './user/formateur/formateur.routing';
+import { FormateurModule } from './user/formateur/formateur.module';
+import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
+import { FormateurComponent } from './user/formateur/formateur.component';
 
 const routes: Routes =[
  
@@ -32,15 +36,25 @@ const routes: Routes =[
     children: [{
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-    }]
-  }
+    },
+    {
+      path: '',
+      component: FormateurComponent,
+      children: [{
+        path: 'formateur/add',
+        component: AddFormateurComponent
+      }]
+      
+    },]
+  },
+ 
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   exports: [
   ],

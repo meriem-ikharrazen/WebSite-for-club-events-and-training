@@ -32,6 +32,11 @@ import { AuthService } from './services/auth.service';
 import { TokenStorageService } from './services/token-storage.service';
 import { AuthInterceptor, authInterceptorProviders } from './helpers/auth.interceptor';
 import { TestComponent } from './test/test.component';
+import { FormateurComponent } from './user/formateur/formateur.component';
+import { AdminComponent } from './user/admin/admin.component';
+import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
+import { FormateurModule } from './user/formateur/formateur.module';
+import { StudentComponent } from './user/student/student.component';
 
 
 @NgModule({
@@ -52,6 +57,7 @@ import { TestComponent } from './test/test.component';
     MatTooltipModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    FormateurModule,
         
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -65,6 +71,10 @@ import { TestComponent } from './test/test.component';
     GlobalComponent,
     HomeComponent,
     TestComponent,
+    FormateurComponent,
+    AdminComponent,
+    AddFormateurComponent,
+    StudentComponent,
   ],
   providers: [
     FormateurService,

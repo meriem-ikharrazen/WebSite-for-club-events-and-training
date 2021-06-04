@@ -16,5 +16,5 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "directeur")
 public class Administrateur extends User {
-	private Boolean isSuper;
+	private Boolean isSuper = false;
 }
