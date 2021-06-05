@@ -14,6 +14,7 @@ interface Sexe {
   styleUrls: ["./register.component.css"],
 })
 export class RegisterComponent implements OnInit {
+
   formateurFormGroup?: FormGroup;
   submitted: boolean = false;
   errMsg: String = "";
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
   ];
 
   formateur: Formateur = new Formateur();
+
 
   constructor(
     private router: Router,

@@ -25,6 +25,8 @@ import { GlobalComponent } from './global/global.component';
 import { FormateurService } from 'app/services/formateur.service';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
+
 import { GlobalVariables } from 'GlobalVariables';
 import { AppService } from './services/app.service';
 import { HomeComponent } from './home/home.component';
@@ -58,6 +60,7 @@ import { StudentComponent } from './user/student/student.component';
     MatNativeDateModule,
     MatDatepickerModule,
     FormateurModule,
+    MatIconModule,
         
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'

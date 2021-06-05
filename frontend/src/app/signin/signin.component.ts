@@ -19,6 +19,8 @@ export class SigninComponent implements OnInit {
     { value: "admin", viewValue: "Admin" },
   ];
 
+  hide = true;
+
   signinFormGroup?: FormGroup;
   submitted: boolean = false;
   isLoggedIn = false;
