@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Formateur } from 'app/models/formateur.model';
 import { GlobalVariables } from 'GlobalVariables';
+import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,15 +16,15 @@ const httpOptions = {
 export class FormateurService {
 
   
-  private formateurUrl = '/formateur';
+  private formateurUrl = '/formateurs';
   private signupUrl = '/signup/formateur';
 
 
   constructor(private http:HttpClient,private globalVar:GlobalVariables) {}
 
 
-  public getFormateurs() {
-    return this.http.get<Formateur[]>(this.formateurUrl);
+  public getFormateurs():Observable<Formateur[]> {
+    return this.http.get<Formateur[]>(this.globalVar.apiUrl + this.formateurUrl);
   }
 
   public deleteUser(formateur) {

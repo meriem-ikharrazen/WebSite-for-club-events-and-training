@@ -37,12 +37,14 @@ import { TestComponent } from './test/test.component';
 import { FormateurComponent } from './user/formateur/formateur.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
-import { FormateurModule } from './user/formateur/formateur.module';
+// import { FormateurModule } from './user/formateur/formateur.module';
 import { StudentComponent } from './user/student/student.component';
+import { ShowFormateurComponent } from './user/formateur/show-formateur/show-formateur.component';
 
 
 @NgModule({
   imports: [
+    
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -59,7 +61,7 @@ import { StudentComponent } from './user/student/student.component';
     MatTooltipModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    FormateurModule,
+    // FormateurModule,
     MatIconModule,
         
     AgmCoreModule.forRoot({
@@ -78,7 +80,8 @@ import { StudentComponent } from './user/student/student.component';
     AdminComponent,
     AddFormateurComponent,
     StudentComponent,
-  ],
+    ShowFormateurComponent
+    ],
   providers: [
     FormateurService,
     GlobalVariables,

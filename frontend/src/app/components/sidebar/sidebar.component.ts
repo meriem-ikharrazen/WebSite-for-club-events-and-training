@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/exams', title: 'Exams',  icon:'library_books', class: '' },
     { path: '/notes', title: 'Notes',  icon:'content_paste', class: '' },
     { path: '/student', title: 'Students',  icon:'person', class: '' },
-    { path: '/formateur', title: 'Formateurs',  icon:'group', class: '' },
+    { path: '/formateur/show', title: 'Formateurs',  icon:'group', class: '' },
     { path: '/admin', title: 'Admins',  icon:'admin_panel_settings', class: '' },
     { path: '/classes', title: 'Classes',  icon:'bubble_chart', class: '' },
     { path: '/home', title: 'Back',  icon:'exit_to_app', class: '' },

@@ -40,15 +40,18 @@ export class AddFormateurComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.token.getUser() != null){
-      let roles: string[] = this.token.getUser().roles;
-      if(roles.indexOf('formateur') <= -1){
-      // redirect to forbidden page
-      this.router.navigate(["/home"]);
-      }
-    }else{
-      this.router.navigate(["/home"]);
-    }
+
+    // uncommit this after 
+
+    // if (this.token.getUser() != null){
+    //   let roles: string[] = this.token.getUser().roles;
+    //   if(roles.indexOf('formateur') <= -1){
+    //   // redirect to forbidden page
+    //   this.router.navigate(["/home"]);
+    //   }
+    // }else{
+    //   this.router.navigate(["/home"]);
+    // }
 
     this.formateurFormGroup = this.fb.group({
       nom: [

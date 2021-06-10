@@ -56,3 +56,104 @@
       }
     }
     
+
+/* User card Start */
+
+ .user {
+  position: relative;
+  box-shadow: 0px 2px 15px rgba(44, 73, 100, 0.08);
+  padding: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.pic  {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 70px;
+  border-radius: 50%;
+}
+
+ .pic img {
+  transition: ease-in-out 0.3s;
+}
+
+ .user:hover img {
+  transform: scale(1.1);
+}
+
+ .user .user-info {
+  padding-left: 30px;
+}
+
+ .user h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #2c4964;
+}
+
+ .user span {
+  display: block;
+  font-size: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+ .user span::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #b2c8dd;
+  bottom: 0;
+  left: 0;
+}
+
+ .user p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+ .user .social {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+ .user .social a {
+  transition: ease-in-out 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: #a0bcd5;
+}
+
+ .user .social a i {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 2px;
+}
+
+ .user .social a:hover {
+  background: #1977cc;
+}
+
+ .user .social a + a {
+  margin-left: 8px;
+}
+.social{
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+/* User card end */

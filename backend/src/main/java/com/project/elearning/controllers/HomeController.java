@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 	
 	@GetMapping("/home")
-	@PreAuthorize("hasRole('etudiant')")
 	public String index() {
-		return "successful";
+		return "/public/images/male.jpg";
 	}
 
 }

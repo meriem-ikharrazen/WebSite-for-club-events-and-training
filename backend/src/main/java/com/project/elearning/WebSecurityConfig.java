@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import security.AuthEntryPointJwt;
 import security.AuthTokenFilter;
 import security.JwtUtils;
+import services.FormateurService;
 import services.UserDetailsServiceImpl;
 
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,6 +32,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
+	
+	@Bean
+	public FormateurService fs() {
+		return new FormateurService();
+	}
 
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -75,10 +81,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .loginPage("/login")
         .usernameParameter("email")
         .and()
-		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+//		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-		.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+		.authorizeRequests()
+		.antMatchers("/api/auth/**").permitAll()
 		.antMatchers("/api/**").permitAll()
+		.antMatchers("/home/**").permitAll()
+		.antMatchers("/resources/**").permitAll()
+		.antMatchers("/public/**").permitAll()
+
 		.anyRequest().authenticated();
 
 	http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

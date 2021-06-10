@@ -4,6 +4,7 @@ package com.project.elearning.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +20,15 @@ import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.RoleRepository;
 import com.project.elearning.repositories.UserRepository;
 
+import services.FormateurService;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping({"/api"})
 public class FormateurController {
+	@Autowired
+	private FormateurService formateurService;
 	
 	@Autowired
 	private FormateurRepository formateurRepository;
@@ -34,10 +39,11 @@ public class FormateurController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	
+//	@Lazy(false)
 	 @GetMapping("/formateurs")
 	  List<Formateur> getAll() {
-	    return formateurRepository.findAll();
+		 
+	    return formateurService.getAll();
 	  }
 
 	 
