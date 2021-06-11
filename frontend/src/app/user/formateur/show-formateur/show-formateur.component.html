@@ -1,6 +1,35 @@
-<p>worked</p>
+<div class="row justify-content-between">
+  <div class="col-md-6">
+    <div class="input-group">
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          formControlName="search"
+          name="search"
+          placeholder="Search..."
+          type="text"
+          class="search-input"
+        />
+      </mat-form-field>
+      <!-- <input type="text" value="" class="in form-control" placeholder="Search..."> -->
+      <button
+        mat-raised-button
+        type="submit"
+        class="btn btn-white btn-round btn-just-icon"
+      >
+        <i class="material-icons">search</i>
+        <div class="ripple-container"></div>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <a [routerLink]="['/formateur/add']" class="main-btn main-btn scrollto"
+      >Add new admin</a
+    >
+  </div>
+</div>
 <div class="row">
-  <div *ngFor="let formateur of formateurs" class="col-lg-4 h-100">
+  <div *ngFor="let formateur of pageSlice" class="col-lg-4 h-100">
     <div class="user">
       <div class="pic">
         <img
@@ -36,4 +65,13 @@
       </div>
     </div>
   </div>
+
+  <!-- change the pagination later -->
+  <mat-paginator
+    [length]="this.formateurs.length"
+    [pageSize]="3"
+    [pageSizeOptions]="[3, 9, 18]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
 </div>

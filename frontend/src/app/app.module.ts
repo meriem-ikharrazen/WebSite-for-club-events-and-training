@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GlobalComponent } from './global/global.component';
 import { FormateurService } from 'app/services/formateur.service';
@@ -63,10 +64,11 @@ import { ShowFormateurComponent } from './user/formateur/show-formateur/show-for
     MatDatepickerModule,
     // FormateurModule,
     MatIconModule,
+    MatPaginatorModule,
         
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    // })
   ],
   declarations: [
     AppComponent,
