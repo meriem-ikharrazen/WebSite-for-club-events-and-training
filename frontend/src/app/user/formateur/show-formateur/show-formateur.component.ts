@@ -11,29 +11,48 @@ import { FormateurService } from "app/services/formateur.service";
 export class ShowFormateurComponent implements OnInit {
 
   public formateurs: Formateur[] = [];
+  public allFormateurs: Formateur[] = [];
   public pageSlice:Formateur[] = [];
+  public searchTxt:string = '';
+  public startIndex = 0;
+  public endIndex = 6;
   
   constructor(private formateurService: FormateurService) {}
   ngOnInit(): void {
     this.getAll();
-
   }
 
   public getAll() {
     this.formateurService.getFormateurs().subscribe((result: Formateur[]) => {
       this.formateurs = result;
-      console.log("formateur:");
+      this.allFormateurs = result;
+      this.pageSlice = this.formateurs.slice(this.startIndex,this.endIndex);
       console.log(result);
-      this.pageSlice = this.formateurs.slice(0,3);
     });
   }
 
   onPageChange(event: PageEvent){
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if(endIndex > this.formateurs.length){
-      endIndex = this.formateurs.length;
+    this.startIndex = event.pageIndex * event.pageSize;
+    this.endIndex = this.startIndex + event.pageSize;
+    if(this.endIndex > this.formateurs.length){
+      this.endIndex = this.formateurs.length;
     }
-    this.pageSlice = this.formateurs.slice(startIndex,endIndex);
+    this.pageSlice = this.allFormateurs.slice(this.startIndex,this.endIndex);
+  }
+
+  onSearch(){
+    console.log(this.searchTxt);
+    console.log(this.startIndex +"/ "+this.endIndex);
+    if(this.searchTxt === ''){
+      this.allFormateurs = this.formateurs;
+    }else{
+      this.allFormateurs = this.formateurs.filter((formateur:Formateur)=> formateur.nom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
+      formateur.prenom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
+      formateur.email.toUpperCase().includes(this.searchTxt.toUpperCase()) 
+      );
+    }
+    this.pageSlice = this.allFormateurs.slice(this.startIndex,this.endIndex);
+    console.log(this.pageSlice.length);
+
   }
 }

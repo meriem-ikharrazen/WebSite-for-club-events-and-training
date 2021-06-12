@@ -163,3 +163,7 @@
   border: none;
   -moz-outline-style: none;
 }
+
+.bg-red{
+  background-color:#dc3545!important
+}

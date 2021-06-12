@@ -103,7 +103,7 @@ export class AddFormateurComponent implements OnInit {
           } else {
             this.successMsg = "Register success.";
             alert("Compte created successfully.");
-            this.router.navigate(["/signin"]);
+            this.router.navigate(["/formateur/show"]);
           }
         },
         (err) => {

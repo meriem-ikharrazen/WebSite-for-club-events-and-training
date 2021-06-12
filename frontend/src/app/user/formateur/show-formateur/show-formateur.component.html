@@ -4,11 +4,13 @@
       <mat-form-field class="example-full-width">
         <input
           matInput
-          formControlName="search"
-          name="search"
+          [(ngModel)]="searchTxt"
+          name="searchTxt"
           placeholder="Search..."
           type="text"
           class="search-input"
+          (ngModelChange)="onSearch()"
+          (click)="onSearch()"
         />
       </mat-form-field>
       <!-- <input type="text" value="" class="in form-control" placeholder="Search..."> -->
@@ -61,17 +63,30 @@
               <mat-icon>delete_outline</mat-icon>
             </i></a
           >
+          
+        <a href=""
+        [class]="{'bg-success': formateur.access , 'bg-red': !formateur.access }"><i>
+          <mat-icon *ngIf="!formateur.access">block</mat-icon>
+          <mat-icon *ngIf="formateur.access">verified_user</mat-icon>
+        </i></a>
+
         </div>
       </div>
     </div>
   </div>
 
+  <div *ngIf="pageSlice.length === 0" class="row  w-100 justify-content-center m-5">
+  No data found
+  </div>
   <!-- change the pagination later -->
-  <mat-paginator
-    [length]="this.formateurs.length"
-    [pageSize]="3"
-    [pageSizeOptions]="[3, 9, 18]"
-    (page)="onPageChange($event)"
-  >
-  </mat-paginator>
+  <div class="row w-100 justify-content-center">
+    
+    <mat-paginator
+      [length]="this.allFormateurs.length"
+      [pageSize]="6"
+      [pageSizeOptions]="[6, 9, 18]"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
 </div>
