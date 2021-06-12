@@ -31,6 +31,19 @@ export class ShowFormateurComponent implements OnInit {
     });
   }
 
+  delete(formateur:Formateur){
+    if(confirm("Are you sure you want to delete user?")){
+      return this.formateurService.deleteFormateur(formateur).subscribe((res)=>{
+        this.getAll();
+      });
+    }
+  }
+
+  changeAccess(formateur:Formateur){
+      return this.formateurService.changeAccess(formateur).subscribe((res)=>{
+        this.allFormateurs.find(f => f==formateur).access = !formateur.access;
+  });
+}
   onPageChange(event: PageEvent){
     this.startIndex = event.pageIndex * event.pageSize;
     this.endIndex = this.startIndex + event.pageSize;

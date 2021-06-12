@@ -31,7 +31,7 @@
   </div>
 </div>
 <div class="row">
-  <div *ngFor="let formateur of pageSlice" class="col-lg-4 h-100">
+  <div *ngFor="let formateur of pageSlice" class="col-lg-4 equal">
     <div class="user">
       <div class="pic">
         <img
@@ -58,14 +58,15 @@
               <mat-icon>edit</mat-icon>
             </i></a
           >
-          <a href=""
+          <a href="javascript:void(0)" (click) = "delete(formateur)" 
             ><i>
               <mat-icon>delete_outline</mat-icon>
             </i></a
           >
           
-        <a href=""
-        [class]="{'bg-success': formateur.access , 'bg-red': !formateur.access }"><i>
+        <a href="javascript:void(0)"
+        [class]="{'bg-success': formateur.access , 'bg-red': !formateur.access }"
+        (click)="changeAccess(formateur)"><i>
           <mat-icon *ngIf="!formateur.access">block</mat-icon>
           <mat-icon *ngIf="formateur.access">verified_user</mat-icon>
         </i></a>

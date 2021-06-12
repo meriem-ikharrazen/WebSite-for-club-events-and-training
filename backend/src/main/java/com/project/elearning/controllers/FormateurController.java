@@ -2,6 +2,7 @@ package com.project.elearning.controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -77,7 +78,16 @@ public class FormateurController {
 
 	  @DeleteMapping("/formateurs/{id}")
 	  void delete(@PathVariable Long id) {
-	    formateurRepository.deleteById(id);
+	     formateurRepository.deleteById(id);
+	  }
+	  
+	  @PutMapping("/formateurAccess/{id}")
+	  Formateur access(@PathVariable Long id) {
+	     Formateur formateur = formateurRepository.findById(id)
+	    		 .orElseThrow(() -> new MyException("User not found"));
+	     
+	     formateur.setAccess(!formateur.getAccess());
+	     return formateurRepository.save(formateur);
 	  }
 	
 

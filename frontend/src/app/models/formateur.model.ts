@@ -9,4 +9,5 @@ export class Formateur {
     diplome:string;
     date_naissance:Date;
     image:string;
+    access:boolean;
 }
