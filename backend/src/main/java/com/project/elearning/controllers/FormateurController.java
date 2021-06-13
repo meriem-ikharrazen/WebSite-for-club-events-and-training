@@ -29,8 +29,6 @@ import services.FormateurService;
 @RestController
 @RequestMapping({"/api"})
 public class FormateurController {
-	@Autowired
-	private FormateurService formateurService;
 	
 	@Autowired
 	private FormateurRepository formateurRepository;
@@ -45,7 +43,7 @@ public class FormateurController {
 	 @GetMapping("/formateurs")
 	  List<Formateur> getAll() {
 		 
-	    return formateurService.getAll();
+	    return formateurRepository.findAll();
 	  }
 
 	 

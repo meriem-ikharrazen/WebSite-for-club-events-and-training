@@ -8,8 +8,9 @@ import { GlobalComponent } from "./global/global.component";
 import { AddFormateurComponent } from "./user/formateur/add-formateur/add-formateur.component";
 import { FormateurComponent } from "./user/formateur/formateur.component";
 import { ShowFormateurComponent } from "./user/formateur/show-formateur/show-formateur.component";
-import { NotificationsComponent } from "./notifications/notifications.component";
 import { DetailFormateurComponent } from "./user/formateur/detail-formateur/detail-formateur.component";
+import { AddAdminComponent } from "./user/admin/add-admin/add-admin.component";
+import { ShowAdminsComponent } from "./user/admin/show-admins/show-admins.component";
 
 const routes: Routes = [
   {
@@ -54,6 +55,22 @@ const routes: Routes = [
             path: "detail",
             component: DetailFormateurComponent,
           },
+        ],
+      },
+      {
+        path: "admin",
+        component: FormateurComponent,
+
+        children: [
+          {
+            path: "add",
+            component: AddAdminComponent,
+          },
+
+          {
+            path: "show",
+            component: ShowAdminsComponent,
+          }
         ],
       },
     ],

@@ -33,7 +33,6 @@ public class Formateur extends User {
 	private String profession;
 	private String specialite;
 	private Boolean access = false;
-	private Date dateAjout = new Date(System.currentTimeMillis());
 	
 	@ManyToOne
     @JoinColumn(name = "id_organisation")
@@ -94,17 +93,6 @@ public class Formateur extends User {
 	public void setAccess(Boolean access) {
 		this.access = access;
 	}
-
-
-	public Date getDateAjout() {
-		return dateAjout;
-	}
-
-
-	public void setDateAjout(Date dateAjout) {
-		this.dateAjout = dateAjout;
-	}
-
 
 	public Organisation getOrganisation() {
 		return organisation;

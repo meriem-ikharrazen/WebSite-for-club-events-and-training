@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Output } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+
+    private  thePath :string = '';
     private listTitles: any[];
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    private isFormateur:boolean = false;
+    private back:boolean = false;
 
     constructor(location: Location,  private element: ElementRef, private router: Router) {
       this.location = location;
@@ -118,11 +122,20 @@ export class NavbarComponent implements OnInit {
     //       titlee = titlee.slice( 1 );
     //   }
     if(titlee == "/formateur"){
+        titlee = 'formateur';
         this.router.navigate(["/formateur/show"]);
+        return 'formateur';
         }
 
+        if(titlee == "/admin"){
+            this.router.navigate(["/admin/show"]);
+            }
+
       for(var item = 0; item < this.listTitles.length; item++){
-          if(this.listTitles[item].path === titlee){
+       
+          this.thePath = this.listTitles[item].path;
+          if(titlee.toUpperCase().includes(this.thePath.toUpperCase()))
+          {
               return this.listTitles[item].title;
           }
       }

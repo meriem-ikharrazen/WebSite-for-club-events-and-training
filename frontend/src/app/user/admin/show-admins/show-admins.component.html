@@ -1,0 +1,221 @@
+
+<!-- SHOW admin START -->
+<div class="row justify-content-between">
+    <div class="col-md-4">
+      
+      <div class="d-flex">
+        <div class="mr-4">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              [(ngModel)]="searchTxt"
+              name="searchTxt"
+              placeholder="Search..."
+              type="text"
+              class="search-input"
+              (ngModelChange)="onSearch()"
+              (click)="onSearch()"
+            />
+            <button mat-icon-button matSuffix>
+              <i class="material-icons">search</i>
+            </button>
+          </mat-form-field>
+        </div>
+       
+  <div>
+    <mat-form-field >
+      <mat-label>Filter</mat-label>
+      <mat-select name="filterValue" [(ngModel)]="filterValue" (ngModelChange)="filter()">
+        <mat-option value="newold">
+          New To Old
+        </mat-option>
+        <mat-option value="oldnew">
+          Old To New
+        </mat-option>
+        <!-- <mat-option value="approuved">
+          Approved
+        </mat-option>
+        <mat-option value="notapprouved">
+          Not approuved
+        </mat-option> -->
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+      </div>
+        
+  
+    </div>
+  
+  
+    <div class="col-md-4">
+      <a [routerLink]="['/admin/add']" class="main-btn main-btn scrollto"
+        >Add new admin</a
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let admin of pageSlice" class="col-lg-4 equal">
+      <div class="user">
+        <div class="pic">
+          <img
+            [attr.src]="
+              admin.sexe == 'm'
+                ? 'http://localhost:8080/public/images/male.jpg'
+                : 'http://localhost:8080/public/images/female.jpg'
+            "
+            class="img-fluid"
+            alt=""
+          />
+        </div>
+        <div class="user-info">
+          <h4>{{ admin.nom }} {{ admin.prenom }}</h4>
+          <span>{{ admin.email }}</span>
+          <p>Joined: {{admin.dateAjout  | date:'mediumDate'}}</p>
+          <div class="social">
+            <a href="javascript:void(0)" (click) = "showAdminFnction(admin)" data-toggle="modal"
+            data-target=".detail_admin_modal"
+              ><i>
+                <mat-icon>remove_red_eye</mat-icon>
+              </i></a
+            >
+            <!-- <a href="javascript:void(0)" (click) = "showadminFnction(admin)" data-toggle="modal"
+            data-target=".detail_admin_modal"
+              ><i>
+                <mat-icon>edit</mat-icon>
+              </i></a> -->
+            <a href="javascript:void(0)" (click)="delete(admin)" 
+              ><i>
+                <mat-icon>delete_outline</mat-icon>
+              </i></a
+            >
+  
+            <a
+              href="javascript:void(0)"
+              [class]="{
+                'bg-success': admin.isSuper,
+                'bg-red': !admin.isSuper
+              }"
+              (click)="changeStatus(admin)"
+              data-toggle="tooltip" data-placement="bottom" [title]="admin.isSuper?'Remove privileges':'Make this admin as super admin.\n(Privilege to add or delete Admins'"
+              ><i>
+                <mat-icon *ngIf="!admin.isSuper">block</mat-icon>
+                <mat-icon *ngIf="admin.isSuper">verified_user</mat-icon>
+              </i></a>
+
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      *ngIf="pageSlice.length === 0"
+      class="row w-100 justify-content-center m-5"
+    >
+      No data found
+    </div>
+    <!-- change the pagination later -->
+    <div class="row w-100 justify-content-center">
+      <mat-paginator
+        [length]="this.allAdmins.length"
+        [pageSize]="6"
+        [pageSizeOptions]="[6, 9, 18]"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  <!-- SHOW admin END -->
+  
+  <!-- MODAL: DETAIL Admin START -->
+<div
+class="modal fade detail_admin_modal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myLargeModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{showAdmin.nom | uppercase }} {{showAdmin.prenom | uppercase }}</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="main-body">
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3 h-100">
+            <div class="card">
+              <div class="card-body">
+                <div
+                  class="d-flex flex-column align-items-center text-center"
+                >
+                  <img
+                  [attr.src]="
+                  showAdmin.sexe == 'm'
+                    ? 'http://localhost:8080/public/images/male.jpg'
+                    : 'http://localhost:8080/public/images/female.jpg'
+                "
+                    alt="Admin"
+                    class="rounded-circle"
+                    width="150"
+                  />
+                  <div class="mt-3">
+                    <h4>John Doe</h4>
+                    <p class="text-secondary mb-1">{{showAdmin.profession}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">{{showAdmin.prenom}} {{showAdmin.nom}} </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">{{showAdmin.email}}</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Status</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">{{showAdmin.isSuper ? 'Super admin' : 'Normal admin'}}</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Date of joined</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">{{showAdmin.dateAjout  | date:'mediumDate'}}</div>
+                </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- MODAL: DETAIL Admin START -->

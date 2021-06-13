@@ -1,6 +1,7 @@
 package com.project.elearning.entities;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +30,8 @@ public class User {
 	private String password;
 	private Character sexe;
 	private String image;
+	private Date dateAjout = new Date(System.currentTimeMillis());
+
 	
 	  @ManyToMany 
 	    @JoinTable( 
@@ -101,6 +104,14 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Date getDateAjout() {
+		return dateAjout;
+	}
+
+	public void setDateAjout(Date dateAjout) {
+		this.dateAjout = dateAjout;
 	}
 
 

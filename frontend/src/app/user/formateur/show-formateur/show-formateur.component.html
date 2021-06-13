@@ -43,10 +43,8 @@
   </mat-form-field>
 </div>
 
-    </div>
-      
-
-  </div>
+</div>
+</div>
 
 
   <div class="col-md-4">
@@ -98,6 +96,8 @@
               'bg-red': !formateur.access
             }"
             (click)="changeAccess(formateur)"
+            data-toggle="tooltip" data-placement="bottom" [title]="formateur.access?'Unapprove the account':'Approve the account'"
+
             ><i>
               <mat-icon *ngIf="!formateur.access">block</mat-icon>
               <mat-icon *ngIf="formateur.access">verified_user</mat-icon>

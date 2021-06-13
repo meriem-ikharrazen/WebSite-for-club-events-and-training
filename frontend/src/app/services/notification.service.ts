@@ -18,7 +18,7 @@ export class NotificationService {
 
     },{
         // type: type[color],
-        timer: 4000,
+        timer: 500,
         placement: {
             from: from,
             align: align

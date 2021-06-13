@@ -14,7 +14,17 @@ import javax.persistence.TemporalType;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "directeur")
+@Table(name = "admin")
 public class Administrateur extends User {
 	private Boolean isSuper = false;
+
+	public Boolean getIsSuper() {
+		return isSuper;
+	}
+
+	public void setIsSuper(Boolean isSuper) {
+		this.isSuper = isSuper;
+	}
+	
+	
 }
