@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { NotificationsComponent } from 'app/notifications/notifications.component';
 import { UserProfileComponent } from 'app/user-profile/user-profile.component';
 import { AdminComponent } from 'app/user/admin/admin.component';
 import { FormateurComponent } from 'app/user/formateur/formateur.component';
@@ -11,6 +12,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'formateur',      component: FormateurComponent },
     { path: 'student',      component: StudentComponent },
     { path: 'user-profile',      component: UserProfileComponent },
+    { path: 'notifications',      component: NotificationsComponent },
 
     // { path: 'exams',   component: ExamComponent}
 

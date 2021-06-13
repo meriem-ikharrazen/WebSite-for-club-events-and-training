@@ -10,4 +10,8 @@ export class Formateur {
     date_naissance:Date;
     image:string;
     access:boolean;
+    profession:string;
+    specialite:string;
+    dateAjout:Date;
+
 }

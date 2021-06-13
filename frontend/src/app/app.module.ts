@@ -38,9 +38,9 @@ import { TestComponent } from './test/test.component';
 import { FormateurComponent } from './user/formateur/formateur.component';
 import { AdminComponent } from './user/admin/admin.component';
 import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
-// import { FormateurModule } from './user/formateur/formateur.module';
 import { StudentComponent } from './user/student/student.component';
 import { ShowFormateurComponent } from './user/formateur/show-formateur/show-formateur.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -65,7 +65,7 @@ import { ShowFormateurComponent } from './user/formateur/show-formateur/show-for
     // FormateurModule,
     MatIconModule,
     MatPaginatorModule,
-        
+    // CommonModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     // })

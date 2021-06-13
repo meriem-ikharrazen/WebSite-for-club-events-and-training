@@ -1,29 +1,54 @@
+
+<!-- SHOW FORMATEUR START -->
 <div class="row justify-content-between">
-  <div class="col-md-6">
-    <div class="input-group">
-      <mat-form-field class="example-full-width">
-        <input
-          matInput
-          [(ngModel)]="searchTxt"
-          name="searchTxt"
-          placeholder="Search..."
-          type="text"
-          class="search-input"
-          (ngModelChange)="onSearch()"
-          (click)="onSearch()"
-        />
-      </mat-form-field>
-      <!-- <input type="text" value="" class="in form-control" placeholder="Search..."> -->
-      <button
-        mat-raised-button
-        type="submit"
-        class="btn btn-white btn-round btn-just-icon"
-      >
-        <i class="material-icons">search</i>
-        <div class="ripple-container"></div>
-      </button>
+  <div class="col-md-4">
+    
+    <div class="d-flex">
+      <div class="mr-4">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            [(ngModel)]="searchTxt"
+            name="searchTxt"
+            placeholder="Search..."
+            type="text"
+            class="search-input"
+            (ngModelChange)="onSearch()"
+            (click)="onSearch()"
+          />
+          <button mat-icon-button matSuffix>
+            <i class="material-icons">search</i>
+          </button>
+        </mat-form-field>
+      </div>
+     
+<div>
+
+  <mat-form-field >
+    <mat-label>Filter</mat-label>
+    <mat-select name="filterValue" [(ngModel)]="filterValue" (ngModelChange)="filter()">
+      <mat-option value="newold">
+        New To Old
+      </mat-option>
+      <mat-option value="oldnew">
+        Old To New
+      </mat-option>
+      <mat-option value="approuved">
+        Approved
+      </mat-option>
+      <mat-option value="notapprouved">
+        Not approuved
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
     </div>
+      
+
   </div>
+
+
   <div class="col-md-4">
     <a [routerLink]="['/formateur/add']" class="main-btn main-btn scrollto"
       >Add new admin</a
@@ -47,41 +72,50 @@
       <div class="user-info">
         <h4>{{ formateur.nom }} {{ formateur.prenom }}</h4>
         <span>{{ formateur.email }}</span>
+        <p>Joined: {{formateur.dateAjout  | date:'mediumDate'}}</p>
         <div class="social">
-          <a href=""
+          <a href="javascript:void(0)" (click) = "showFormateurFnction(formateur)" data-toggle="modal"
+          data-target=".detail_formateur_modal"
             ><i>
               <mat-icon>remove_red_eye</mat-icon>
             </i></a
           >
-          <a href=""
+          <!-- <a href="javascript:void(0)" (click) = "showFormateurFnction(formateur)" data-toggle="modal"
+          data-target=".detail_formateur_modal"
             ><i>
               <mat-icon>edit</mat-icon>
-            </i></a
-          >
-          <a href="javascript:void(0)" (click) = "delete(formateur)" 
+            </i></a> -->
+          <a href="javascript:void(0)" (click)="delete(formateur)" 
             ><i>
               <mat-icon>delete_outline</mat-icon>
             </i></a
           >
-          
-        <a href="javascript:void(0)"
-        [class]="{'bg-success': formateur.access , 'bg-red': !formateur.access }"
-        (click)="changeAccess(formateur)"><i>
-          <mat-icon *ngIf="!formateur.access">block</mat-icon>
-          <mat-icon *ngIf="formateur.access">verified_user</mat-icon>
-        </i></a>
 
+          <a
+            href="javascript:void(0)"
+            [class]="{
+              'bg-success': formateur.access,
+              'bg-red': !formateur.access
+            }"
+            (click)="changeAccess(formateur)"
+            ><i>
+              <mat-icon *ngIf="!formateur.access">block</mat-icon>
+              <mat-icon *ngIf="formateur.access">verified_user</mat-icon>
+            </i></a
+          >
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="pageSlice.length === 0" class="row  w-100 justify-content-center m-5">
-  No data found
+  <div
+    *ngIf="pageSlice.length === 0"
+    class="row w-100 justify-content-center m-5"
+  >
+    No data found
   </div>
   <!-- change the pagination later -->
   <div class="row w-100 justify-content-center">
-    
     <mat-paginator
       [length]="this.allFormateurs.length"
       [pageSize]="6"
@@ -91,3 +125,121 @@
     </mat-paginator>
   </div>
 </div>
+<!-- SHOW FORMATEUR END -->
+
+
+<!-- MODAL: DETAIL FORMATEUR START -->
+<div
+  class="modal fade detail_formateur_modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{showFormateur.nom | uppercase }} {{showFormateur.prenom | uppercase }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3 h-100">
+              <div class="card">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-column align-items-center text-center"
+                  >
+                    <img
+                    [attr.src]="
+                    showFormateur.sexe == 'm'
+                      ? 'http://localhost:8080/public/images/male.jpg'
+                      : 'http://localhost:8080/public/images/female.jpg'
+                  "
+                      alt="Admin"
+                      class="rounded-circle"
+                      width="150"
+                    />
+                    <div class="mt-3">
+                      <h4>John Doe</h4>
+                      <p class="text-secondary mb-1">{{showFormateur.profession}}</p>
+<!--                      
+                      <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.prenom}} {{showFormateur.nom}} </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.email}}</div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.tel}}</div>
+                  </div>              
+                  <hr />
+                  <div  class="row">
+                    <div *ngIf="showFormateur.diplome" class="col-sm-3">
+                      <h6 class="mb-0">Diploma</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.diplome}}</div>
+                  </div>              
+                  <hr *ngIf="showFormateur.diplome" />
+                  <div *ngIf="showFormateur.specialite" class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Diploma</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.specialite}</div>
+                  </div>              
+                  <hr *ngIf="showFormateur.specialite" />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Dath of birth</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.date_naissance | date:'mediumDate'}}</div>
+                  </div>              
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Date of joined</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">{{showFormateur.dateAjout  | date:'mediumDate'}}</div>
+                  </div>              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL: DETAIL FORMATEUR START -->

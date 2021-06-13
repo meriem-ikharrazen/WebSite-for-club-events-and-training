@@ -30,6 +30,7 @@ public class Formateur extends User {
 	private Date date_naissance;
 	private String tel;
 	private String diplome;
+	private String profession;
 	private String specialite;
 	private Boolean access = false;
 	private Date dateAjout = new Date(System.currentTimeMillis());
@@ -123,6 +124,18 @@ public class Formateur extends User {
 	public void setFormations(List<Formation> formations) {
 		this.formations = formations;
 	}
+
+
+	public String getProfession() {
+		return profession;
+	}
+
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+	
+	
 	
 	
 	

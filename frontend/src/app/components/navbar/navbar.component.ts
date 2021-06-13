@@ -117,11 +117,9 @@ export class NavbarComponent implements OnInit {
     //   if(titlee.charAt(0) === '#'){
     //       titlee = titlee.slice( 1 );
     //   }
-    // if(titlee == "/formateur"){
-    //     this.isFormateur = true;
-    // }else {
-    //     this.isFormateur = false;
-    // }
+    if(titlee == "/formateur"){
+        this.router.navigate(["/formateur/show"]);
+        }
 
       for(var item = 0; item < this.listTitles.length; item++){
           if(this.listTitles[item].path === titlee){
