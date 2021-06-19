@@ -43,6 +43,7 @@ import { ShowFormateurComponent } from './user/formateur/show-formateur/show-for
 import { CommonModule } from '@angular/common';
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ShowAdminsComponent } from './user/admin/show-admins/show-admins.component';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ShowAdminsComponent } from './user/admin/show-admins/show-admins.compon
     StudentComponent,
     ShowFormateurComponent,
     AddAdminComponent,
-    ShowAdminsComponent
+    ShowAdminsComponent,
+    AccountComponent
     ],
   providers: [
     FormateurService,

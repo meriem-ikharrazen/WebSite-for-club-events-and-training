@@ -1,0 +1,24 @@
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .image {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .change {
+    position: absolute;
+    
+    top: 10px;
+    left: 0px;
+  }
+  .fa-camera-retro{
+      font-size: 2em;
+  }
+
+  .change:hover{
+      cursor: pointer;
+  }

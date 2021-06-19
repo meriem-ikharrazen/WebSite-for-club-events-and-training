@@ -11,6 +11,7 @@ import { ShowFormateurComponent } from "./user/formateur/show-formateur/show-for
 import { DetailFormateurComponent } from "./user/formateur/detail-formateur/detail-formateur.component";
 import { AddAdminComponent } from "./user/admin/add-admin/add-admin.component";
 import { ShowAdminsComponent } from "./user/admin/show-admins/show-admins.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
   {
@@ -40,7 +41,10 @@ const routes: Routes = [
       {
         path: "formateur",
         component: FormateurComponent,
-
+        canActivate: [AuthGuard],
+        data: {
+          role: 'admin'
+        },
         children: [
           {
             path: "add",
