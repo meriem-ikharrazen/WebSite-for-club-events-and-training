@@ -21,6 +21,9 @@ export class AdminService {
     return this.http.get<Admin[]>(this.globalVar.apiUrl + this.adminUrl);
   }
 
+  public getById(id):Observable<Admin> {
+    return this.http.get<Admin>(this.globalVar.apiUrl + this.adminUrl + "/"+ id);
+  }
   public deleteAdmin(admin){
     return this.http.delete(this.globalVar.apiUrl + this.adminUrl + "/"+ admin.id);
   }

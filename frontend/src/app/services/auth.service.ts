@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 import { Router } from '@angular/router';
+import { Admin } from 'app/models/admin.model';
+import { User } from 'app/models/user.model';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
@@ -15,7 +17,6 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private isLogin:boolean = false;
   private role:string = '';
 
 
@@ -43,11 +44,12 @@ export class AuthService {
 
   isLoggedIn() {
     const loggedIn = this.tokenStorage.getToken();
-    if (loggedIn != null)
-      this.isLogin = true;
-    else
-      this.isLogin = false;
-    return this.isLogin;
+    return  (loggedIn != null) ? true : false;
+  }
+
+  getUser() {
+    let user: User = this.tokenStorage.getUser();
+    return user;
   }
 
   getRole() {
