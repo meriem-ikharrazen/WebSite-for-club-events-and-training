@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Admin } from 'app/models/admin.model';
 import { User } from 'app/models/user.model';
@@ -15,8 +16,15 @@ export class AccountComponent implements OnInit {
   user:User;
   role:string = '';
 
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  imageName: any;
+
   constructor(private authService:AuthService,private adminService:AdminService,
-    private formateurService:FormateurService) { }
+    private formateurService:FormateurService,private http:HttpClient) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -44,4 +52,26 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  onUpload(event){
+
+
+      this.selectedFile = event.target.files[0];
+      let formData = new FormData();
+      formData.append("file", this.selectedFile);
+      console.log(this.selectedFile);
+      const uploadImageData = new FormData();
+//  Make a call to the Spring Boot Application to save the image
+ this.http.post('http://localhost:8080/api/changeImage', formData, { observe: 'response' })
+   .subscribe((response) => {
+     if (response.status === 200) {
+       this.message = 'Image uploaded successfully';
+       console.log(response);
+     } else {
+       this.message = 'Image not uploaded successfully';
+     }
+   }
+   );
+}
+
+  
 }

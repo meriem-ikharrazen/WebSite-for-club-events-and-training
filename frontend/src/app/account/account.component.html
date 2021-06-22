@@ -104,10 +104,11 @@
                           ? 'http://localhost:8080/public/images/male.jpg'
                           : 'http://localhost:8080/public/images/female.jpg'
                       " alt="Admin" class="rounded-circle image" width="150">
-                       <a class="change text-danger"> 
-                        <i class="fa fa-camera-retro w3-large" aria-hidden="true" width="120">
+                       <a class="change text-danger"  (click)="file.click()"> 
+                        <i type="file" class="fa fa-camera-retro w3-large" aria-hidden="true" width="120">
                        </i>
-
+                       <input type="file" style="display:none" name="image" 
+                       (change)="onUpload($event)" #file>
                     </a>
                     </div>
                     

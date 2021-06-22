@@ -24,11 +24,16 @@ public class JwtUtils {
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {
-
+		
+		 /*final String authorities = authentication.getAuthorities().stream()
+	                .map(GrantedAuthority::getAuthority)
+	                .collect(Collectors.joining(","));*/
+		 
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
 		return Jwts.builder()
-				.setSubject((userPrincipal.getUsername()))
+				.setSubject(userPrincipal.getEmail())
+               // .claim(AUTHORITIES_KEY, authorities)
 				.setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret)
@@ -36,6 +41,12 @@ public class JwtUtils {
 	}
 
 	public String getUserNameFromJwtToken(String token) {
+		System.out.println("----------------------------------");
+		System.out.println(token);
+		System.out.println(Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody());
+		System.out.println(Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token));
+		
+		System.out.println("-------------------------------------");
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
 	}
 
@@ -57,4 +68,23 @@ public class JwtUtils {
 
 		return false;
 	}
+	
+
+    /*UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth, final UserDetails userDetails) {
+
+        final JwtParser jwtParser = Jwts.parser().setSigningKey(jwtSecret);
+
+        final Jws claimsJws = jwtParser.parseClaimsJws(token);
+
+        final Claims claims = (Claims) claimsJws.getBody();
+
+        final Collection authorities =
+                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+        
+        System.out.println(authorities);
+
+        return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+    }*/
 }
