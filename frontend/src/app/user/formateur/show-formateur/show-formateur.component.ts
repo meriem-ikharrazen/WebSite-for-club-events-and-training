@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Formateur } from "app/models/formateur.model";
 import { FormateurService } from "app/services/formateur.service";
 import { NotificationService } from 'app/services/notification.service';
+import { GlobalVariables } from 'GlobalVariables';
 
 @Component({
   selector: 'app-show-formateur',
@@ -19,10 +20,14 @@ export class ShowFormateurComponent implements OnInit {
   public filterValue:string = ';'
   public startIndex = 0;
   public endIndex = 6;
+  public path = '';
   
-  constructor(private formateurService: FormateurService,private notificationService: NotificationService) {}
+  constructor(private formateurService: FormateurService,private notificationService: NotificationService,
+    private global:GlobalVariables) {}
  
   ngOnInit(): void {
+    this.path = this.global.url +'/';
+
     this.getAll();
   }
 

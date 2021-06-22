@@ -99,11 +99,12 @@
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
                       <div class="parent">
-                        <img  [attr.src]="
+                        <!-- <img  [attr.src]="
                         user.sexe == 'm'
                           ? 'http://localhost:8080/public/images/male.jpg'
                           : 'http://localhost:8080/public/images/female.jpg'
-                      " alt="Admin" class="rounded-circle image" width="150">
+                      " alt="Admin" class="rounded-circle image" width="150"> -->
+                      <img  [src]="user.image" alt="Admin" class="rounded-circle image" width="150" height="150">
                        <a class="change text-danger"  (click)="file.click()"> 
                         <i type="file" class="fa fa-camera-retro w3-large" aria-hidden="true" width="120">
                        </i>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.elearning.entities.Administrateur;
+import com.project.elearning.entities.User;
 import com.project.elearning.repositories.UserRepository;
 
 import services.UserDetailsImpl;
@@ -34,26 +35,37 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
-
-	  void changeImage() {
-		 
-	  }
-	 
+	
 		 @PostMapping("/changeImage")
-		public BodyBuilder uplaodImage(@RequestParam("file") MultipartFile file) throws IOException {
+		public User changeImage(@RequestParam("file") MultipartFile file) throws IOException {
 			System.out.println("Original Image Byte Size - " + file);
-		    File resourcesDirectory = new File("src/main/resources/public");
+		    File resourcesDirectory = new File("src/main/webapp/public/images");
 
 			byte[] bytes = file.getBytes();
 		    //System.out.println(resourcesDirectory.getAbsolutePath());
 
-			Path path = Paths.get(resourcesDirectory+"/images/"+ file.getOriginalFilename() );
+			Path path = Paths.get(resourcesDirectory+"/"+ file.getOriginalFilename() );
 			System.out.println("my path: "+path);
 			//Path path = Paths.get(this.getClass().getResource("/").getPath());
 			//System.out.println("--------------------------------------------");
 		    //System.out.println(path.toAbsolutePath());
 			Files.write(path, bytes);
-			return ResponseEntity.status(HttpStatus.OK);
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String email = "";
+			if (principal instanceof UserDetailsImpl) {
+				  email = ((UserDetailsImpl)principal).getEmail();
+				  System.out.println("first: "+email);
+				} else {
+					email = principal.toString();
+				  System.out.println("second: "+email);
+
+				}
+			User user = userRepository.findByEmail(email);
+			if(user != null) {
+				user.setImage("public/images/"+file.getOriginalFilename());
+				userRepository.save(user);
+			}
+			return user;
 		}
 		 
 		

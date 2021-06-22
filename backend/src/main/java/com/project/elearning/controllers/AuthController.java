@@ -97,6 +97,8 @@ public class AuthController {
 				Set<Role> roles = new HashSet<>();
 				roles.add(roleRepository.findRoleByName("formateur"));
 			 formateur.setRoles(roles);
+			 String image = (formateur.getSexe() =='m')?"public/images/male.jpg" : "public/images/female.jpg";
+			 formateur.setImage(image);
 			 formateurRepository.save(formateur);
 			 return ResponseEntity.ok(new ResponseMsg(200,"Formateur added successfully"));
 		  }
@@ -113,6 +115,8 @@ public class AuthController {
 				Set<Role> roles = new HashSet<>();
 				roles.add(roleRepository.findRoleByName("admin"));
 			 admin.setRoles(roles);
+			 String image = (admin.getSexe() =='m')?"public/images/male.jpg" : "public/images/female.jpg";
+			 admin.setImage(image);
 			 adminRepository.save(admin);
 			 return ResponseEntity.ok(new ResponseMsg(200,"Admin added successfully"));
 		  }
