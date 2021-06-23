@@ -11,6 +11,10 @@ import { ShowFormateurComponent } from "./user/formateur/show-formateur/show-for
 import { DetailFormateurComponent } from "./user/formateur/detail-formateur/detail-formateur.component";
 import { AddAdminComponent } from "./user/admin/add-admin/add-admin.component";
 import { ShowAdminsComponent } from "./user/admin/show-admins/show-admins.component";
+import { StudentComponent } from "./user/student/student.component";
+import { AddStudentComponent } from "./user/student/add-student/add-student.component";
+import { ShowStudentComponent } from "./user/student/show-student/show-student.component";
+import { DetailStudentComponent } from "./user/student/detail-student/detail-student.component";
 
 const routes: Routes = [
   {
@@ -71,6 +75,26 @@ const routes: Routes = [
             path: "show",
             component: ShowAdminsComponent,
           }
+        ],
+      },
+      {
+        path: "student",
+        component: StudentComponent,
+
+        children: [
+          {
+            path: "add",
+            component: AddStudentComponent,
+          },
+
+          {
+            path: "show",
+            component: ShowStudentComponent,
+          },
+          {
+            path: "detail",
+            component: DetailStudentComponent,
+          },
         ],
       },
     ],

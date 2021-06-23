@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.elearning.entities.Administrateur;
+import com.project.elearning.entities.Etudiant;
 import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Role;
 import com.project.elearning.repositories.UserRepository;
@@ -31,6 +32,7 @@ import payload.ResponseMsg;
 import services.UserDetailsImpl;
 
 import com.project.elearning.repositories.AdministrateurRepository;
+import com.project.elearning.repositories.EtudiantRepository;
 import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.RoleRepository;
 import security.JwtUtils;
@@ -59,6 +61,9 @@ public class AuthController {
 	
 	@Autowired
 	private FormateurRepository formateurRepository;
+	
+	@Autowired
+	private EtudiantRepository etudiantRepository;
 	
 	@Autowired
 	private AdministrateurRepository adminRepository;
@@ -99,6 +104,23 @@ public class AuthController {
 			 formateur.setRoles(roles);
 			 formateurRepository.save(formateur);
 			 return ResponseEntity.ok(new ResponseMsg(200,"Formateur added successfully"));
+		  }
+	 }
+	
+	@PostMapping("/signup/student")
+	 ResponseEntity<?> registerStudent(@RequestBody Etudiant etudiant) {
+		 
+		 boolean isEtudiantExist = etudiantRepository.existsByCne(etudiant.getCne());
+		 if(isEtudiantExist) {
+//			 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email already in use");
+			 return ResponseEntity.ok(new ResponseMsg(403,"This student already in the database."));
+		 }else{
+			 etudiant.setPassword(passwordEncoder.encode(etudiant.getPassword()));
+				Set<Role> roles = new HashSet<>();
+				roles.add(roleRepository.findRoleByName("etudiant"));
+				etudiant.setRoles(roles);
+				etudiantRepository.save(etudiant);
+			 return ResponseEntity.ok(new ResponseMsg(200,"Student added successfully"));
 		  }
 	 }
 	

@@ -1,0 +1,316 @@
+<a class="navbar-brand" href="javascript:window.history.back()">
+    <i class="material-icons">arrow_back</i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center">Add new student</h2>
+  
+      <div class="alert alert-dark" role="alert" *ngIf="errMsg != ''">
+        <span class="text-danger">{{ errMsg }}</span>
+      </div>
+      <form [formGroup]="studentFormGroup">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="prenom"
+                name="prenom"
+                placeholder="First name"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.prenom.errors
+                }"
+              />
+  
+              <div
+                *ngIf="submitted && studentFormGroup.controls.prenom.errors"
+                class="invalid-feedback text-danger"
+              >
+                <div *ngIf="studentFormGroup.controls.prenom.errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="studentFormGroup.controls.prenom.errors.minlength">
+                  Must be at least 2 characters.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="nom"
+                name="nom"
+                placeholder="Last name"
+                type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.nom.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && studentFormGroup.controls.nom.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.nom.errors.required">
+                  Last Name is required.
+                </div>
+                <div *ngIf="studentFormGroup.controls.nom.errors?.minlength">
+                  Must be at least 2 characters.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="email"
+                name="email"
+                placeholder="Email address"
+                type="email"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.email.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && studentFormGroup.controls.email.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.email.errors.required">
+                  Email required.
+                </div>
+                <div *ngIf="studentFormGroup.controls.email.errors.email">
+                  Email not valid.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="password"
+                [(ngModel)]="value"
+                name="password"
+                placeholder="password"
+                [type]="hide ? 'password' : 'text'"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.password.errors
+                }"
+              />
+              <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <button type="button"  matSuffix mat-icon-button causevalidation="false" (click)="value=getPassword()">
+                <mat-icon>fiber_new</mat-icon>
+              </button>
+  
+              <div
+                *ngIf="submitted && studentFormGroup.controls.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.password.errors.required">
+                  Password required.
+                </div>
+                <div
+                  *ngIf="studentFormGroup.controls.password.errors?.minlength"
+                >
+                  Must be at least 6 characters.
+                </div>
+              </div>
+            </mat-form-field>
+  
+          </div>
+          <!-- <div class="col-md-2">
+            <button>generate</button>
+          </div> -->
+  
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Are you?</mat-label>
+              <mat-select
+                formControlName="sexe"
+                name="sexe"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.sexe.errors
+                }"
+              >
+                <mat-option *ngFor="let s of sexe" [value]="s.value">
+                  {{ s.viewValue }}
+                </mat-option>
+              </mat-select>
+  
+              <div
+                *ngIf="submitted && studentFormGroup.controls.sexe.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.sexe.errors.required">
+                  sexe required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Date of birthday"
+                name="date_naissance"
+                formControlName="date_naissance"
+                (focus)="picker.open()"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.date_naissance.errors
+                }"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+  
+              <div
+                *ngIf="
+                  submitted && studentFormGroup.controls.date_naissance.errors
+                "
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                  studentFormGroup.controls.date_naissance.errors.required
+                  "
+                >
+                  Date of birth required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Diploma prepared</mat-label>
+              <mat-select
+                formControlName="diplomePrepare"
+                name="diplomePrepare"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.diplomePrepare.errors
+                }"
+                [(value)]="selectedDiplome"  (selectionChange)="getSelectedValue($event)"
+              >
+                <mat-option *ngFor="let dp of diplomePrepare1" [value]="dp">
+                  {{ dp }}
+                </mat-option>
+              </mat-select>
+  
+              <div
+                *ngIf="submitted && studentFormGroup.controls.diplomePrepare.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.diplomePrepare.errors.required">
+                  Diploma prepared required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="tel"
+                name="tel"
+                placeholder="Phone number"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.tel.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && studentFormGroup.controls.tel.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.tel.errors.required">
+                  Phone number required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Level</mat-label>
+              <mat-select
+                formControlName="niveau"
+                name="niveau"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.niveau.errors
+                }"
+              >
+                <mat-option *ngFor="let nv of niveau" [value]="nv">
+                  {{ nv }}
+                </mat-option>
+              </mat-select>
+              <div
+                *ngIf="submitted && studentFormGroup.controls.niveau.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="studentFormGroup.controls.niveau.errors.required">
+                  Level required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="cne"
+                name="cne"
+                placeholder="CNE"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && studentFormGroup.controls.cne.errors
+                }"
+              />
+  
+              <div
+                *ngIf="submitted && studentFormGroup.controls.cne.errors"
+                class="invalid-feedback text-danger"
+              >
+                <div *ngIf="studentFormGroup.controls.cne.errors.required">
+                  CNE is required.
+                </div>
+                <div *ngIf="studentFormGroup.controls.cne.errors.minlength">
+                  Must be at least 10 characters.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <button
+          mat-raised-button
+          (click)="createStudent()"
+          class=" 
+          main-btn scrolltor pull-right"
+        >
+          Add Student
+        </button>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+  
