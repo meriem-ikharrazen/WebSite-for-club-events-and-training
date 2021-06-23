@@ -15,6 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/formateur', title: 'Formateurs',  icon:'group', class: '' },
     { path: '/admin', title: 'Admins',  icon:'admin_panel_settings', class: '' },
     { path: '/classes', title: 'Classes',  icon:'bubble_chart', class: '' },
+    { path: '/account', title: 'My account',  icon:'person', class: '' },
     { path: '/home', title: 'Back',  icon:'exit_to_app', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'exit_to_app', class: '' },
 

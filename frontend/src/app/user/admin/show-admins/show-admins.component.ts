@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Admin } from 'app/models/admin.model';
 import { AdminService } from 'app/services/admin.service';
 import { NotificationService } from 'app/services/notification.service';
+import { GlobalVariables } from 'GlobalVariables';
 
 @Component({
   selector: 'app-show-admins',
@@ -19,10 +20,12 @@ export class ShowAdminsComponent implements OnInit {
   public filterValue:string = ';'
   public startIndex = 0;
   public endIndex = 6;
-  
-  constructor(private adminService: AdminService,private notificationService: NotificationService) {}
+c  
+  constructor(private adminService: AdminService,private notificationService: NotificationService
+    , private global:GlobalVariables) {}
  
   ngOnInit(): void {
+    this.path = this.global.url +'/';
     this.getAll();
   }
 

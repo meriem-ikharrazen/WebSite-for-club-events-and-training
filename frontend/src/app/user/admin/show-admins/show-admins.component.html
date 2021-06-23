@@ -58,13 +58,10 @@
     <div *ngFor="let admin of pageSlice" class="col-lg-4 equal">
       <div class="user">
         <div class="pic">
+
           <img
-            [attr.src]="
-              admin.sexe == 'm'
-                ? 'http://localhost:8080/public/images/male.jpg'
-                : 'http://localhost:8080/public/images/female.jpg'
-            "
-            class="img-fluid"
+          src= '{{path + admin.image}}'
+                      class="img-fluid"
             alt=""
           />
         </div>
@@ -159,11 +156,8 @@ aria-hidden="true"
                   class="d-flex flex-column align-items-center text-center"
                 >
                   <img
-                  [attr.src]="
-                  showAdmin.sexe == 'm'
-                    ? 'http://localhost:8080/public/images/male.jpg'
-                    : 'http://localhost:8080/public/images/female.jpg'
-                "
+                  src= '{{path + showAdmin.image}}'
+
                     alt="Admin"
                     class="rounded-circle"
                     width="150"

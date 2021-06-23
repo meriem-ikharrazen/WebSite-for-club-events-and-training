@@ -27,6 +27,11 @@ export class FormateurService {
     return this.http.get<Formateur[]>(this.globalVar.apiUrl + this.formateurUrl);
   }
 
+  public getById(id):Observable<Formateur> {
+    return this.http.get<Formateur>(this.globalVar.apiUrl + this.formateurUrl + '/'+id);
+  }
+
+
   public deleteFormateur(formateur){
     return this.http.delete(this.globalVar.apiUrl + this.formateurUrl + "/"+ formateur.id);
   }
