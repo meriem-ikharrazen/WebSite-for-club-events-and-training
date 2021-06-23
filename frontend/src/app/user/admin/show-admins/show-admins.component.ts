@@ -25,7 +25,7 @@ c
     , private global:GlobalVariables) {}
  
   ngOnInit(): void {
-    this.path = this.global.url +'/';
+    //this.path = this.global.url +'/';
     this.getAll();
   }
 

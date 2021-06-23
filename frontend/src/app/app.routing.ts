@@ -11,14 +11,11 @@ import { ShowFormateurComponent } from "./user/formateur/show-formateur/show-for
 import { DetailFormateurComponent } from "./user/formateur/detail-formateur/detail-formateur.component";
 import { AddAdminComponent } from "./user/admin/add-admin/add-admin.component";
 import { ShowAdminsComponent } from "./user/admin/show-admins/show-admins.component";
-<<<<<<< HEAD
 import { StudentComponent } from "./user/student/student.component";
 import { AddStudentComponent } from "./user/student/add-student/add-student.component";
 import { ShowStudentComponent } from "./user/student/show-student/show-student.component";
 import { DetailStudentComponent } from "./user/student/detail-student/detail-student.component";
-=======
 import { AuthGuard } from "./auth.guard";
->>>>>>> 9bdceb2f1c02cd3220557136e9be4535fdbe2b89
 
 const routes: Routes = [
   {

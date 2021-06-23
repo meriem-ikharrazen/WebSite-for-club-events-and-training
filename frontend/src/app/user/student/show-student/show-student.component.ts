@@ -31,6 +31,7 @@ export class ShowStudentComponent implements OnInit {
       this.students = result;
       this.allStudents = result;
       this.pageSlice = this.students.slice(this.startIndex,this.endIndex);
+      console.log(this.pageSlice);
       console.log(result);
     });
   }
@@ -65,9 +66,9 @@ export class ShowStudentComponent implements OnInit {
     if(this.searchTxt === ''){
       this.allStudents = this.students;
     }else{
-      this.allStudents = this.students.filter((Student:Student)=> Student.nom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
-      Student.prenom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
-      Student.email.toUpperCase().includes(this.searchTxt.toUpperCase()) 
+      this.allStudents = this.students.filter((student:Student)=> student.nom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
+      student.prenom.toUpperCase().includes(this.searchTxt.toUpperCase()) ||
+      student.email.toUpperCase().includes(this.searchTxt.toUpperCase()) 
       );
     }
     this.pageSlice = this.allStudents.slice(this.startIndex,this.endIndex);
@@ -75,8 +76,8 @@ export class ShowStudentComponent implements OnInit {
     this.filterValue = '';
   }
 
-  showStudentFnction(Student:Student){
-    this.showStudent = Student;
+  showStudentFnction(student:Student){
+    this.showStudent = student;
   }
 
   filter(){
