@@ -11,6 +11,7 @@ import com.project.elearning.entities.Etudiant;
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 	Etudiant findByCne(String cne);
     boolean existsByCne(String cne);
+    
 	@Query(value = "SELECT e FROM etudiant e where e.cne like %:searchTxt%", nativeQuery = true)
   	List<Etudiant> searchByCne(@Param(value="searchTxt") String searchTxt);
 

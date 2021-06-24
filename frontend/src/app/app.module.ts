@@ -46,6 +46,9 @@ import { ShowAdminsComponent } from './user/admin/show-admins/show-admins.compon
 import { AddStudentComponent } from './user/student/add-student/add-student.component';
 import { DetailStudentComponent } from './user/student/detail-student/detail-student.component';
 import { ShowStudentComponent } from './user/student/show-student/show-student.component';
+import { ClubComponent } from './club/club.component';
+import { AddClubComponent } from './club/add-club/add-club.component';
+import { ShowClubComponent } from './club/show-club/show-club.component';
 
 
 @NgModule({
@@ -92,7 +95,10 @@ import { ShowStudentComponent } from './user/student/show-student/show-student.c
     ShowAdminsComponent,
     AddStudentComponent,
     DetailStudentComponent,
-    ShowStudentComponent
+    ShowStudentComponent,
+    ClubComponent,
+    AddClubComponent,
+    ShowClubComponent
     ],
   providers: [
     FormateurService,
