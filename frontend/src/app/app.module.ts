@@ -48,6 +48,9 @@ import { DetailStudentComponent } from './user/student/detail-student/detail-stu
 import { ShowStudentComponent } from './user/student/show-student/show-student.component';
 import { AccountComponent } from './account/account.component';
 import { EditAccountComponent } from './account/edit-account/edit-account.component';
+import { ClubComponent } from './club/club.component';
+import { AddClubComponent } from './club/add-club/add-club.component';
+import { ShowClubComponent } from './club/show-club/show-club.component';
 
 
 @NgModule({
@@ -95,7 +98,10 @@ import { EditAccountComponent } from './account/edit-account/edit-account.compon
     DetailStudentComponent,
     ShowStudentComponent,
     AccountComponent,
-    EditAccountComponent
+    EditAccountComponent,
+    ClubComponent,
+    AddClubComponent,
+    ShowClubComponent
     ],
   providers: [
     FormateurService,

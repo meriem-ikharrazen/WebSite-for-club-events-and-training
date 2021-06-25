@@ -16,6 +16,9 @@ import { AddStudentComponent } from "./user/student/add-student/add-student.comp
 import { ShowStudentComponent } from "./user/student/show-student/show-student.component";
 import { DetailStudentComponent } from "./user/student/detail-student/detail-student.component";
 import { AuthGuard } from "./auth.guard";
+import { ClubComponent } from "./club/club.component";
+import { AddClubComponent } from "./club/add-club/add-club.component";
+import { ShowClubComponent } from "./club/show-club/show-club.component";
 
 const routes: Routes = [
   {
@@ -98,6 +101,21 @@ const routes: Routes = [
           {
             path: "detail",
             component: DetailStudentComponent,
+          },
+        ],
+      },
+      {
+        path: "club",
+        component: ClubComponent,
+
+        children: [
+          {
+            path: "add",
+            component: AddClubComponent,
+          },
+          {
+            path: "show",
+            component: ShowClubComponent,
           },
         ],
       },
