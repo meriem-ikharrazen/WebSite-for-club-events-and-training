@@ -2,6 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Formateur } from 'app/models/formateur.model';
+import { User } from 'app/models/user.model';
 import { GlobalVariables } from 'GlobalVariables';
 import { Observable } from 'rxjs';
 
@@ -43,4 +44,9 @@ export class FormateurService {
   public createFormateur(formateur) {
     return this.http.post<any>(this.globalVar.authApi+this.signupUrl, formateur);
   }
+
+  public update(formateur):Observable<Formateur> {
+    return this.http.put<Formateur>(this.globalVar.apiUrl + this.formateurUrl + '/'+formateur.id, formateur);
+  }
+
 }

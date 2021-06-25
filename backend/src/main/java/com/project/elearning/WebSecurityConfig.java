@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import security.AuthEntryPointJwt;
 import security.AuthTokenFilter;
 import security.JwtUtils;
+import services.AuthUser;
 import services.FormateurService;
 import services.UserDetailsServiceImpl;
 
@@ -73,6 +74,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+	public AuthUser authUSER() {
+		return new AuthUser();
+	}
+	
+	
 	@Override
 			protected void configure(HttpSecurity http) throws Exception {
 		

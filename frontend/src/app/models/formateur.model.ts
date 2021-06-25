@@ -4,14 +4,14 @@ export class Formateur {
     prenom:string;
     email:string;
     password:string;
-    tel:string;
     sexe:string;
+    image:string;
+    dateAjout:Date;
+    tel:string;
     diplome:string;
     date_naissance:Date;
-    image:string;
     access:boolean;
     profession:string;
     specialite:string;
-    dateAjout:Date;
 
 }

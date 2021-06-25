@@ -40,17 +40,18 @@ import { AdminComponent } from './user/admin/admin.component';
 import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
 import { StudentComponent } from './user/student/student.component';
 import { ShowFormateurComponent } from './user/formateur/show-formateur/show-formateur.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ShowAdminsComponent } from './user/admin/show-admins/show-admins.component';
 import { AddStudentComponent } from './user/student/add-student/add-student.component';
 import { DetailStudentComponent } from './user/student/detail-student/detail-student.component';
 import { ShowStudentComponent } from './user/student/show-student/show-student.component';
+import { AccountComponent } from './account/account.component';
+import { EditAccountComponent } from './account/edit-account/edit-account.component';
 
 
 @NgModule({
   imports: [
-    
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -92,13 +93,16 @@ import { ShowStudentComponent } from './user/student/show-student/show-student.c
     ShowAdminsComponent,
     AddStudentComponent,
     DetailStudentComponent,
-    ShowStudentComponent
+    ShowStudentComponent,
+    AccountComponent,
+    EditAccountComponent
     ],
   providers: [
     FormateurService,
     GlobalVariables,
     AppService,
     AuthService,
+    DatePipe,
   TokenStorageService,
   AuthInterceptor,
   authInterceptorProviders

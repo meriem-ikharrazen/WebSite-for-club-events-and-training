@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Formateur } from "app/models/formateur.model";
 import { FormateurService } from "app/services/formateur.service";
+import { NotificationService } from "app/services/notification.service";
 import { TokenStorageService } from "app/services/token-storage.service";
 
 interface Sexe {
@@ -36,7 +37,8 @@ export class AddFormateurComponent implements OnInit {
     private router: Router,
     private formateurService: FormateurService,
     private fb: FormBuilder,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +104,7 @@ export class AddFormateurComponent implements OnInit {
             this.errMsg = data.data;
           } else {
             this.successMsg = "Register success.";
-            alert("Compte created successfully.");
+            this.notificationService.showNotification('top','center','Admi created successfuly.','alert-success');
             this.router.navigate(["/formateur/show"]);
           }
         },

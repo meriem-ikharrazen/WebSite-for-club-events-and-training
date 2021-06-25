@@ -2,10 +2,10 @@ package com.project.elearning.controllers;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,18 +60,17 @@ public class FormateurController {
 	    return formateurRepository.searchByEmailNom(searchTxt);
 	  }
 
-	  @PutMapping("/formteurs/{id}")
-	  Formateur update(@RequestBody Formateur newFormateur, @PathVariable Long id) {
-	    
-	    return formateurRepository.findById(id)
-	      .map(formateur -> {
-	    	  formateur.setNom(newFormateur.getNom());
-	        return formateurRepository.save(newFormateur);
-	      })
-	      .orElseGet(() -> {
-//	    	  newFormateur.setId(id);
-	        return formateurRepository.save(newFormateur);
-	      });
+	  @PutMapping("/formateurs/{id}")
+	  ResponseEntity<?> update(@RequestBody Formateur newFormateur, @PathVariable Long id) {
+		  Formateur formateur = formateurRepository.findById(id)
+		    		 .orElseThrow(() -> new MyException("User not found"));
+		  formateur.setNom(newFormateur.getNom());
+		  formateur.setPrenom(newFormateur.getPrenom());
+		  formateur.setProfession(newFormateur.getProfession());
+		  formateur.setSpecialite(newFormateur.getSpecialite());
+		  formateur.setDiplome(newFormateur.getDiplome());
+		  formateur.setTel(newFormateur.getTel());
+		  return ResponseEntity.ok(formateurRepository.save(formateur));
 	  }
 
 	  @DeleteMapping("/formateurs/{id}")
@@ -79,7 +78,7 @@ public class FormateurController {
 	     formateurRepository.deleteById(id);
 	  }
 	  
-	  @PutMapping("/formateurAccess/{id}")
+	 @PutMapping("/formateurAccess/{id}")
 	  Formateur access(@PathVariable Long id) {
 	     Formateur formateur = formateurRepository.findById(id)
 	    		 .orElseThrow(() -> new MyException("User not found"));

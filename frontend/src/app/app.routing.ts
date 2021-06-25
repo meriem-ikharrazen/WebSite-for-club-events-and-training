@@ -45,10 +45,10 @@ const routes: Routes = [
       {
         path: "formateur",
         component: FormateurComponent,
-        canActivate: [AuthGuard],
-        data: {
-          role: 'admin'
-        },
+       // canActivate: [AuthGuard],
+        // data: {
+        //   role: 'admin'
+        // },
         children: [
           {
             path: "add",

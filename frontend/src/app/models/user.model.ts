@@ -7,5 +7,10 @@ export class User {
         sexe:string;
         image:string;
         dateAjout:Date;
+        // diplome:string;
+        // date_naissance:Date;
+        // access:boolean;
+        // profession:string;
+        // specialite:string;
     
     }

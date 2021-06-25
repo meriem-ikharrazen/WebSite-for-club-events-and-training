@@ -36,4 +36,8 @@ export class AdminService {
     console.log(this.globalVar.authApi+this.signupUrl);
     return this.http.post<any>(this.globalVar.authApi+this.signupUrl, admin);
   }
+
+  public update(admin):Observable<Admin> {
+    return this.http.put<Admin>(this.globalVar.apiUrl + this.adminUrl + "/"+ admin.id,admin);
+  }
 }

@@ -3,6 +3,7 @@ package com.project.elearning.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,6 @@ public class AdminController {
 	    return adminRepository.findAll();
 	  }
 
-	 
 	 @GetMapping("/admins/{id}")
 	  Administrateur findById(@PathVariable Long id) {
 	    
@@ -44,15 +44,16 @@ public class AdminController {
 	 
 
 	  @PutMapping("/admins/{id}")
-	  Administrateur update(@RequestBody Administrateur newAdministrateur, @PathVariable Long id) {
+	 	Administrateur update(@RequestBody Administrateur newAdministrateur, @PathVariable Long id) {
 	    
 	    return adminRepository.findById(id)
 	      .map(Administrateur -> {
 	    	  Administrateur.setNom(newAdministrateur.getNom());
-	        return adminRepository.save(newAdministrateur);
+	    	  Administrateur.setPrenom(newAdministrateur.getPrenom());
+	        return adminRepository.save(Administrateur) ;
 	      })
 	      .orElseGet(() -> {
-	        return adminRepository.save(newAdministrateur);
+	        return null;
 	      });
 	  }
 
