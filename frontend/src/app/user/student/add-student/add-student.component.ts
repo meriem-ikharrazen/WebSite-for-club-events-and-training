@@ -73,7 +73,7 @@ export class AddStudentComponent implements OnInit {
       sexe: [null, Validators.required],
       diplomePrepare: [null, Validators.required],
       niveau: [null, Validators.required],
-      date_naissance: [null, [Validators.required]],
+      date_naissance: ["", [Validators.required]],
     });
   }
 
@@ -105,7 +105,7 @@ export class AddStudentComponent implements OnInit {
       .createStudent(this.studentFormGroup.value)
       .subscribe(
         (data) => {
-          alert("formateur created successfully.");
+          //alert("formateur created successfully.");
           console.log(data);
 
           console.log(data.status);

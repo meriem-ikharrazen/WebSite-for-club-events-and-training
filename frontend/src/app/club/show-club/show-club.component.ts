@@ -36,13 +36,13 @@ export class ShowClubComponent implements OnInit {
     });
   }
 
-  // delete(student:Student){
-  //   if(confirm("Are you sure you want to delete user?")){
-  //     return this.studentService.deleteStudent(student).subscribe((res)=>{
-  //       this.getAll();
-  //     });
-  //   }
-  // }
+  delete(club:Club){
+    if(confirm("Are you sure you want to delete user?")){
+      return this.clubService.deleteClub(club).subscribe((res)=>{
+        this.getAll();
+      });
+    }
+  }
 
   changeAccess(club:Club){
   //     return this.StudentService.changeAccess(Student).subscribe((res)=>{
@@ -73,7 +73,7 @@ export class ShowClubComponent implements OnInit {
     this.filterValue = '';
   }
 
-  showStudentFnction(club:Club){
+  showClubFnction(club:Club){
     this.showClub = club;
   }
 

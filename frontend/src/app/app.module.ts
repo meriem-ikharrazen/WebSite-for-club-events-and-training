@@ -49,7 +49,7 @@ import { ShowStudentComponent } from './user/student/show-student/show-student.c
 import { ClubComponent } from './club/club.component';
 import { AddClubComponent } from './club/add-club/add-club.component';
 import { ShowClubComponent } from './club/show-club/show-club.component';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -65,6 +65,7 @@ import { ShowClubComponent } from './club/show-club/show-club.component';
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
+    MatProgressBarModule,
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,

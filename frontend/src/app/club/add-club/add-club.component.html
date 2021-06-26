@@ -1,1 +1,132 @@
-<p>add-club works!</p>
+<a class="navbar-brand" href="javascript:window.history.back()">
+    <i class="material-icons">arrow_back</i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center">Add new club</h2>
+  
+      <div class="alert alert-dark" role="alert" *ngIf="errMsg != ''">
+        <span class="text-danger">{{ errMsg }}</span>
+      </div>
+      <form [formGroup]="clubFormGroup">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="designation"
+                name="designation"
+                placeholder="Designation"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && clubFormGroup.controls.designation.errors
+                }"
+              />
+  
+              <div
+                *ngIf="submitted && clubFormGroup.controls.designation.errors"
+                class="invalid-feedback text-danger"
+              >
+                <div *ngIf="clubFormGroup.controls.designation.errors.required">
+                  Designation is required.
+                </div>
+                <div *ngIf="clubFormGroup.controls.designation.errors.minlength">
+                  Must be at least 2 characters.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Président</mat-label>
+              <mat-select
+                formControlName="id_etudiant"
+                name="id_etudiant"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && clubFormGroup.controls.id_etudiant.errors
+                }"
+              >
+                <mat-option *ngFor="let student of students" [value]="student.id">
+                  {{ student.nom }} {{ student.prenom }}
+                </mat-option>
+              </mat-select>
+  
+              <div
+                *ngIf="submitted && clubFormGroup.controls.id_etudiant.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="clubFormGroup.controls.id_etudiant.errors.required">
+                  Président required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+                <mat-toolbar>
+                  <!-- Display files names -->
+                  <input matInput [(value)]="fileAttr" readonly name="name" />
+            
+                  <!-- Browse Button -->
+                  <button mat-flat-button color="primary">
+                    Browse File
+                  </button>
+                </mat-toolbar>
+            
+                <!-- Fetch selected filed on change -->
+                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple"
+                  accept="image/*" />
+                  {{fileAttr}}
+              </div>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  formControlName="description"
+                  name="description"
+                  placeholder="Description"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && clubFormGroup.controls.description.errors
+                  }"
+                />
+    
+                <div
+                  *ngIf="submitted && clubFormGroup.controls.description.errors"
+                  class="invalid-feedback text-danger"
+                >
+                  <div *ngIf="clubFormGroup.controls.description.errors.required">
+                    Description is required.
+                  </div>
+                  <div *ngIf="clubFormGroup.controls.description.errors.minlength">
+                    Must be at least 2 characters.
+                  </div>
+                </div>
+              </mat-form-field>
+          </div>
+          <!-- <div class="col-md-2">
+            <button>generate</button>
+          </div> -->
+  
+        </div>
+  
+  
+        <button
+          mat-raised-button
+          (click)="createclub()"
+          class=" 
+          main-btn scrolltor pull-right"
+        >
+          Add club
+        </button>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+
+
+  

@@ -1,28 +1,152 @@
-    <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors">
-        <div class="container">
-  
-          <div class="section-title">
-            <h2>Clubs</h2>
-          </div>
-  
+<section id="doctors" class="doctors">
+    <div class="container">
+            <div class="section-title">
+                <h2>Clubs</h2>
+            </div>
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                    
+                        <div class="d-flex">
+                            <div class="mr-4">
+                                <mat-form-field class="example-full-width">
+                                    <input
+                                    matInput
+                                    [(ngModel)]="searchTxt"
+                                    name="searchTxt"
+                                    placeholder="Search..."
+                                    type="text"
+                                    class="search-input"
+                                    (ngModelChange)="onSearch()"
+                                    (click)="onSearch()"
+                                    />
+                                    <button mat-icon-button matSuffix>
+                                    <i class="material-icons">search</i>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        <div>
+                
+                        <mat-form-field >
+                            <mat-label>Filter</mat-label>
+                            <mat-select name="filterValue" [(ngModel)]="filterValue" (ngModelChange)="filter()">
+                                <mat-option value="newold">
+                                New To Old
+                                </mat-option>
+                                <mat-option value="oldnew">
+                                Old To New
+                                </mat-option>
+                                <!-- <mat-option value="approuved">
+                                Approved
+                                </mat-option>
+                                <mat-option value="notapprouved">
+                                Not approuved
+                                </mat-option> -->
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a [routerLink]="['/club/add']" class="main-btn main-btn scrollto">Add new club</a>
+            </div>
+        </div>
           <div class="row">
             <div *ngFor="let club of pageSlice" class="col-lg-6 mt-4 mt-lg-0">
               <div class="member d-flex align-items-start">
-                <div class="pic"><img src="./assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="http://localhost:8080/public/images/club.png" class="img-fluid" alt=""></div>
                 <div class="member-info">
                   <h4>{{club.designation}}</h4>
-                  <span>{{club.id_etudiant}}</span>
+                  <span>Président : {{club.id_etudiant}}</span>
                   <p>{{club.description}}</p>
                   <div class="social">
-                    <a href=""><i class="ri-twitter-fill"></i></a>
+                    <!-- <a href=""><i class="ri-twitter-fill"></i></a>
                     <a href=""><i class="ri-facebook-fill"></i></a>
                     <a href=""><i class="ri-instagram-fill"></i></a>
-                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    <a href=""> <i class="ri-linkedin-box-fill"></i></a> -->
+                    <a href="javascript:void(0)" (click) = "showClubFnction(club)" data-toggle="modal" data-target=".detail_Club_modal">
+                        <i><mat-icon>remove_red_eye</mat-icon></i>
+                    </a>
+                    <a href="javascript:void(0)" (click)="delete(club)" ><i><mat-icon>delete_outline</mat-icon></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL: DETAIL Club START -->
+  <div
+    class="modal fade detail_Club_modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{showClub.designation | uppercase }}</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="main-body">
+            <div class="row gutters-sm">
+              <div class="col-md-4 mb-3 h-100">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <img
+                      src="http://localhost:8080/public/images/club.png"
+                        alt="Image Club"
+                        class="rounded-circle"
+                        width="150"
+                      />
+                      <div class="mt-3">
+                        <h4>{{showClub.designation}}</h4>
+                        <!-- <p class="text-secondary mb-1"> Président : {{showClub.id_etudiant}}</p> -->
+  <!--                      
+                        <button class="btn btn-primary">Follow</button>
+                        <button class="btn btn-outline-primary">Message</button> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Président</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">{{showClub.id_etudiant}}</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Description</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">{{showClub.description}}</div>
+                      </div>
+                                                                         
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
         </div>
-      </section><!-- End Doctors Section -->
+      </div>
+    </div>
+  </div>
+<!-- MODAL: DETAIL Club START -->
