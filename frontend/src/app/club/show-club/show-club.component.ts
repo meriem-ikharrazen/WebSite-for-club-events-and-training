@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Club } from 'app/models/club.model';
 import { ClubService } from 'app/services/club.service';
 import { NotificationService } from 'app/services/notification.service';
+import { GlobalVariables } from 'GlobalVariables';
 
 @Component({
   selector: 'app-show-club',
@@ -19,6 +20,7 @@ export class ShowClubComponent implements OnInit {
   public filterValue:string = ';'
   public startIndex = 0;
   public endIndex = 6;
+  public path='http://localhost:8080/public/images/clubs/';
   
   constructor(private clubService: ClubService,private notificationService: NotificationService) {}
  
@@ -74,6 +76,7 @@ export class ShowClubComponent implements OnInit {
   }
 
   showClubFnction(club:Club){
+    // console.log(club);
     this.showClub = club;
   }
 

@@ -51,9 +51,6 @@ import { EditAccountComponent } from './account/edit-account/edit-account.compon
 import { ClubComponent } from './club/club.component';
 import { AddClubComponent } from './club/add-club/add-club.component';
 import { ShowClubComponent } from './club/show-club/show-club.component';
-<<<<<<< HEAD
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-=======
 import { FormationsComponent } from './formations/formations.component';
 import { ShowFormationComponent } from './formations/show-formation/show-formation.component';
 import { AddFormationComponent } from './formations/add-formation/add-formation.component';
@@ -61,7 +58,6 @@ import { EditFormationComponent } from './formations/edit-formation/edit-formati
 
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
->>>>>>> e64f79b9db69983813a8a1943c168bf465202107
 
 @NgModule({
   imports: [
@@ -76,7 +72,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
-    MatProgressBarModule,
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,

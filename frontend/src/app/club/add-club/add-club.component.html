@@ -40,23 +40,23 @@
             <mat-form-field>
               <mat-label>Président</mat-label>
               <mat-select
-                formControlName="id_etudiant"
-                name="id_etudiant"
+                formControlName="etudiant"
+                name="etudiant"
                 [ngClass]="{
                   'is-invalid':
-                    submitted && clubFormGroup.controls.id_etudiant.errors
+                    submitted && clubFormGroup.controls.etudiant.errors
                 }"
               >
-                <mat-option *ngFor="let student of students" [value]="student.id">
+                <mat-option *ngFor="let student of students" [value]="student">
                   {{ student.nom }} {{ student.prenom }}
                 </mat-option>
               </mat-select>
   
               <div
-                *ngIf="submitted && clubFormGroup.controls.id_etudiant.errors"
+                *ngIf="submitted && clubFormGroup.controls.etudiant.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="clubFormGroup.controls.id_etudiant.errors.required">
+                <div *ngIf="clubFormGroup.controls.etudiant.errors.required">
                   Président required.
                 </div>
               </div>
@@ -68,7 +68,7 @@
             <div>
                 <mat-toolbar>
                   <!-- Display files names -->
-                  <input matInput [(value)]="fileAttr" readonly name="name" />
+                  <input matInput [(value)]="logo" readonly name="logo"/>
             
                   <!-- Browse Button -->
                   <button mat-flat-button color="primary">
@@ -77,9 +77,9 @@
                 </mat-toolbar>
             
                 <!-- Fetch selected filed on change -->
-                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple"
+                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" multiple="multiple"
                   accept="image/*" />
-                  {{fileAttr}}
+                  {{logo}}
               </div>
           </div>
           <div class="col-md-6">
@@ -117,7 +117,7 @@
   
         <button
           mat-raised-button
-          (click)="createclub()"
+          (click)="createClub()"
           class=" 
           main-btn scrolltor pull-right"
         >
