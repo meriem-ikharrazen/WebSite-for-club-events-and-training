@@ -40,20 +40,31 @@ import { AdminComponent } from './user/admin/admin.component';
 import { AddFormateurComponent } from './user/formateur/add-formateur/add-formateur.component';
 import { StudentComponent } from './user/student/student.component';
 import { ShowFormateurComponent } from './user/formateur/show-formateur/show-formateur.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ShowAdminsComponent } from './user/admin/show-admins/show-admins.component';
 import { AddStudentComponent } from './user/student/add-student/add-student.component';
 import { DetailStudentComponent } from './user/student/detail-student/detail-student.component';
 import { ShowStudentComponent } from './user/student/show-student/show-student.component';
+import { AccountComponent } from './account/account.component';
+import { EditAccountComponent } from './account/edit-account/edit-account.component';
 import { ClubComponent } from './club/club.component';
 import { AddClubComponent } from './club/add-club/add-club.component';
 import { ShowClubComponent } from './club/show-club/show-club.component';
+<<<<<<< HEAD
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+=======
+import { FormationsComponent } from './formations/formations.component';
+import { ShowFormationComponent } from './formations/show-formation/show-formation.component';
+import { AddFormationComponent } from './formations/add-formation/add-formation.component';
+import { EditFormationComponent } from './formations/edit-formation/edit-formation.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+>>>>>>> e64f79b9db69983813a8a1943c168bf465202107
 
 @NgModule({
   imports: [
-    
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -74,6 +85,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     // FormateurModule,
     MatIconModule,
     MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
     // CommonModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -97,15 +110,23 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     AddStudentComponent,
     DetailStudentComponent,
     ShowStudentComponent,
+    AccountComponent,
+    EditAccountComponent,
     ClubComponent,
     AddClubComponent,
-    ShowClubComponent
-    ],
+    ShowClubComponent,
+    FormationsComponent,
+    ShowFormationComponent,
+    AddFormationComponent,
+    EditFormationComponent,
+    
+      ],
   providers: [
     FormateurService,
     GlobalVariables,
     AppService,
     AuthService,
+    DatePipe,
   TokenStorageService,
   AuthInterceptor,
   authInterceptorProviders

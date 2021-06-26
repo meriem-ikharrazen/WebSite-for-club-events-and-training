@@ -1,12 +1,17 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Admin } from 'app/models/admin.model';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 import { User } from 'app/models/user.model';
 import { AdminService } from 'app/services/admin.service';
 import { AuthService } from 'app/services/auth.service';
 import { FormateurService } from 'app/services/formateur.service';
 import { NotificationService } from 'app/services/notification.service';
+import { UserService } from 'app/services/user.service';
 import { GlobalVariables } from 'GlobalVariables';
+import { ViewChild, ElementRef} from '@angular/core';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 
 @Component({
   selector: 'app-account',
@@ -15,7 +20,13 @@ import { GlobalVariables } from 'GlobalVariables';
 })
 export class AccountComponent implements OnInit {
 
-  user:User;
+  @ViewChild('closeModal') closeModal: ElementRef;
+  @ViewChild('changePasswordForm') changePasswordForm: NgForm;
+  @ViewChild(EditAccountComponent) editComponent;
+
+  @Output() productEventEmitter : EventEmitter<any> = new EventEmitter();
+
+  user:any;
   role:string = '';
 
   selectedFile: File;
@@ -25,9 +36,20 @@ export class AccountComponent implements OnInit {
   message: string;
   imageName: any;
 
+  hide_current = true;
+  hide_new = true;
+  current_password = '';
+  new_password = '';
+  confirm_new_password = '';
+
+  errMsg = '';
+
+
   constructor(private authService:AuthService,private adminService:AdminService,
     private formateurService:FormateurService,private http:HttpClient,private globalVariables:GlobalVariables,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private datePipe: DatePipe,
+    private userService:UserService) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -45,11 +67,12 @@ export class AccountComponent implements OnInit {
           });
           break;
           case 'formateur':
-            this.formateurService.getById(this.user.id).subscribe(admin => {
-              this.user = admin;
+            this.formateurService.getById(this.user.id).subscribe(formateur => {
+              this.user = formateur;
               this.user.image = this.globalVariables.url+"/"+this.user.image;
-              console.log(this.user.image);
-              console.log(admin);
+              console.log(formateur);
+              console.log(formateur.specialite);
+
             });
             break;
         
@@ -65,7 +88,6 @@ export class AccountComponent implements OnInit {
       let formData = new FormData();
       formData.append("file", this.selectedFile);
       console.log(this.selectedFile);
-      const uploadImageData = new FormData();
 //  Make a call to the Spring Boot Application to save the image
  this.http.post<User>('http://localhost:8080/api/changeImage', formData, { observe: 'response' })
    .subscribe((data) => {
@@ -83,5 +105,30 @@ export class AccountComponent implements OnInit {
    );
 }
 
-  
+  onSubmit(f: NgForm) {
+  console.log(f.value.current_password);  // { first: '', last: '' }
+  console.log(f.value.new_password);  // false
+
+  this.userService.changePassword(f.value.current_password,f.value.new_password).subscribe((res)=>{
+    console.log(res);
+    if(res.status === 200){
+      this.notificationService.showNotification('top','center',res.data,'alert-success');
+      this.closeModal.nativeElement.click();
+      this.resetForm();
+    }else{
+      this.errMsg = res.data;
+    }
+  });
+}
+
+  resetForm(){
+    this.changePasswordForm.resetForm();
+    this.changePasswordForm.reset();
+    this.errMsg='';
+
+  }
+
+  openEditModal(){
+    this.editComponent.open();
+  }
 }

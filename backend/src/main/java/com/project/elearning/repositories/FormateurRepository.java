@@ -12,7 +12,6 @@ import com.project.elearning.entities.Formateur;
 public interface FormateurRepository extends JpaRepository<Formateur, Long> {
 	Formateur findByEmail(String email);
     boolean existsByEmail(String email);
-    
 //    @Query(value = "SELECT * FROM formateur WHERE email like %:searchTxt% OR nom like %:searchTxt% OR prenom like %:searchTxt%", nativeQuery = true)
 //	List<Formateur> searchByEmailNom(@Param(value="searchTxt") String searchTxt);
 

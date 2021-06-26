@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 public class Etudiant extends User {
 	private String cne;
 	@Temporal(TemporalType.DATE)
-	private Date dateNaissance;
+	private Date date_naissance;
 	private String tel;
 	private String niveau;
 	private String diplomePrepare;
@@ -42,12 +42,14 @@ public class Etudiant extends User {
 		this.cne = cne;
 	}
 
-	public Date getDateNaissance() {
-		return dateNaissance;
+	
+
+	public Date getDate_naissance() {
+		return date_naissance;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
+	public void setDate_naissance(Date date_naissance) {
+		this.date_naissance = date_naissance;
 	}
 
 	public String getTel() {

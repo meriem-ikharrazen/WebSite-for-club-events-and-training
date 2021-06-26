@@ -20,12 +20,12 @@ export class ShowAdminsComponent implements OnInit {
   public filterValue:string = ';'
   public startIndex = 0;
   public endIndex = 6;
-c  
+  public path = '';
   constructor(private adminService: AdminService,private notificationService: NotificationService
     , private global:GlobalVariables) {}
  
   ngOnInit(): void {
-    //this.path = this.global.url +'/';
+    this.path = this.global.url +'/';
     this.getAll();
   }
 

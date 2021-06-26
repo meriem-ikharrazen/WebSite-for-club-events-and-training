@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,16 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(updatable=false)
 	private Long id;
 	private String nom;
 	private String prenom;
+	@Column(updatable=false)
 	private String email;
 	private String password;
 	private Character sexe;
 	private String image;
+	@Column(updatable=false)
 	private Date dateAjout = new Date(System.currentTimeMillis());
 
 	

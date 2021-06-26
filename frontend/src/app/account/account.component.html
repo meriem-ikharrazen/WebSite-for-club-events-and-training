@@ -1,130 +1,281 @@
 <div class="container">
-    <div class="main-body">
-
-          <div class="row gutters-sm">
-            <div class="col-md-8">
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <h6 class="mb-0">Full Name</h6>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        {{user.prenom}} {{user.nom}}
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <h6 class="mb-0">Email</h6>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        {{user.email}}
-                      </div>
-                    </div>
-                    <hr>
-                    <div *ngIf="user.isSuper">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <h6 class="mb-0">Status</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">{{user.isSuper ? 'Super admin' : 'Normal admin'}}</div>
-                      </div>
-                      <hr />
-                    </div>
-
-                    <!-- 
-                      Ajouter les lignes de tous les utilisateur: formateur, etudiant
-                     -->
-                      <div *ngIf="user.tel">
-
-                        <div class="row">
-                         <div class="col-sm-3">
-                           <h6 class="mb-0">Mobile</h6>
-                         </div>
-                         <div class="col-sm-9 text-secondary">{{user.tel}}</div>
-                       </div>              
-                       <hr />
-                      </div>
-
-                      <div *ngIf="user.diplome">
-                        <div  class="row">
-                          <div class="col-sm-3">
-                            <h6 class="mb-0">Diploma</h6>
-                          </div>
-                          <div class="col-sm-9 text-secondary">{{user.diplome}}</div>
-                        </div>              
-                        <hr />
-                      </div>
-                 
-                      <div *ngIf="user.specialite" >
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <h6 class="mb-0">Diploma</h6>
-                          </div>
-                          <div class="col-sm-9 text-secondary">{{user.specialite}</div>
-                        </div>              
-                        <hr/>
-                      </div>
-           
-                      <div *ngIf="user.date_naissance">
-                        <div class="row">
-                          <div class="col-sm-3">
-                            <h6 class="mb-0">Dath of birth</h6>
-                          </div>
-                          <div class="col-sm-9 text-secondary">{{user.date_naissance | date:'mediumDate'}}</div>
-                        </div>              
-                        <hr />
-                      </div>
-                   
-                
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Date of joined</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">{{user.dateAjout  | date:'mediumDate'}}</div>
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.prenom }} {{ user.nom }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.email }}
+              </div>
+            </div>
+            <hr />
+            <div *ngIf="user.isSuper">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Status</h6>
                 </div>
-
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <a class="btn btn-danger" target="__blank" href="#">Edit</a>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ user.isSuper ? "Super admin" : "Normal admin" }}
                 </div>
               </div>
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                      <div class="parent">
-                        <!-- <img  [attr.src]="
+              <hr />
+            </div>
+
+            <!-- 
+                      Ajouter les lignes de tous les utilisateur: formateur, etudiant
+                     -->
+            <div *ngIf="user.tel">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Mobile</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ user.tel }}</div>
+              </div>
+              <hr />
+            </div>
+
+            <div *ngIf="user.profession">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Profession</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ user.profession }}</div>
+              </div>
+              <hr />
+            </div>
+
+            <div *ngIf="user.diplome">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">diplome</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ user.diplome }}</div>
+              </div>
+              <hr />
+            </div>
+            
+
+            <div *ngIf="user.specialite">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Specialize in </h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{user.specialite}}</div>
+              </div>
+              <hr />
+            </div>
+
+            <div *ngIf="user.date_naissance">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Dath of birth</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ datePipe.transform(user.date_naissance, "yyyy-MM-dd") }}
+                </div>
+              </div>
+              <hr />
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Date of joined</h6>
+              </div>
+              <!-- <div class="col-sm-9 text-secondary">{{user.dateAjout  | date:'mediumDate'}}</div> -->
+              <div class="col-sm-9 text-secondary">
+                {{ datePipe.transform(user.dateAjout, "mediumDate") }}
+              </div>
+            </div>
+
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-danger" href="javascript:void(0)" (click)="openEditModal()">Edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="parent">
+                <!-- <img  [attr.src]="
                         user.sexe == 'm'
                           ? 'http://localhost:8080/public/images/male.jpg'
                           : 'http://localhost:8080/public/images/female.jpg'
                       " alt="Admin" class="rounded-circle image" width="150"> -->
-                      <img  [src]="user.image" alt="Admin" class="rounded-circle image" width="150" height="150">
-                       <a class="change text-danger"  (click)="file.click()"> 
-                        <i type="file" class="fa fa-camera-retro w3-large" aria-hidden="true" width="120">
-                       </i>
-                       <input type="file" style="display:none" name="image" 
-                       (change)="onUpload($event)" #file>
-                    </a>
-                    </div>
-                    
-                    <div class="change"></div>
-                    <div class="mt-3">
-                      <h4>{{user.prenom}} {{user.nom}}</h4>
-                      <p class="text-secondary mb-1">{{user.email}}r</p>
-                      <button class="btn btn-outline-primary">Edit Password</button>
-                    </div>
-                  </div>
-                </div>
+                <img
+                  [src]="user.image"
+                  alt="Admin"
+                  class="rounded-circle image"
+                  width="150"
+                  height="150"
+                />
+                <a class="change text-danger" (click)="file.click()">
+                  <i
+                    type="file"
+                    class="fa fa-camera-retro w3-large"
+                    aria-hidden="true"
+                    width="120"
+                  >
+                  </i>
+                  <input
+                    type="file"
+                    style="display: none"
+                    name="image"
+                    (change)="onUpload($event)"
+                    #file
+                  />
+                </a>
+              </div>
+
+              <div class="change"></div>
+              <div class="mt-3">
+                <h4>{{ user.prenom }} {{ user.nom }}</h4>
+                <p class="text-secondary mb-1">{{ user.email }}</p>
+                <button
+                  class="btn btn-outline-primary"
+                  data-toggle="modal"
+                  data-target=".change_password"
+                >
+                  Edit Password
+                </button>
               </div>
             </div>
-           
           </div>
-
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- MODAL: FOR CHANGING PASSWORD START -->
+<div
+  class="modal fade change_password"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change your password</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="resetForm()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="main-body">
+          <div class="row">
+            <p class="text-red m-4">{{errMsg}}</p>
+            <div class="col-md-8">
+              <form #changePasswordForm="ngForm" (ngSubmit)="onSubmit(changePasswordForm)">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  [(ngModel)]="current_password"
+                  name="current_password"
+                  placeholder="Current password"
+                  [type]="hide_current ? 'password' : 'text'"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && formateurFormGroup.controls.password.errors
+                  }"
+                  required
+                  minlength="6"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="hide_current = !hide_current"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide_current ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  [(ngModel)]="new_password"
+                  name="new_password"
+                  placeholder="New password"
+                  [type]="hide_new ? 'password' : 'text'"
+                  required
+                  minlength="6"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  type="button"
+                  (click)="hide_new = !hide_new"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide_new ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  [(ngModel)]="confirm_new_password"
+                  name="confirm_new_password"
+                  placeholder="Current password"
+                  type="password"
+                  required
+                  minlength="6"
+                />
+              </mat-form-field>
+              <div>
+
+                <button
+                type="submit"
+                    class="btn btn-outline-primary"
+                  >
+                    Save
+                  </button>
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal" #closeModal
+                  (click)="resetForm()">
+                    Close
+                  </button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL: FOR CHANGING PASSWORD END -->
+
+<!-- <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">My Cart</button> -->
+
+<app-edit-account [user]="user" [role]="role" (productEventEmitter) ="onActionEvent($event)" ></app-edit-account>
