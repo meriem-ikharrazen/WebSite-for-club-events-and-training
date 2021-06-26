@@ -171,3 +171,7 @@
 .text-red{
   color: #dc3545;
 }
+
+table {
+  width: 100%;
+}

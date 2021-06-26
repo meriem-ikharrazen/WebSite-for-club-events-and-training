@@ -51,7 +51,13 @@ import { EditAccountComponent } from './account/edit-account/edit-account.compon
 import { ClubComponent } from './club/club.component';
 import { AddClubComponent } from './club/add-club/add-club.component';
 import { ShowClubComponent } from './club/show-club/show-club.component';
+import { FormationsComponent } from './formations/formations.component';
+import { ShowFormationComponent } from './formations/show-formation/show-formation.component';
+import { AddFormationComponent } from './formations/add-formation/add-formation.component';
+import { EditFormationComponent } from './formations/edit-formation/edit-formation.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -74,6 +80,8 @@ import { ShowClubComponent } from './club/show-club/show-club.component';
     // FormateurModule,
     MatIconModule,
     MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
     // CommonModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -101,8 +109,13 @@ import { ShowClubComponent } from './club/show-club/show-club.component';
     EditAccountComponent,
     ClubComponent,
     AddClubComponent,
-    ShowClubComponent
-    ],
+    ShowClubComponent,
+    FormationsComponent,
+    ShowFormationComponent,
+    AddFormationComponent,
+    EditFormationComponent,
+    
+      ],
   providers: [
     FormateurService,
     GlobalVariables,

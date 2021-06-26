@@ -19,6 +19,9 @@ import { AuthGuard } from "./auth.guard";
 import { ClubComponent } from "./club/club.component";
 import { AddClubComponent } from "./club/add-club/add-club.component";
 import { ShowClubComponent } from "./club/show-club/show-club.component";
+import { FormationsComponent } from "./formations/formations.component";
+import { AddFormationComponent } from "./formations/add-formation/add-formation.component";
+import { ShowFormationComponent } from "./formations/show-formation/show-formation.component";
 
 const routes: Routes = [
   {
@@ -116,6 +119,21 @@ const routes: Routes = [
           {
             path: "show",
             component: ShowClubComponent,
+          },
+        ],
+      },
+      {
+        path: "formations",
+        component: FormationsComponent,
+
+        children: [
+          {
+            path: "add",
+            component: AddFormationComponent,
+          },
+          {
+            path: "show",
+            component: ShowFormationComponent,
           },
         ],
       },

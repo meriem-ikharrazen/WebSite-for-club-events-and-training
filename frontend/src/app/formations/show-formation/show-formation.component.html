@@ -1,0 +1,87 @@
+<div class="row justify-content-between">
+  <div class="col-md-4">
+    <div class="d-flex">
+      <div class="mr-4">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            (keyup)="doFilter($event.target.value)"
+            placeholder="Filter"
+          />
+          <button mat-icon-button matSuffix>
+            <i class="material-icons">search</i>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div></div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <a [routerLink]="['/formations/add']" class="main-btn main-btn scrollto"
+      >Add new Formation</a
+    >
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Libele Column -->
+    <ng-container matColumnDef="libele">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Libele</th>
+      <td mat-cell *matCellDef="let element">{{ element.libele }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="dateAjout">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Created date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateAjout | date: "mediumDate" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="">
+          <a href="javascript:void(0)" class="mr-3 text-success"
+            ><i>
+              <mat-icon>remove_red_eye</mat-icon>
+            </i>
+          </a>
+          <a href="javascript:void(0)" class="mr-3 text-warning"
+          ><i>
+            <mat-icon>edit</mat-icon>
+          </i>
+        </a>
+        <a href="javascript:void(0)" class="text-red"
+        ><i>
+          <mat-icon>delete_forever</mat-icon>
+        </i>
+      </a>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
