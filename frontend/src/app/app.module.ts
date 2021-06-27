@@ -25,6 +25,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { GlobalComponent } from './global/global.component';
 import { FormateurService } from 'app/services/formateur.service';
 
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -58,6 +60,9 @@ import { EditFormationComponent } from './formations/edit-formation/edit-formati
 
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { EvenementComponent } from './evenement/evenement.component';
+import { AddEvenementComponent } from './evenement/add-evenement/add-evenement.component';
+import { ShowEvenementComponent } from './evenement/show-evenement/show-evenement.component';
 
 @NgModule({
   imports: [
@@ -81,7 +86,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    AmazingTimePickerModule
     // CommonModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -114,6 +120,9 @@ import { MatSortModule } from '@angular/material/sort';
     ShowFormationComponent,
     AddFormationComponent,
     EditFormationComponent,
+    EvenementComponent,
+    AddEvenementComponent,
+    ShowEvenementComponent,
     
       ],
   providers: [

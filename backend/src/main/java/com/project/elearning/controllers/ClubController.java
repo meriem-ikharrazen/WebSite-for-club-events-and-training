@@ -1,5 +1,10 @@
 package com.project.elearning.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,6 +12,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +21,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.elearning.Exceptions.MyException;
 import com.project.elearning.entities.Club;
 import com.project.elearning.entities.Etudiant;
 import com.project.elearning.entities.Role;
+import com.project.elearning.entities.User;
 import com.project.elearning.repositories.ClubRepository;
 
 import payload.ResponseMsg;
+import services.UserDetailsImpl;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -84,5 +94,22 @@ public class ClubController {
 	  void delete(@PathVariable Long id) {
 	     clubRepository.deleteById(id);
 	  }
+	  
+	  
+	  @PostMapping("/clubs/upload")
+		public void uploadImage(@RequestParam("fileInput") MultipartFile file) throws IOException {
+		  System.out.println("Original Image Byte Size - " + file);
+		    File resourcesDirectory = new File("src/main/webapp/public/images/clubs");
+
+			byte[] bytes = file.getBytes();
+		    //System.out.println(resourcesDirectory.getAbsolutePath());
+
+			Path path = Paths.get(resourcesDirectory+"/"+ file.getOriginalFilename() );
+			System.out.println("my path: "+path);
+			//Path path = Paths.get(this.getClass().getResource("/").getPath());
+			//System.out.println("--------------------------------------------");
+		    //System.out.println(path.toAbsolutePath());
+			Files.write(path, bytes);
+		}
 	  
 }

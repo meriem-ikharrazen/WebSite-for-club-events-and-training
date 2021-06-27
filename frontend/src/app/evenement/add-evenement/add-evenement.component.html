@@ -1,0 +1,262 @@
+<a class="navbar-brand" href="javascript:window.history.back()">
+    <i class="material-icons">arrow_back</i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center">Add new event</h2>
+  
+      <div class="alert alert-dark" role="alert" *ngIf="errMsg != ''">
+        <span class="text-danger">{{ errMsg }}</span>
+      </div>
+      <form [formGroup]="eventFormGroup">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                formControlName="libele"
+                name="libele"
+                placeholder="Name"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && eventFormGroup.controls.libele.errors
+                }"
+              />
+  
+              <div
+                *ngIf="submitted && eventFormGroup.controls.libele.errors"
+                class="invalid-feedback text-danger"
+              >
+                <div *ngIf="eventFormGroup.controls.eventFormGroup.errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="eventFormGroup.controls.eventFormGroup.errors.minlength">
+                  Must be at least 2 characters.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Club</mat-label>
+              <mat-select
+                formControlName="club"
+                name="club"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && eventFormGroup.controls.club.errors
+                }"
+              >
+                <mat-option *ngFor="let club of clubs" [value]="club">
+                  {{ club.designation }}
+                </mat-option>
+              </mat-select>
+  
+              <div
+                *ngIf="submitted && eventFormGroup.controls.club.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="eventFormGroup.controls.club.errors.required">
+                  Club required.
+                </div>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+                <mat-toolbar>
+                  <!-- Display files names -->
+                  <input matInput [(value)]="image" readonly name="image"/>
+            
+                  <!-- Browse Button -->
+                  <button mat-flat-button color="primary">
+                    Browse File
+                  </button>
+                </mat-toolbar>
+            
+                <!-- Fetch selected filed on change -->
+                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" multiple="multiple"
+                  accept="image/*" />
+              </div>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+                <textarea
+                  matInput
+                  formControlName="description"
+                  name="description"
+                  placeholder="Description"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && eventFormGroup.controls.description.errors
+                  }"
+                ></textarea>
+    
+                <div
+                  *ngIf="submitted && eventFormGroup.controls.description.errors"
+                  class="invalid-feedback text-danger"
+                >
+                  <div *ngIf="eventFormGroup.controls.description.errors.required">
+                    Description is required.
+                  </div>
+                  <div *ngIf="eventFormGroup.controls.description.errors.minlength">
+                    Must be at least 2 characters.
+                  </div>
+                </div>
+              </mat-form-field>
+          </div>
+          <!-- <div class="col-md-2">
+            <button>generate</button>
+          </div> -->
+  
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    placeholder="Start Date"
+                    name="date_ajout"
+                    formControlName="date_ajout"
+                    (focus)="picker.open()"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && eventFormGroup.controls.date_ajout.errors
+                    }"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+      
+                  <div
+                    *ngIf="
+                      submitted && eventFormGroup.controls.date_ajout.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                      eventFormGroup.controls.date_ajout.errors.required
+                      "
+                    >
+                      Start Date required.
+                    </div>
+                  </div>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput
+                    name="time_ajout"
+                    formControlName="time_ajout"
+                    placeholder="Start time"
+                    atp-time-picker value="19:00"
+                    [ngClass]="{
+                        'is-invalid':
+                          submitted && eventFormGroup.controls.time_ajout.errors
+                      }"
+                    />
+                    <div
+                    *ngIf="
+                      submitted && eventFormGroup.controls.time_ajout.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                      eventFormGroup.controls.time_ajout.errors.required
+                      "
+                    >
+                      Start time required.
+                    </div>
+                  </div>
+                </mat-form-field>
+            </div>
+              
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="picker2"
+                    placeholder="End Date"
+                    name="date_fin"
+                    formControlName="date_fin"
+                    (focus)="picker2.open()"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && eventFormGroup.controls.date_fin.errors
+                    }"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker2"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <div
+                    *ngIf="
+                      submitted && eventFormGroup.controls.date_fin.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                      eventFormGroup.controls.date_fin.errors.required
+                      "
+                    >
+                      End Date required.
+                    </div>
+                  </div>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                    <input matInput
+                    name="time_fin"
+                    formControlName="time_fin"
+                    placeholder="End time"
+                    atp-time-picker value="19:00"
+                    [ngClass]="{
+                        'is-invalid':
+                          submitted && eventFormGroup.controls.time_fin.errors
+                      }"
+                    />
+                    <div
+                    *ngIf="
+                      submitted && eventFormGroup.controls.time_fin.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="
+                      eventFormGroup.controls.time_fin.errors.required
+                      "
+                    >
+                      End Time required.
+                    </div>
+                  </div>
+                </mat-form-field>
+            </div>
+        </div>
+  
+        <button
+          mat-raised-button
+          (click)="createEvenement()"
+          class=" 
+          main-btn scrolltor pull-right"
+        >
+          Add event
+        </button>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+
+
+  

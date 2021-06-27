@@ -22,6 +22,9 @@ import { ShowClubComponent } from "./club/show-club/show-club.component";
 import { FormationsComponent } from "./formations/formations.component";
 import { AddFormationComponent } from "./formations/add-formation/add-formation.component";
 import { ShowFormationComponent } from "./formations/show-formation/show-formation.component";
+import { EvenementComponent } from "./evenement/evenement.component";
+import { AddEvenementComponent } from "./evenement/add-evenement/add-evenement.component";
+import { ShowEvenementComponent } from "./evenement/show-evenement/show-evenement.component";
 
 const routes: Routes = [
   {
@@ -134,6 +137,21 @@ const routes: Routes = [
           {
             path: "show",
             component: ShowFormationComponent,
+          },
+        ],
+      },
+      {
+        path: "evenement",
+        component: EvenementComponent,
+
+        children: [
+          {
+            path: "add",
+            component: AddEvenementComponent,
+          },
+          {
+            path: "show",
+            component: ShowEvenementComponent,
           },
         ],
       },
