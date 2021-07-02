@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "categorieFormation")
 public class CategorieFormation {
@@ -21,6 +23,7 @@ public class CategorieFormation {
 	private String designation;
 	
 	@OneToMany(mappedBy = "categorie")
+	@JsonIgnore
     private List<Formation> formations;
 
 	public Long getId() {

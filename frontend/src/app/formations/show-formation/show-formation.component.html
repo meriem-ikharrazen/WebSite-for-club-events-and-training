@@ -39,6 +39,12 @@
       <td mat-cell *matCellDef="let element">{{ element.libele }}</td>
     </ng-container>
 
+     <!-- formateur Column -->
+     <ng-container matColumnDef="formateur">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>formateur</th>
+      <td mat-cell *matCellDef="let element">{{ element.formateur != null ? element.formateur.nom +' '+  element.formateur.prenom : 'Not added' }}</td>
+    </ng-container>
+
     <!-- Status Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
@@ -52,27 +58,29 @@
         {{ element.dateAjout | date: "mediumDate" }}
       </td>
     </ng-container>
+    <ng-container >
+      <th>test</th>
+      <td>
+      </td>
+
+    </ng-container>
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
         <div class="">
-          <a href="javascript:void(0)" class="mr-3 text-success"
-            ><i>
-              <mat-icon>remove_red_eye</mat-icon>
-            </i>
-          </a>
-          <a href="javascript:void(0)" class="mr-3 text-warning"
-          ><i>
-            <mat-icon>edit</mat-icon>
-          </i>
-        </a>
-        <a href="javascript:void(0)" class="text-red"
+        <app-show-form [formation]="element"></app-show-form>
+        <a routerLink= "{{ '/formations/edit/'+element.id}}" class="mr-3 text-warning"
         ><i>
-          <mat-icon>delete_forever</mat-icon>
+          <mat-icon>edit</mat-icon>
         </i>
       </a>
-        </div>
+      <a href="javascript:void(0)" (click)="delete(element)" class="text-red">
+          <i>
+            <mat-icon>delete_forever</mat-icon>
+          </i>
+      </a>
+    </div>
       </td>
     </ng-container>
 
@@ -85,3 +93,4 @@
     showFirstLastButtons
   ></mat-paginator>
 </div>
+

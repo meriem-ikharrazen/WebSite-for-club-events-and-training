@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -40,6 +42,7 @@ public class Formateur extends User {
 	
 	
 	@OneToMany(mappedBy = "formateur")
+	@JsonIgnore
 	private List<Formation> formations;
 
 

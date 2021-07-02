@@ -5,6 +5,7 @@ import { Formation } from 'app/models/formation.model';
 import { User } from 'app/models/user.model';
 import { CategorieService } from 'app/services/categorie.service';
 import { ClubService } from 'app/services/club.service';
+import { FormateurService } from 'app/services/formateur.service';
 import { FormationService } from 'app/services/formation.service';
 import { NotificationService } from 'app/services/notification.service';
 
@@ -20,6 +21,8 @@ export class AddFormationComponent implements OnInit {
 
   public clubs: Club[] = [];
   public categories = [];
+  public formateurs = [];
+
 
   logo = 'Choose File';
   imgUrl:any;
@@ -34,12 +37,14 @@ export class AddFormationComponent implements OnInit {
 
 
   constructor(private clubService: ClubService, private categorieService:CategorieService,
-    private formationService:FormationService, private notificationService: NotificationService
+    private formationService:FormationService, private notificationService: NotificationService,
+    private formateurService:FormateurService
     ) { }
 
   ngOnInit(): void {
     this.getClubs();
     this.getCategories();
+    this.getformateurs();
   }
 
 
@@ -54,6 +59,14 @@ export class AddFormationComponent implements OnInit {
     this.categorieService.getcategories().subscribe((result) => {
       this.categories = result;
       console.log(this.categories);
+    });
+  }
+
+  public getformateurs() {
+    this.formateurService.getFormateurs().subscribe((result) => {
+      this.formateurs = result;
+      console.log("les formateurs")
+      console.log(this.formateurs);
     });
   }
 

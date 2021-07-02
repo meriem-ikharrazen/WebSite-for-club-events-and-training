@@ -132,6 +132,7 @@ export class AddClubComponent implements OnInit {
         (err) => {
           console.log(err.message);
         }
+        
       );
   }
 }

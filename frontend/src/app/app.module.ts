@@ -64,7 +64,8 @@ import { EvenementComponent } from './evenement/evenement.component';
 import { AddEvenementComponent } from './evenement/add-evenement/add-evenement.component';
 import { ShowEvenementComponent } from './evenement/show-evenement/show-evenement.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ShowFormComponent } from './formations/show-form/show-form.component';
 
 @NgModule({
   imports: [
@@ -90,7 +91,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatTableModule,
     MatSortModule,
     AmazingTimePickerModule,
-    // MatToolbarModule
+    MatToolbarModule
     
     // CommonModule,
     // AgmCoreModule.forRoot({
@@ -126,9 +127,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     EditFormationComponent,
     EvenementComponent,
     AddEvenementComponent,
-    ShowEvenementComponent,
-    
-      ],
+    ShowEvenementComponent, 
+    ShowFormComponent,
+
+  ],
   providers: [
     FormateurService,
     GlobalVariables,

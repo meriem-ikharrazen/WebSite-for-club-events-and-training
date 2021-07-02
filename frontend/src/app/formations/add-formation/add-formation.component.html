@@ -16,6 +16,7 @@
                 name="libele"
                 [(ngModel)]="formation.libele"
                 placeholder="The formation title"
+                required
               />
             </mat-form-field>
           </div>
@@ -25,6 +26,7 @@
                 <textarea matInput
                 name="description"
                 [(ngModel)]="formation.description"
+                required
                 ></textarea>
               </mat-form-field>
           </div>
@@ -50,6 +52,7 @@
                     <mat-select
                       name="categorie"
                       [(ngModel)]="categorie"
+                      
                     >
                       <mat-option *ngFor="let categorie of categories" [value]="categorie">
                         {{ categorie.designation }}
@@ -58,6 +61,24 @@
                   </mat-form-field>
             </div>
           </div>
+          <!-- Formateur -->
+           
+        <div class="row">
+          <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Formateur</mat-label>
+                <mat-select
+                  name="formateur"
+                  [(ngModel)]="formateur"
+                >
+                  <mat-option *ngFor="let formateur of formateurs" [value]="formateur">
+                    {{ formateur.nom + ' ' + formateur.prenom }}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
 
 
           <div class="row">
@@ -71,6 +92,7 @@
                       [(ngModel)]="formation.date_debut"
 
                       (focus)="picker.open()"
+                      required
 
                     />
                     <mat-datepicker-toggle
@@ -89,6 +111,7 @@
                       name="date_fin"
                       [(ngModel)]="formation.date_fin"
                       (focus)="picker.open()"
+                      required
                     />
                     <mat-datepicker-toggle
                       matSuffix
@@ -101,7 +124,7 @@
 
           <div class="row">
             <div class="col-md-6">
-              <input type="checkbox" name="status" [(ngModel)]="formation.status"
+              <input type="checkbox" name="status" [(ngModel)]="formation.status" required
               id=""> Publish it now
             </div>
 
@@ -110,19 +133,12 @@
           <div class="row">
             <div class="col-md-6">
               <div>
-                <mat-toolbar>
-                  <!-- Display files names -->
+            
+                  <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" multiple="multiple"
+                    accept="image/*" name="myFile" required/>
                   <input matInput [(value)]="logo" readonly name="logo"/>
-            
-                  <!-- Browse Button -->
-                  <button mat-flat-button color="primary">
-                    Browse File
-                  </button>
-                </mat-toolbar>
-            
-                <!-- Fetch selected filed on change -->
-                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" multiple="multiple"
-                  accept="image/*" />
+
+                           
               </div>
             </div>
 

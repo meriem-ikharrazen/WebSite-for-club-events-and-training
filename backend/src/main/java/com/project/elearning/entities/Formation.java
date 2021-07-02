@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "formation")
 public class Formation {
@@ -33,13 +35,15 @@ public class Formation {
 	private Date dateAjout =  new Date(System.currentTimeMillis());
 	
 	@OneToMany(mappedBy = "formation")
+	@JsonIgnore
     private List<Examen> examens;
 	
 	@ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_formateur")
     private Formateur formateur;
 	
 	@OneToMany(mappedBy = "formation")
+	@JsonIgnore
     private List<PartieFormation> parties;
 	
 	@ManyToOne

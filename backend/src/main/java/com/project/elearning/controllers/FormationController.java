@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.elearning.Exceptions.MyException;
 import com.project.elearning.entities.Club;
+import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Formation;
 import com.project.elearning.repositories.ClubRepository;
 import com.project.elearning.repositories.FormationRepository;
@@ -64,5 +67,16 @@ Formation findById(@PathVariable Long id) {
 			System.out.println("my path: "+path);
 			Files.write(path, bytes);
 		}
+	 
+	 @PutMapping("/formations")
+	  Formation access(@RequestBody Formation formation) {
+	     System.out.println("the id is: "+formation.getImage());
+		 return formationRepository.save(formation);
+	  }
+	 
+	 @DeleteMapping("/formations/{id}")
+	  void delete(@PathVariable Long id) {
+	     formationRepository.deleteById(id);
+	  }
 }
 

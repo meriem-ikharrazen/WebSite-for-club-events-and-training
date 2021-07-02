@@ -1,8 +1,6 @@
 package com.project.elearning.entities;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "club")
@@ -27,13 +27,16 @@ public class Club {
 	private String logo;
 	
 	@OneToMany(mappedBy = "club")
+	@JsonIgnore
     private List<Formation> formations;
 	
 	@OneToMany(mappedBy = "club")
+	@JsonIgnore
     private List<Evenement> evenements;
 	
 	@OneToOne
     @JoinColumn(name = "id_etudiant")
+	@JsonIgnore
     private Etudiant etudiant;
 
 	public Long getId() {

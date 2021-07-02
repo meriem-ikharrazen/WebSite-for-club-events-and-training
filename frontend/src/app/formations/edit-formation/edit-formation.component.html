@@ -1,1 +1,176 @@
-<p>edit-formation works!</p>
+
+
+<a class="navbar-brand" href="javascript:window.history.back()">
+  <i class="material-icons">arrow_back</i>
+</a>
+<div class="card">
+  <div class="card-body">
+    <h2 class="text-center">Update Formation</h2>
+    <div class="alert alert-dark" role="alert" *ngIf="errMsg != ''">
+      <span class="text-danger">{{ errMsg }}</span>
+    </div>
+    <div *ngIf="formation == null">
+      <p>loading ... </p>
+    </div>
+    <form #formationForm="ngForm" (ngSubmit)="onSubmit(formationForm)">
+                <div
+                    class="d-flex flex-column align-items-center text-center"
+                  >
+                  {{ formation.image }}
+                    <img
+                      src="{{ image }}"
+                      alt="Formation Image"
+                      class="rounded-circle"
+                      width="150"
+                    />
+                    <br>
+                  </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              name="libele"
+              [(ngModel)]="formation.libele"
+              placeholder="The formation title"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              name="description"
+              [(ngModel)]="formation.description"
+              required
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Orgnize by (choose the club)</mat-label>
+            <mat-select name="club" [(ngModel)]="club">
+              <mat-option *ngFor="let club of clubs" [value]="club">
+                {{ club.designation }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>The Category</mat-label>
+            <mat-select name="categorie" [(ngModel)]="categorie">
+              <mat-option
+                *ngFor="let categorie of categories"
+                [value]="categorie"
+              >
+                {{ categorie.designation }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field>
+            <mat-label>Formateur</mat-label>
+            <mat-select name="formateur" [(ngModel)]="formateur">
+              <mat-option
+                *ngFor="let formateur of formateurs"
+                [value]="formateur"
+              >
+                {{ formateur.nom + " " + formateur.prenom }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Start date"
+              name="date_debut"
+              [(ngModel)]="formation.date_debut"
+              (focus)="picker.open()"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="End date"
+              name="date_fin"
+              [(ngModel)]="formation.date_fin"
+              (focus)="picker.open()"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <input
+            type="checkbox"
+            name="status"
+            [(ngModel)]="formation.status"
+            required
+            id=""
+          />
+          Publish it now
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <input
+              type="file"
+              #fileInput
+              id="uploadFile"
+              (change)="uploadFileEvt($event)"
+              multiple="multiple"
+              accept="image/*"
+              name="myFile"
+              required
+            />
+            <input matInput [(value)]="logo" readonly name="logo" />
+          </div>
+        </div>
+
+        <div class="col-md-6"></div>
+      </div>
+
+      <button
+        mat-raised-button
+        type="submit"
+        class="main-btn scrolltor pull-right"
+      >
+        Edit Formation
+      </button>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>

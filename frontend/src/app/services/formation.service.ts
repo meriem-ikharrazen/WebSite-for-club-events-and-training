@@ -18,6 +18,10 @@ export class FormationService {
   public getformations():Observable<Formation[]> {
     return this.http.get<Formation[]>(this.globalVar.apiUrl + this.formationUrl);
   }
+
+  public getById(id):Observable<Formation> {
+    return this.http.get<Formation>(this.globalVar.apiUrl + this.formationUrl+"/"+id);
+  }
   
 
   public deleteformation(formation){
@@ -28,8 +32,15 @@ export class FormationService {
     return this.http.post<any>(this.globalVar.apiUrl+this.formationUrl, formation);
   }
 
+  public updateFormation(formation) {
+    return this.http.put<any>(this.globalVar.apiUrl+this.formationUrl, formation);
+  }
+
   public uploadImage(uploadData) {
     return this.http.post<any>(this.globalVar.apiUrl+this.formationUrl+"/upload", uploadData);
   }
 
+  public delete(id) {
+    return this.http.delete(this.globalVar.apiUrl+this.formationUrl+"/"+id);
+  }
 }

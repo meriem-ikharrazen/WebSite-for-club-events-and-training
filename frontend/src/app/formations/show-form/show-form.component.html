@@ -1,0 +1,169 @@
+<button
+  id="openModalButton"
+  [hidden]="true"
+  data-toggle="modal"
+  data-target="#myModal"
+>
+  Open Modalf
+</button>
+
+<div
+  class="modal fade change_password"
+  id="myModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ formation.libele }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3 h-100">
+              <div class="card">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-column align-items-center text-center"
+                  >
+                    <img
+                      src="{{ formation.image }}"
+                      alt="Formation Image"
+                      class="rounded-circle"
+                      width="150"
+                    />
+                    <div class="mt-3">
+                      <h4>{{ formation.libele }}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Title</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.libele }}
+                    </div>
+                  </div>
+                  <hr />
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Description</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.description }}
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Status</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.status ?'Approved':'Not approved' }}
+                    </div>
+                  </div>
+                  <hr />
+                  
+                  <div  *ngIf="formation.categorie != null">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Category</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ formation.categorie.designation }}
+                        </div>
+                      </div>
+                      <hr />
+                  </div>
+                  <div  *ngIf="formation.club != null">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">The club</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ formation.club.designation }}
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+
+                  <div  *ngIf="formation.formateur != null">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Formateur</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {{ formation.formateur.nom +' '+  formation.formateur.prenom  }}
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Start date</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.date_debut | date:"mediumDate" }}
+                    </div>
+                  </div>
+                  <hr />
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">End date</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.date_fin | date:"mediumDate" }}
+                    </div>
+                  </div>
+                  <hr />
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Added at</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ formation.dateAjout | date:"mediumDate" }}
+                    </div>
+                  </div>
+                  <hr />
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="javascript:void(0)" (click)="open()" class="mr-3 text-success"
+  ><i>
+    <mat-icon>remove_red_eye</mat-icon>
+  </i>
+</a>

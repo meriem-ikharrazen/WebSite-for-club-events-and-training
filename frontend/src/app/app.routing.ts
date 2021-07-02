@@ -25,6 +25,7 @@ import { ShowFormationComponent } from "./formations/show-formation/show-formati
 import { EvenementComponent } from "./evenement/evenement.component";
 import { AddEvenementComponent } from "./evenement/add-evenement/add-evenement.component";
 import { ShowEvenementComponent } from "./evenement/show-evenement/show-evenement.component";
+import { EditFormationComponent } from "./formations/edit-formation/edit-formation.component";
 
 const routes: Routes = [
   {
@@ -138,6 +139,10 @@ const routes: Routes = [
             path: "show",
             component: ShowFormationComponent,
           },
+          {
+            path: "edit/:id",
+            component: EditFormationComponent,
+          },
         ],
       },
       {
@@ -153,6 +158,7 @@ const routes: Routes = [
             path: "show",
             component: ShowEvenementComponent,
           },
+         
         ],
       },
     ],
