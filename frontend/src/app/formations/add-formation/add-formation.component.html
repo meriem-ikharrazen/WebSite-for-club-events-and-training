@@ -1,1 +1,146 @@
-<p>add-formation works!</p>
+<a class="navbar-brand" href="javascript:window.history.back()">
+    <i class="material-icons">arrow_back</i>
+  </a>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center">Add new Formation</h2>
+      <div class="alert alert-dark" role="alert" *ngIf="errMsg != ''">
+        <span class="text-danger">{{ errMsg }}</span>
+      </div>
+      <form #formationForm="ngForm"  (ngSubmit)="onSubmit(formationForm)">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                name="libele"
+                [(ngModel)]="formation.libele"
+                placeholder="The formation title"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput
+                name="description"
+                [(ngModel)]="formation.description"
+                ></textarea>
+              </mat-form-field>
+          </div>
+        </div>
+     
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                  <mat-label>Orgnize by (choose the club)</mat-label>
+                  <mat-select
+                    name="club"
+                    [(ngModel)]="club"
+                  >
+                    <mat-option *ngFor="let club of clubs" [value]="club">
+                      {{ club.designation }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>The Category</mat-label>
+                    <mat-select
+                      name="categorie"
+                      [(ngModel)]="categorie"
+                    >
+                      <mat-option *ngFor="let categorie of categories" [value]="categorie">
+                        {{ categorie.designation }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      placeholder="Start date"
+                      name="date_debut"
+                      [(ngModel)]="formation.date_debut"
+
+                      (focus)="picker.open()"
+
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+              </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      placeholder="End date"
+                      name="date_fin"
+                      [(ngModel)]="formation.date_fin"
+                      (focus)="picker.open()"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <input type="checkbox" name="status" [(ngModel)]="formation.status"
+              id=""> Publish it now
+            </div>
+
+        </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <mat-toolbar>
+                  <!-- Display files names -->
+                  <input matInput [(value)]="logo" readonly name="logo"/>
+            
+                  <!-- Browse Button -->
+                  <button mat-flat-button color="primary">
+                    Browse File
+                  </button>
+                </mat-toolbar>
+            
+                <!-- Fetch selected filed on change -->
+                <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" multiple="multiple"
+                  accept="image/*" />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+
+                </div>
+            </div>
+       
+        <button
+          mat-raised-button
+          type="submit"
+          class=" 
+          main-btn scrolltor pull-right"
+        >
+          Add Formation
+        </button>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+  

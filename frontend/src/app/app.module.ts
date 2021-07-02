@@ -64,6 +64,8 @@ import { EvenementComponent } from './evenement/evenement.component';
 import { AddEvenementComponent } from './evenement/add-evenement/add-evenement.component';
 import { ShowEvenementComponent } from './evenement/show-evenement/show-evenement.component';
 
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -87,7 +89,9 @@ import { ShowEvenementComponent } from './evenement/show-evenement/show-evenemen
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    // MatToolbarModule
+    
     // CommonModule,
     // AgmCoreModule.forRoot({
     //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
