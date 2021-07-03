@@ -44,7 +44,7 @@ public class FormationController {
 	  }
 	
 	@GetMapping("/formations/{id}")
-Formation findById(@PathVariable Long id) {
+	Formation findById(@PathVariable Long id) {
 	    
 	    	return formationRepository.findById(id)
 	      .orElseThrow(() -> new MyException("formation not found"));

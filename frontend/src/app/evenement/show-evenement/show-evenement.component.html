@@ -49,13 +49,13 @@
             <div class="col-md-4">
                 <a [routerLink]="['/evenement/add']" class="main-btn main-btn scrollto">Add new Event</a>
             </div>
-        </div>
+                </div>
           <div class="row">
             <div *ngFor="let event of pageSlice" class="col-lg-6 mt-4 mt-lg-0">
               <div class="member d-flex align-items-start">
                 <div class="pic">
                   <img *ngIf="event.image==null" src="http://localhost:8080/public/images/event.jpg" class="img-fluid"
-                  alt="">
+                  alt=""/>
                   <img *ngIf="event.image!=null"
                       src="{{path+event.image}}"
                       class="img-fluid"

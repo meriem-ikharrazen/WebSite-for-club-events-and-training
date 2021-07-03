@@ -27,14 +27,15 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-        <h1 class="logo mr-auto"><a href="index.html">Medilab</a></h1>
+        <h1 class="logo mr-auto"><a [routerLink]="['/home']">ENSAF Events & Trainings</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
-            <li routerLinkActive="active"><a [routerLink]="['/test']">Test</a></li>
+            <li routerLinkActive="active"><a [routerLink]="['/test']">Events</a></li>
+            <li routerLinkActive="active"><a [routerLink]="['/test']">Trainings</a></li>
             <li routerLinkActive="active"> <a *ngIf="!isUserConnected()"[routerLink]="['/signin']">Sign in</a></li>
             <li routerLinkActive="active"><a *ngIf="!isUserConnected()" [routerLink]="['/register']">Register</a></li>
             <li routerLinkActive="active"><a href="#" *ngIf="isUserConnected()" (click)="signOut()">Logout</a></li>
