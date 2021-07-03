@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   public filterValue:string = ';'
   public startIndex = 0;
   public endIndex = 4;
+  public end = 8;
   public path = '';
   public chemin='http://localhost:8080/public/images/evenements/';
   constructor(private eventService:EvenementService,private formateurService: FormateurService,private notificationService: NotificationService,private global:GlobalVariables){}
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   public getAllEvents() {
     this.eventService.getEvenements().subscribe((result: Evenement[]) => {
-      this.events = result.slice(this.startIndex,this.endIndex);
+      this.events = result.slice(this.startIndex,this.end);
     });
   } 
 
