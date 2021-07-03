@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Club } from 'app/models/club.model';
 import { Formateur } from 'app/models/formateur.model';
 import { Formation } from 'app/models/formation.model';
@@ -42,7 +43,7 @@ export class AddFormationComponent implements OnInit {
 
   constructor(private clubService: ClubService, private categorieService:CategorieService,
     private formationService:FormationService, private notificationService: NotificationService,
-    private formateurService:FormateurService, private auth:AuthService
+    private formateurService:FormateurService, private auth:AuthService,private router:Router
     ) { }
 
   ngOnInit(): void {
@@ -57,6 +58,9 @@ export class AddFormationComponent implements OnInit {
   getFormateur(id){
     this.formateurService.getById(id).subscribe(result =>{
       this.formateur = result;
+      if(this.formateur.access == false){
+        this.router.navigate(['/formations/show']);
+      }
       console.log(this.formateur);
     })
   }

@@ -49,4 +49,6 @@ export class FormateurService {
     return this.http.put<Formateur>(this.globalVar.apiUrl + this.formateurUrl + '/'+formateur.id, formateur);
   }
 
+
+
 }

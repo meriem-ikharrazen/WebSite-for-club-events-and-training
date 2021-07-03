@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Formation } from 'app/models/formation.model';
 import { User } from 'app/models/user.model';
 import { AuthService } from 'app/services/auth.service';
+import { FormateurService } from 'app/services/formateur.service';
 import { FormationService } from 'app/services/formation.service';
 import { NotificationService } from 'app/services/notification.service';
 
@@ -19,11 +20,13 @@ export class ShowFormationComponent implements AfterViewInit {
   dataSource:MatTableDataSource<any>;
   user?:User;
   role:string;
+  access:boolean = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private formationService:FormationService,private notificationService: NotificationService,private auth:AuthService){}
+  constructor(private formationService:FormationService,private notificationService: NotificationService,private auth:AuthService,
+    private formateurService:FormateurService){}
   ngAfterViewInit() {
 
     this.getFormations();
@@ -39,6 +42,11 @@ export class ShowFormationComponent implements AfterViewInit {
           this.getAllFormations();
           break;
           case 'formateur':
+            this.formateurService.getById(this.user.id).subscribe(data=>{
+              this.access = data.access;
+              console.log("access:"+this.access);
+              console.log(data)
+            });
             this.getMyFormations(this.user.id);
             break;
         default:
