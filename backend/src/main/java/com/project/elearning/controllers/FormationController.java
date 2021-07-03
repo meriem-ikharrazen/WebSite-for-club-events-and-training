@@ -27,6 +27,7 @@ import com.project.elearning.entities.Club;
 import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Formation;
 import com.project.elearning.repositories.ClubRepository;
+import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.FormationRepository;
 
 import payload.ResponseMsg;
@@ -38,9 +39,20 @@ public class FormationController {
 	@Autowired
 	private FormationRepository formationRepository;
 	
+	@Autowired
+	private FormateurRepository formateurRepository;
+	
 	@GetMapping("/formations")
 	List<Formation> getAll() {
 		return formationRepository.findAll();
+	  }
+	
+	@GetMapping("/formations/formateur/{id}")
+	List<Formation> getAll(@PathVariable Long id) {
+		Formateur formateur = formateurRepository.findById(id).
+			     orElseThrow(() -> new MyException("not found"));
+		
+		return formationRepository.findByFormateur(formateur);
 	  }
 	
 	@GetMapping("/formations/{id}")

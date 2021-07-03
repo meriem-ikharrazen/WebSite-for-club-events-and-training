@@ -76,6 +76,9 @@ export class SidebarComponent implements OnInit {
           this.menuItems = ETUDIANT_ROUTES.filter(menuItem => menuItem);
           break;
       }
+    }else {
+      //comment this
+      this.menuItems = ADMIN_ROUTES.filter(menuItem => menuItem);
     }
   }
   isMobileMenu() {

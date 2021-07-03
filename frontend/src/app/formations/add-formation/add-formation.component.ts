@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Club } from 'app/models/club.model';
+import { Formateur } from 'app/models/formateur.model';
 import { Formation } from 'app/models/formation.model';
 import { User } from 'app/models/user.model';
+import { AuthService } from 'app/services/auth.service';
 import { CategorieService } from 'app/services/categorie.service';
 import { ClubService } from 'app/services/club.service';
 import { FormateurService } from 'app/services/formateur.service';
@@ -22,6 +24,8 @@ export class AddFormationComponent implements OnInit {
   public clubs: Club[] = [];
   public categories = [];
   public formateurs = [];
+  role:string;
+  formateur:Formateur;
 
 
   logo = 'Choose File';
@@ -38,15 +42,24 @@ export class AddFormationComponent implements OnInit {
 
   constructor(private clubService: ClubService, private categorieService:CategorieService,
     private formationService:FormationService, private notificationService: NotificationService,
-    private formateurService:FormateurService
+    private formateurService:FormateurService, private auth:AuthService
     ) { }
 
   ngOnInit(): void {
+
+    this.role = this.auth.getRole();
+    this.getFormateur(this.auth.getUser().id);
     this.getClubs();
     this.getCategories();
     this.getformateurs();
   }
 
+  getFormateur(id){
+    this.formateurService.getById(id).subscribe(result =>{
+      this.formateur = result;
+      console.log(this.formateur);
+    })
+  }
 
   public getClubs() {
     this.clubService.getClubs().subscribe((result:Club[]) => {
@@ -106,11 +119,15 @@ export class AddFormationComponent implements OnInit {
     this.postFile();
     formationForm.value.image = this.logo;
     console.log(formationForm.value);
+
+    if(this.role == 'formateur'){
+      formationForm.value.formateur = this.formateur;
+      formationForm.value.status = false;
+      console.log(formationForm.value);
+    }
     this.formationService.createformation(formationForm.value).subscribe((res)=> {
       this.notificationService.showNotification('top','center','Formation created successfuly.','alert-success');
       this.formationForm.resetForm();
     })
-    
-
   }
 }

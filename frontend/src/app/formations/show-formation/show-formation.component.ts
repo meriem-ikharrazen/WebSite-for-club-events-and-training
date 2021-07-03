@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Formation } from 'app/models/formation.model';
+import { User } from 'app/models/user.model';
+import { AuthService } from 'app/services/auth.service';
 import { FormationService } from 'app/services/formation.service';
 import { NotificationService } from 'app/services/notification.service';
 
@@ -15,20 +17,47 @@ export class ShowFormationComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id','libele','formateur','status','dateAjout','action'];
   dataSource:MatTableDataSource<any>;
+  user?:User;
+  role:string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private formationService:FormationService,private notificationService: NotificationService){}
-
+  constructor(private formationService:FormationService,private notificationService: NotificationService,private auth:AuthService){}
   ngAfterViewInit() {
-    
+
     this.getFormations();
 
   }
 
   getFormations(){
+    this.user = this.auth.getUser();
+    if(this.user != null){
+      this.role = this.auth.getRole();
+      switch (this.role) {
+        case 'admin':
+          this.getAllFormations();
+          break;
+          case 'formateur':
+            this.getMyFormations(this.user.id);
+            break;
+        default:
+          break;
+      }
+    }
+  }
+
+  getAllFormations(){
     this.formationService.getformations().subscribe(data=>{
+      console.log(data);
+      this.dataSource = new MatTableDataSource<any>(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      })
+  }
+
+  getMyFormations(id){
+    this.formationService.getFormationByFormateur(id).subscribe(data=>{
       console.log(data);
       this.dataSource = new MatTableDataSource<any>(data);
       this.dataSource.paginator = this.paginator;

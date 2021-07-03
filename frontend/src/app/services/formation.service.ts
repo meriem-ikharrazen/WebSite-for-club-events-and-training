@@ -19,6 +19,9 @@ export class FormationService {
     return this.http.get<Formation[]>(this.globalVar.apiUrl + this.formationUrl);
   }
 
+  public getFormationByFormateur(id):Observable<Formation[]> {
+    return this.http.get<Formation[]>(this.globalVar.apiUrl + this.formationUrl+'/formateur/'+id);
+  }
 
   public getById(id):Observable<Formation> {
     return this.http.get<Formation>(this.globalVar.apiUrl + this.formationUrl+"/"+id);
