@@ -81,11 +81,12 @@
           <mat-icon>edit</mat-icon>
         </i>
       </a>
-      <a href="javascript:void(0)" (click)="delete(element)" class="text-red">
+      <a href="javascript:void(0)" (click)="delete(element)" class="text-red mr-3 ">
           <i>
             <mat-icon>delete_forever</mat-icon>
           </i>
       </a>
+      <button routerLink= "{{ '/formations/content/'+element.id}}"  class="btn btn-primary">Content</button>
     </div>
       </td>
     </ng-container>

@@ -21,7 +21,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
   { path: '/admin', title: 'Admins',  icon:'admin_panel_settings', class: '' },
   // { path: '/classes', title: 'Classes',  icon:'bubble_chart', class: '' },
   { path: '/account', title: 'My account',  icon:'person', class: '' },
-  { path: '/home', title: 'Log out',  icon:'exit_to_app', class: '' },
+  { path: '/home', title: 'Back to home page',  icon:'exit_to_app', class: '' },
   // { path: '/notifications', title: 'Notifications',  icon:'exit_to_app', class: '' },
 
 ];
