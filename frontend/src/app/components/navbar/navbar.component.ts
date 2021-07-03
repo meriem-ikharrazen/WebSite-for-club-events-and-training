@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Output } from "@angular/core";
-import { ROUTES } from "../sidebar/sidebar.component";
+import { ADMIN_ROUTES, DEFAULT_ROUTES, ETUDIANT_ROUTES, FORMATEUR_ROUTES } from "../sidebar/sidebar.component";
 import {
   Location,
   LocationStrategy,
@@ -7,6 +7,7 @@ import {
 } from "@angular/common";
 import { Router } from "@angular/router";
 import { EventEmitter } from "events";
+import { AuthService } from "app/services/auth.service";
 
 @Component({
   selector: "app-navbar",
@@ -23,17 +24,39 @@ export class NavbarComponent implements OnInit {
 
   private back: boolean = false;
 
+  role:string;
+
+
   constructor(
     location: Location,
     private element: ElementRef,
-    private router: Router
+    private router: Router,
+    private auth:AuthService
   ) {
     this.location = location;
     this.sidebarVisible = false;
   }
 
   ngOnInit() {
-    this.listTitles = ROUTES.filter((listTitle) => listTitle);
+    //this.listTitles = ROUTES.filter((listTitle) => listTitle);
+    this.role = this.auth.getRole();
+    if(this.role != null){
+      switch (this.role) {
+        case 'admin':
+          this.listTitles = ADMIN_ROUTES.filter(menuItem => menuItem);
+          break;
+          case 'formateur':
+            this.listTitles = FORMATEUR_ROUTES.filter(menuItem => menuItem);
+            break;
+            case 'etudiant':
+              this.listTitles = ETUDIANT_ROUTES.filter(menuItem => menuItem);
+              break;
+        default:
+          this.listTitles = DEFAULT_ROUTES.filter(menuItem => menuItem);
+          break;
+      }
+    }
+
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
     this.router.events.subscribe((event) => {
