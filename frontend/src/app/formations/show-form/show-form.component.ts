@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Formation } from 'app/models/formation.model';
+import { FormationService } from 'app/services/formation.service';
 import { GlobalVariables } from 'GlobalVariables';
 
 @Component({
@@ -10,13 +11,27 @@ import { GlobalVariables } from 'GlobalVariables';
 })
 export class ShowFormComponent implements OnInit {
 
-  @Input() formation?:Formation;
+  formation?:Formation;
+  id =0;
 
   @ViewChild("closeModal") closeModal: ElementRef;
-  constructor(private globalVariables:GlobalVariables) { }
+  constructor(private globalVariables:GlobalVariables,private route:ActivatedRoute,private router:Router,private formationService:FormationService) { }
+
 
   ngOnInit(): void {
-    this.formation.image = this.globalVariables.url+"/public/images/formations/"+this.formation.image;
+    this.route.params.subscribe(params => {
+
+      this.id = params['id'];
+      this.formationService.getById(this.id).subscribe((result) => {
+        if(result != null){
+          this.formation = result;
+          console.log("la formation: ")
+          console.log(this.formation); 
+          this.formation.image = this.globalVariables.url+"/public/images/formations/"+this.formation.image;
+        }
+      });
+    });
+
     
   }
 

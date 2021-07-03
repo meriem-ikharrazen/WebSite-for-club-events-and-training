@@ -69,7 +69,13 @@
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let element">
         <div class="">
-        <app-show-form [formation]="element"></app-show-form>
+        <!-- <app-show-form [formation]="element"></app-show-form> -->
+        <a routerLink= "{{ '/formations/show/'+element.id}}" class="mr-3 text-success"
+          ><i>
+            <mat-icon>remove_red_eye</mat-icon>
+          </i>
+        </a>
+
         <a routerLink= "{{ '/formations/edit/'+element.id}}" class="mr-3 text-warning"
         ><i>
           <mat-icon>edit</mat-icon>

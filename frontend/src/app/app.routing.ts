@@ -26,6 +26,7 @@ import { EvenementComponent } from "./evenement/evenement.component";
 import { AddEvenementComponent } from "./evenement/add-evenement/add-evenement.component";
 import { ShowEvenementComponent } from "./evenement/show-evenement/show-evenement.component";
 import { EditFormationComponent } from "./formations/edit-formation/edit-formation.component";
+import { ShowFormComponent } from "./formations/show-form/show-form.component";
 
 const routes: Routes = [
   {
@@ -138,6 +139,10 @@ const routes: Routes = [
           {
             path: "show",
             component: ShowFormationComponent,
+          },
+          {
+            path: "show/:id",
+            component: ShowFormComponent,
           },
           {
             path: "edit/:id",
