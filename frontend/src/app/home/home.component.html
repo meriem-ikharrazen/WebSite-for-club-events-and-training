@@ -68,21 +68,21 @@
             <p>The ENSA of Fez, part of Sidi Mohamed Ben Abdellah University, is a public higher education engineering school created in 2005, providing training for state engineers with a Bac + 5 course. 
               It makes this website available to students for easy access to events and training courses organized by its clubs. Our vision is :</p>
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <div class="icon"><i class="bx bx-book-reader"></i></div>
+              <h4 class="title"><a href="">Student Area</a></h4>
+              <p class="description">Student area to register for the courses available at ENSA.</p>
             </div>
 
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <div class="icon"><i class="bx bx-cube-alt"></i></div>
+              <h4 class="title"><a href="">Trainer Area</a></h4>
+              <p class="description">Trainer space to add the different training courses for the benefit of ENSA students.</p>
             </div>
 
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-atom"></i></div>
-              <h4 class="title"><a href="">Dine Pad</a></h4>
-              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+              <div class="icon"><i class="bx bx-receipt"></i></div>
+              <h4 class="title"><a href="">Administrator Area</a></h4>
+              <p class="description">Administrator area is reserved for the administration of ENSA.</p>
             </div>
 
           </div>
@@ -133,6 +133,38 @@
 
       </div>
     </section><!-- End Counts Section -->
+
+     <!-- ======= Doctors Section ======= -->
+     <section id="doctors" class="doctors">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Trainers</h2>
+          <p>Our trainers at ENSA :</p>
+        </div>
+
+        <div class="row" *ngFor="let formateur of formateurs">
+
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src='{{path + formateur.image}}' class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{ formateur.nom }} {{ formateur.prenom }}</h4>
+                <span>{{formateur.diplome}}</span>
+                <p>{{formateur.specialite}}</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Doctors Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
@@ -198,7 +230,7 @@
     </section><!-- End Services Section -->
 
     <!-- ======= Appointment Section ======= -->
-    <section id="appointment" class="appointment section-bg">
+    <!-- <section id="appointment" class="appointment section-bg">
       <div class="container">
 
         <div class="section-title">
@@ -259,10 +291,10 @@
         </form>
 
       </div>
-    </section><!-- End Appointment Section -->
+    </section>End Appointment Section -->
 
     <!-- ======= Departments Section ======= -->
-    <section id="departments" class="departments">
+    <!-- <section id="departments" class="departments">
       <div class="container">
 
         <div class="section-title">
@@ -357,94 +389,12 @@
         </div>
 
       </div>
-    </section><!-- End Departments Section -->
+    </section>End Departments Section -->
 
-    <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="./assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Medical Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="./assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Anesthesiologist</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="./assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cardiology</span>
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="./assets/img/doctors/doctors-4.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Neurosurgeon</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Doctors Section -->
+   
 
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq section-bg">
+    <!-- <section id="faq" class="faq section-bg">
       <div class="container">
 
         <div class="section-title">
@@ -503,7 +453,7 @@
         </div>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section>End Frequently Asked Questions Section -->
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
@@ -664,7 +614,7 @@
     </section><!-- End Gallery Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <!-- <section id="contact" class="contact">
       <div class="container">
 
         <div class="section-title">
@@ -738,6 +688,6 @@
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section>End Contact Section -->
 
   </main><!-- End #main -->
