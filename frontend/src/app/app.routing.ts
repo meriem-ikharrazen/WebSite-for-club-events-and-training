@@ -28,6 +28,7 @@ import { ShowEvenementComponent } from "./evenement/show-evenement/show-evenemen
 import { EditFormationComponent } from "./formations/edit-formation/edit-formation.component";
 import { ShowFormComponent } from "./formations/show-form/show-form.component";
 import { ContentComponent } from "./formations/content/content.component";
+import { DetailEvenementComponent } from "./evenement/detail-evenement/detail-evenement.component";
 
 const routes: Routes = [
   {
@@ -168,7 +169,10 @@ const routes: Routes = [
             path: "show",
             component: ShowEvenementComponent,
           },
-         
+          {
+            path: "detail",
+            component: DetailEvenementComponent,
+          },
         ],
       },
     ],
