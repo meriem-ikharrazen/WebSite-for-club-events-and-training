@@ -66,6 +66,7 @@ import { ShowEvenementComponent } from './evenement/show-evenement/show-evenemen
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ShowFormComponent } from './formations/show-form/show-form.component';
+import { DetailEvenementComponent } from './evenement/detail-evenement/detail-evenement.component';
 
 @NgModule({
   imports: [
@@ -128,7 +129,7 @@ import { ShowFormComponent } from './formations/show-form/show-form.component';
     EvenementComponent,
     AddEvenementComponent,
     ShowEvenementComponent, 
-    ShowFormComponent,
+    ShowFormComponent, DetailEvenementComponent,
 
   ],
   providers: [
