@@ -56,7 +56,6 @@ public class EvenementController {
 
 	@GetMapping("/evenements/{id}")
 	 Evenement findById(@PathVariable Long id) {
-	   
 	   return evenementRepository.findById(id)
 	     .orElseThrow(() -> new MyException("Event not found"));
 	 }

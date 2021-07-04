@@ -28,6 +28,9 @@ export class EvenementService {
     return this.http.delete(this.globalVar.apiUrl + this.evenementUrl + "/"+ event.id);
   }
 
+  public detailsEvenement(eventId){
+    return this.http.get<Evenement>(this.globalVar.apiUrl + this.evenementUrl + "/"+ eventId);
+  }
   public createEvenement(event) {
     return this.http.post<any>(this.globalVar.apiUrl+this.evenementUrl+'/add', event);
   }

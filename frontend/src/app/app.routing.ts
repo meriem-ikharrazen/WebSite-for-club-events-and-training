@@ -169,10 +169,6 @@ const routes: Routes = [
             path: "show",
             component: ShowEvenementComponent,
           },
-          {
-            path: "detail",
-            component: DetailEvenementComponent,
-          },
         ],
       },
     ],

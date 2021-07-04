@@ -39,6 +39,8 @@ export class HomeComponent implements OnInit {
     });
   } 
 
+  
+
   public getAllFormateurs() {
     this.formateurService.getFormateurs().subscribe((result: Formateur[]) => {
       this.formateurs =result.slice(this.startIndex,this.endIndex);
