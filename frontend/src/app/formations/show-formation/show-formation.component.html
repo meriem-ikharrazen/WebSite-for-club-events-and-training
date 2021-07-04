@@ -88,6 +88,13 @@
             <mat-icon>delete_forever</mat-icon>
           </i>
       </a>
+      <a href="#" (click)="addFormation(user.id,element.id)" class="text-red mr-3 " *ngIf="isStudent">
+        <i>
+          <mat-icon style="color: black;">turned_in</mat-icon>
+          <!-- <mat-icon style="color: black;">turned_in_not</mat-icon> -->
+        </i>
+      </a>
+      <button (click)="addFormation(user.id,element.id)">ADD</button>
       <button routerLink= "{{ '/formations/content/'+element.id}}"  class="btn btn-primary">Content</button>
     </div>
       </td>

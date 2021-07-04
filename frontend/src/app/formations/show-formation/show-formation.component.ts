@@ -2,9 +2,11 @@ import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { Ef } from "app/models/ef.model";
 import { Formation } from "app/models/formation.model";
 import { User } from "app/models/user.model";
 import { AuthService } from "app/services/auth.service";
+import { EfService } from "app/services/ef.service";
 import { FormateurService } from "app/services/formateur.service";
 import { FormationService } from "app/services/formation.service";
 import { NotificationService } from "app/services/notification.service";
@@ -28,6 +30,9 @@ export class ShowFormationComponent implements AfterViewInit {
   role: string;
   access: boolean = true;
   isAuthUser:boolean = false;
+  isStudent:boolean=false;
+  check:boolean=false;
+  public ef:Ef=new Ef();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +41,8 @@ export class ShowFormationComponent implements AfterViewInit {
     private formationService: FormationService,
     private notificationService: NotificationService,
     private auth: AuthService,
-    private formateurService: FormateurService
+    private formateurService: FormateurService,
+    private etudiantFormation:EfService
   ) {}
   ngAfterViewInit() {
     this.getFormations();
@@ -44,6 +50,7 @@ export class ShowFormationComponent implements AfterViewInit {
 
   getFormations() {
     this.user = this.auth.getUser();
+    // console.log(this.user);
     if (this.user != null) {
       this.role = this.auth.getRole();
       switch (this.role) {
@@ -62,6 +69,7 @@ export class ShowFormationComponent implements AfterViewInit {
           break;
         case "etudiant":
           this.getAllFormations();
+          this.isStudent=true;
           this.isAuthUser = false;
           break;
 
@@ -71,6 +79,19 @@ export class ShowFormationComponent implements AfterViewInit {
     }
   }
 
+  addFormation(idUser,idFormation){
+    // console.log(idUser);
+    // console.log(idFormation);
+    // if(this.etudiantFormation.findById(idUser,idFormation)==null)
+    // {
+    //   this.etudiantFormation.deleteEf(idUser,idFormation);
+    // }else{
+      this.ef.id_etudiant=idUser;
+      this.ef.id_formation=idFormation;
+      this.ef.date_inscription=new Date();
+      this.etudiantFormation.addEtudiantFormation(this.ef);
+    // }
+  }
   getAllFormations() {
     this.formationService.getformations().subscribe((data) => {
       console.log(data);
