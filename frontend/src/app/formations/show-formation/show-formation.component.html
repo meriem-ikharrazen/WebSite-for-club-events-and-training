@@ -18,10 +18,13 @@
     </div>
   </div>
 
-  <div class="col-md-4" *ngIf="access">
-    <a [routerLink]="['/formations/add']" class="main-btn main-btn scrollto"
-      >Add new Formation</a
-    >
+  <div class="col-md-4" *ngIf="access" >
+    <div *ngIf="isAuthUser">
+
+      <a [routerLink]="['/formations/add']" class="main-btn main-btn scrollto"
+        >Add new Formation</a
+      >
+    </div>
   </div>
 </div>
 
@@ -76,12 +79,11 @@
           </i>
         </a>
 
-        <a routerLink= "{{ '/formations/edit/'+element.id}}" class="mr-3 text-warning"
-        ><i>
+        <a routerLink= "{{ '/formations/edit/'+element.id}}" class="mr-3 text-warning" *ngIf="isAuthUser"><i>
           <mat-icon>edit</mat-icon>
         </i>
       </a>
-      <a href="javascript:void(0)" (click)="delete(element)" class="text-red mr-3 ">
+      <a href="javascript:void(0)" (click)="delete(element)" class="text-red mr-3 " *ngIf="isAuthUser">
           <i>
             <mat-icon>delete_forever</mat-icon>
           </i>
