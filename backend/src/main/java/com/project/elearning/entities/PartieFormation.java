@@ -25,7 +25,6 @@ public class PartieFormation {
 	
 	@ManyToOne
     @JoinColumn(name = "id_formation")
-	@JsonIgnore
     private Formation formation;
 
 	public Long getId() {

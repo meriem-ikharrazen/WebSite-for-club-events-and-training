@@ -1,37 +1,147 @@
-
 <div class="row justify-content-between">
-    <div class="col-md-4">
-     
-    </div>
-  
-    <div class="col-md-4" *ngIf="access">
-      <button class="main-btn main-btn scrollto"
-        >Add new Formation</button>
-    </div>
+  <!-- <div class="col-md-4"></div> -->
+  <!-- <div class="col-md-4">
+    <button
+      class="btn btn-outline-danger"
+      data-toggle="modal"
+      data-target=".add-content"
+    >
+      Register students
+    </button>
+  </div> -->
+
+  <div class="col-md-4">
+    <button
+      class="btn btn-outline-danger"
+      data-toggle="modal"
+      data-target=".add-content"
+      *ngIf="isOwner"
+    >
+      Add new content
+    </button>
+  </div>
 </div>
+
 <!-- SHOW CONTENT START -->
 <div class="row">
+  <div *ngFor="let content of contents" class="col-lg-6 equal">
+    <div class="user">
+      <div class="user-info mr-5">
+        <iframe
+          width="300"
+          height="200"
+          [src]="content.url | safe"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
 
-    <div *ngFor="let content of contents" class="col-lg-6 equal">
-        <div class="user">
-         
-          <div class="user-info mr-5">
-            <iframe width="300" height="200" [src]="photoURL(content)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="d-flex justify-content-between">
+        
+              <h4>{{ content.nom }}</h4>
 
-            <h4>test</h4>
-            <span>test</span>
-          
+              <a href="javascript:void(0)" (click)="delete(content)" class="text-red mr-3" *ngIf="isOwner">
+                <i>
+                  <mat-icon>delete_forever</mat-icon>
+                </i>
+            </a>
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="contents.length === 0"
+    class="row w-100 justify-content-center m-5"
+  >
+    No data found
+  </div>
+</div>
+<!-- SHOW CONTENT END -->
+
+<!-- MODAL:  FOR ADDING CONTENT START -->
+<div
+  class="modal fade add-content"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+  *ngIf="isOwner"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add new Content</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="resetForm()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="main-body">
+          <div class="row">
+            <p class="text-red m-4">{{ errMsg }}</p>
+            <div class="col-md-8">
+              <form
+                #addContentForm="ngForm"
+                (ngSubmit)="onSubmit(addContentForm)"
+              >
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    [(ngModel)]="addContent.nom"
+                    name="nom"
+                    placeholder="The content title"
+                    type="text"
+                    required
+                  />
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    [(ngModel)]="addContent.url"
+                    name="url"
+                    placeholder="The video url"
+                    required
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Description</mat-label>
+                  <textarea
+                    matInput
+                    name="description"
+                    [(ngModel)]="addContent.description"
+                    required
+                  ></textarea>
+                </mat-form-field>
+
+                <div>
+                  <button type="submit" class="btn btn-outline-danger">
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    data-dismiss="modal"
+                    #closeModal
+                    (click)="resetForm()"
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-
-  
-    <div
-      *ngIf="contents.length === 0"
-      class="row w-100 justify-content-center m-5"
-    >
-      No data found
     </div>
-  
   </div>
-<!-- SHOW CONTENT END -->
+</div>
+<!-- MODAL:  FOR ADDING CONTENT END -->
