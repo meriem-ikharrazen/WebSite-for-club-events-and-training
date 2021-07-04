@@ -33,7 +33,12 @@ public class PartieFormationController {
 		 
 	    return contentRepo.findByFormation(formation);
 	  }
-
+	 
+	 @PostMapping("/contents/add")
+	 PartieFormation add(@RequestBody PartieFormation content) {
+		 
+	    return contentRepo.save(content);
+	  }
 	 
 	 @GetMapping("/contents/{id}")
 	 PartieFormation findById(@PathVariable Long id) {

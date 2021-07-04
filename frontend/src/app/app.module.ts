@@ -68,6 +68,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ShowFormComponent } from './formations/show-form/show-form.component';
 import { ContentComponent } from './formations/content/content.component';
 import { DetailEvenementComponent } from './evenement/detail-evenement/detail-evenement.component';
+import { SafePipe } from './SafePipe';
 
 @NgModule({
   imports: [
@@ -93,7 +94,7 @@ import { DetailEvenementComponent } from './evenement/detail-evenement/detail-ev
     MatTableModule,
     MatSortModule,
     AmazingTimePickerModule,
-    MatToolbarModule
+    MatToolbarModule,
     
     // CommonModule,
     // AgmCoreModule.forRoot({
@@ -132,6 +133,7 @@ import { DetailEvenementComponent } from './evenement/detail-evenement/detail-ev
     ShowEvenementComponent, 
     ShowFormComponent, ContentComponent,
     ShowFormComponent, DetailEvenementComponent,
+    SafePipe
 
   ],
   providers: [
@@ -142,7 +144,8 @@ import { DetailEvenementComponent } from './evenement/detail-evenement/detail-ev
     DatePipe,
   TokenStorageService,
   AuthInterceptor,
-  authInterceptorProviders
+  authInterceptorProviders,
+  
 ],
   bootstrap: [AppComponent]
 })

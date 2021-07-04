@@ -18,5 +18,11 @@ export class ContentService {
   public getAll(formation):Observable<Content[]> {
     return this.http.post<Content[]>(this.globalVar.apiUrl + this.contentUrl,formation);
   }
+  public addContent(content):Observable<Content> {
+    return this.http.post<Content>(this.globalVar.apiUrl + this.contentUrl+'/add',content);
+  }
 
+  public delete(content) {
+    return this.http.delete(this.globalVar.apiUrl + this.contentUrl+'/'+content.id);
+  }
 }

@@ -31,7 +31,7 @@ export const FORMATEUR_ROUTES: RouteInfo[] = [
   { path: '/club', title: 'Clubs',  icon:'interests', class: '' },
   { path: '/formations', title: 'Formations',  icon:'hotel_class', class: '' },
   { path: '/account', title: 'My account',  icon:'person', class: '' },
-  { path: '/home', title: 'Log out',  icon:'exit_to_app', class: '' },
+  { path: '/home', title: 'Back to home page',  icon:'exit_to_app', class: '' },
 ];
 
 export const ETUDIANT_ROUTES: RouteInfo[] = [
@@ -40,7 +40,7 @@ export const ETUDIANT_ROUTES: RouteInfo[] = [
   { path: '/formateur', title: 'Formateurs',  icon:'group', class: '' },
   { path: '/formations', title: 'Formations',  icon:'hotel_class', class: '' },
   { path: '/account', title: 'My account',  icon:'person', class: '' },
-  { path: '/home', title: 'Log out',  icon:'exit_to_app', class: '' },
+  { path: '/home', title: 'Back to home page',  icon:'exit_to_app', class: '' },
 
 ];
 
