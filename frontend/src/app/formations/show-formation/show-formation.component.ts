@@ -4,12 +4,14 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Ef } from "app/models/ef.model";
 import { Formation } from "app/models/formation.model";
+import { Student } from "app/models/student.model";
 import { User } from "app/models/user.model";
 import { AuthService } from "app/services/auth.service";
 import { EfService } from "app/services/ef.service";
 import { FormateurService } from "app/services/formateur.service";
 import { FormationService } from "app/services/formation.service";
 import { NotificationService } from "app/services/notification.service";
+import { StudentService } from "app/services/student.service";
 
 @Component({
   selector: "app-show-formation",
@@ -27,6 +29,7 @@ export class ShowFormationComponent implements AfterViewInit {
   ];
   dataSource: MatTableDataSource<any>;
   user?: User;
+  etudiant?:Student;
   role: string;
   access: boolean = true;
   isAuthUser:boolean = false;
@@ -42,8 +45,10 @@ export class ShowFormationComponent implements AfterViewInit {
     private notificationService: NotificationService,
     private auth: AuthService,
     private formateurService: FormateurService,
-    private etudiantFormation:EfService
+    private etudiantFormation:EfService,
+    private studentServie : StudentService
   ) {}
+
   ngAfterViewInit() {
     this.getFormations();
   }
@@ -69,6 +74,10 @@ export class ShowFormationComponent implements AfterViewInit {
           break;
         case "etudiant":
           this.getAllFormations();
+          this.studentServie.getById(this.user.id).subscribe(res=>{
+            console.log("enter tp etudiant.");
+            this.etudiant = res;
+          })
           this.isStudent=true;
           this.isAuthUser = false;
           break;
@@ -79,20 +88,29 @@ export class ShowFormationComponent implements AfterViewInit {
     }
   }
 
-  addFormation(idUser,idFormation){
+  addFormation(user,formation){
     // console.log(idUser);
     // console.log(idFormation);
     // if(this.etudiantFormation.findById(idUser,idFormation)==null)
     // {
     //   this.etudiantFormation.deleteEf(idUser,idFormation);
     // }else{
-      this.ef.id_etudiant=idUser;
-      this.ef.id_formation=idFormation;
-      this.ef.date_inscription=new Date();
-      this.etudiantFormation.addEtudiantFormation(this.ef);
+      // console.log(idUser);
+      // console.log(idFormation);
+      // this.ef.id=idUser;
+      // this.ef.id_formation=idFormation;
+      
+      console.log(this.etudiant);
+      this.ef.etudiant=this.etudiant;
+      this.ef.formation=formation;
+      console.log(this.ef);
+      this.etudiantFormation.addEtudiantFormation(this.ef).subscribe(res=>{
+        console.log(res);
+      });
     // }
   }
   getAllFormations() {
+    console.log("enter1");
     this.formationService.getformations().subscribe((data) => {
       console.log(data);
       this.dataSource = new MatTableDataSource<any>(data);

@@ -32,4 +32,7 @@ export class StudentService {
     return this.http.post<any>(this.globalVar.authApi+this.signupUrl, student);
   }
   
+  public getById(id) {
+    return this.http.get<Student>(this.globalVar.apiUrl+this.studentUrl+'/'+id);
+  }
 }

@@ -30,11 +30,12 @@ public class EtudiantFormationController {
 	
 	 @PostMapping("/EtudiantFormation/add")
 	 ResponseEntity<?> addEtudiantFormation(@RequestBody EtudiantFormation ef) {
-
+		 	
 			 etudiantFormation.save(ef);
 			 return ResponseEntity.ok(new ResponseMsg(200,"Etudiant Formation added successfully"));
 	 }
-	 
+	
+
 	 @GetMapping("/EtudiantFormation/{idEtud}/{idForm}")
 	  EtudiantFormation findById(@PathVariable Long idEtud,@PathVariable Long idForm) {
 	    
