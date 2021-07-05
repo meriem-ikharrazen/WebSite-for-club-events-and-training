@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import com.project.elearning.entities.Etudiant;
 import com.project.elearning.entities.EtudiantFormation;
 import com.project.elearning.entities.EtudiantFormationKey;
+import com.project.elearning.entities.Formation;
 
 public interface EtudiantFormationRepository extends JpaRepository<EtudiantFormation, EtudiantFormationKey> {
 
@@ -18,4 +19,6 @@ public interface EtudiantFormationRepository extends JpaRepository<EtudiantForma
 	
 	@Query(value = "DELETE ef FROM etudiant_formation ef where ef.id_etudiant==:idEtud and ef.id_formation==:idForm", nativeQuery = true)
 	void deleteByIdEtudAndIdForm(@Param(value="idEtud") Long idEtud,@Param(value="idForm") Long idForm);
+	
+	List<EtudiantFormation> findByFormation(Formation formation);
 }

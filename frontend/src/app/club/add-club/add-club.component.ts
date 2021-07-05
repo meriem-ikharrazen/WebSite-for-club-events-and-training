@@ -111,6 +111,7 @@ export class AddClubComponent implements OnInit {
     this.club.description=this.clubFormGroup.value.description;
     this.club.designation=this.clubFormGroup.value.designation;
     this.club.etudiant=this.clubFormGroup.value.etudiant;
+    console.log(this.club);
     this.club.logo=this.logo;
     this.postFile(this.selectedFile);
     //console.log(this.club);

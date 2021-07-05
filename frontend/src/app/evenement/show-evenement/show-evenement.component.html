@@ -1,8 +1,5 @@
 <section id="doctors" class="doctors">
     <div class="container">
-            <div class="section-title">
-                <h2>Events</h2>
-            </div>
                 <div class="row justify-content-between">
                     <div class="col-md-4">
                     
@@ -47,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <a [routerLink]="['/evenement/add']" class="main-btn main-btn scrollto">Add new Event</a>
+                <a [routerLink]="['/evenement/add']" class="main-btn main-btn scrollto" *ngIf="role == 'admin'">Add new Event</a>
             </div>
                 </div>
           <div class="row">
@@ -74,7 +71,7 @@
                     <a href="javascript:void(0)" (click) = "showEventFnction(event)" data-toggle="modal" data-target=".detail_Event_modal">
                         <i><mat-icon>remove_red_eye</mat-icon></i>
                     </a>
-                    <a href="javascript:void(0)" (click)="delete(event)" ><i><mat-icon>delete_outline</mat-icon></i></a>
+                    <a href="javascript:void(0)" (click)="delete(event)" *ngIf="role == 'admin'"><i><mat-icon>delete_outline</mat-icon></i></a>
                   </div>
                 </div>
               </div>
@@ -125,7 +122,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
-                      <img *ngIf="showEvent.logo!=null"
+                      <img *ngIf="showEvent.image!=null"
                       src="{{path+showEvent.image}}"
                         alt="Image Event"
                         class="rounded-circle"
@@ -150,26 +147,29 @@
                       <div class="col-sm-3">
                         <h6 class="mb-0">Club</h6>
                       </div>
-                      <div class="col-sm-9 text-secondary" *ngIf="showEvent.club!=null">{{showEvent.club.designation}} {{showEvent.etudiant.prenom}}</div>
+                      <div class="col-sm-9 text-secondary" *ngIf="showEvent.club !=null ">{{showEvent.club.designation}}</div>
                     </div>
+                    
                     <hr />
                     <div class="row">
                         <div class="col-sm-3">
                           <h6 class="mb-0">Description</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">{{showEvent.description}}</div>
-                    </div>   
+                    </div>  
+                    <hr> 
                     <div class="row">
                         <div class="col-sm-3">
                           <h6 class="mb-0">Date d'ajout</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">{{showEvent.date_ajout}}</div>
+                        <div class="col-sm-9 text-secondary">{{showEvent.dateAjout | date: "mediumDate"}}</div>
                     </div>   
+                    <hr>
                     <div class="row">
                         <div class="col-sm-3">
                           <h6 class="mb-0">Date fin</h6>
                         </div>
-                        <div class="col-sm-9 text-secondary">{{showEvent.date_fin}}</div>
+                        <div class="col-sm-9 text-secondary">{{showEvent.dateFin | date: "mediumDate"}}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">

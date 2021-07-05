@@ -14,6 +14,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
   // { path: '/exams', title: 'Exams',  icon:'library_books', class: '' },
   // { path: '/notes', title: 'Notes',  icon:'content_paste', class: '' },
+  { path: '/evenement', title: 'Events',  icon:'event', class: '' },
   { path: '/club', title: 'Clubs',  icon:'interests', class: '' },
   { path: '/student', title: 'Students',  icon:'person', class: '' },
   { path: '/formateur', title: 'Formateurs',  icon:'group', class: '' },
@@ -28,6 +29,7 @@ export const ADMIN_ROUTES: RouteInfo[] = [
 
 export const FORMATEUR_ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+  { path: '/evenement', title: 'Events',  icon:'event', class: '' },
   { path: '/club', title: 'Clubs',  icon:'interests', class: '' },
   { path: '/formations', title: 'Formations',  icon:'hotel_class', class: '' },
   { path: '/account', title: 'My account',  icon:'person', class: '' },
@@ -36,6 +38,7 @@ export const FORMATEUR_ROUTES: RouteInfo[] = [
 
 export const ETUDIANT_ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
+  { path: '/evenement', title: 'Events',  icon:'event', class: '' },
   { path: '/club', title: 'Clubs',  icon:'interests', class: '' },
   { path: '/formateur', title: 'Formateurs',  icon:'group', class: '' },
   { path: '/formations', title: 'Formations',  icon:'hotel_class', class: '' },

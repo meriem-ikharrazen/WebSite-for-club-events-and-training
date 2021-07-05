@@ -12,6 +12,7 @@ import { UserService } from 'app/services/user.service';
 import { GlobalVariables } from 'GlobalVariables';
 import { ViewChild, ElementRef} from '@angular/core';
 import { EditAccountComponent } from './edit-account/edit-account.component';
+import { StudentService } from 'app/services/student.service';
 
 @Component({
   selector: 'app-account',
@@ -49,7 +50,8 @@ export class AccountComponent implements OnInit {
     private formateurService:FormateurService,private http:HttpClient,private globalVariables:GlobalVariables,
     private notificationService: NotificationService,
     private datePipe: DatePipe,
-    private userService:UserService) { }
+    private userService:UserService,
+    private studentService:StudentService) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -75,6 +77,14 @@ export class AccountComponent implements OnInit {
 
             });
             break;
+            case 'etudiant':
+              this.studentService.getById(this.user.id).subscribe(etudiant => {
+                this.user = etudiant;
+                this.user.image = this.globalVariables.url+"/"+this.user.image;
+                console.log(etudiant);
+                console.log(this.user.image);
+              });
+              break;
         
         default:
           break;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Club } from 'app/models/club.model';
+import { AuthService } from 'app/services/auth.service';
 import { ClubService } from 'app/services/club.service';
 import { NotificationService } from 'app/services/notification.service';
 import { GlobalVariables } from 'GlobalVariables';
@@ -21,11 +22,14 @@ export class ShowClubComponent implements OnInit {
   public startIndex = 0;
   public endIndex = 6;
   public path='http://localhost:8080/public/images/clubs/';
+  role = '';
   
-  constructor(private clubService: ClubService,private notificationService: NotificationService) {}
+  constructor(private clubService: ClubService,private notificationService: NotificationService,
+    private authService:AuthService) {}
  
   ngOnInit(): void {
     this.getAll();
+    this.role = this.authService.getRole();
   }
 
   public getAll() {

@@ -12,8 +12,6 @@ export const GlobalRoutes:Routes = [
     { path: 'home',      component: HomeComponent },
     { path: 'test',      component: TestComponent },
     {
-        path: "evenement",
-        component: EvenementComponent,
-        children: [{path: 'detail/:eventId', component:DetailEvenementComponent,}]
+     path: 'evenement/detail/:eventId', component:DetailEvenementComponent
     }
 ];

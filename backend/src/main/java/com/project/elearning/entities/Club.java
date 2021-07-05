@@ -36,7 +36,7 @@ public class Club {
 	
 	@OneToOne
     @JoinColumn(name = "id_etudiant")
-	@JsonIgnore
+//	@JsonIgnore
     private Etudiant etudiant;
 
 	public Long getId() {

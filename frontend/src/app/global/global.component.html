@@ -1,11 +1,8 @@
 <div>
-<<<<<<< HEAD
     <!-- <nav class="nav nav-tabs main-bg d-flex justify-content-between">
         <div>
-=======
     <nav class="nav nav-tabs main-bg d-flex justify-content-between">
         <div class="d-flex">
->>>>>>> b38c3c9d3a6d47bfd953abdecd889bf03b397aa6
             <a class="nav-link" [routerLink]="['/home']"><span class="link">Home</span></a>
             <a class="nav-link" [routerLink]="['/test']"><span class="link">Test</span></a>
 
@@ -34,8 +31,6 @@
         <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
-            <li routerLinkActive="active"><a [routerLink]="['/test']">Events</a></li>
-            <li routerLinkActive="active"><a [routerLink]="['/test']">Trainings</a></li>
             <li routerLinkActive="active"> <a *ngIf="!isUserConnected()"[routerLink]="['/signin']">Sign in</a></li>
             <li routerLinkActive="active"><a *ngIf="!isUserConnected()" [routerLink]="['/register']">Register</a></li>
             <li routerLinkActive="active"><a href="#" *ngIf="isUserConnected()" (click)="signOut()">Logout</a></li>

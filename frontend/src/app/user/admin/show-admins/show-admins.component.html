@@ -50,6 +50,7 @@
   
     <div class="col-md-4">
       <a [routerLink]="['/admin/add']" class="main-btn main-btn scrollto"
+      *ngIf="role == admin"
         >Add new admin</a
       >
     </div>

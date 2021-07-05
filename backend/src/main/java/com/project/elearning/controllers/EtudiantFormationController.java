@@ -1,6 +1,8 @@
 package com.project.elearning.controllers;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.project.elearning.entities.EtudiantFormation;
+import com.project.elearning.entities.EtudiantFormationKey;
 import com.project.elearning.entities.Evenement;
 import com.project.elearning.repositories.EtudiantFormationRepository;
 
@@ -28,11 +31,19 @@ public class EtudiantFormationController {
 	@Autowired
 	private EtudiantFormationRepository etudiantFormation;
 	
+	@GetMapping("/EtudiantFormation")
+	  List<EtudiantFormation> getAll() {
+		 
+	    return etudiantFormation.findAll();
+	  }
+	
 	 @PostMapping("/EtudiantFormation/add")
 	 ResponseEntity<?> addEtudiantFormation(@RequestBody EtudiantFormation ef) {
 		 	
-			 etudiantFormation.save(ef);
-			 return ResponseEntity.ok(new ResponseMsg(200,"Etudiant Formation added successfully"));
+		 EtudiantFormationKey key = new EtudiantFormationKey(ef.getEtudiant().getId(),ef.getFormation().getId());
+		 ef.setKey(key);
+		 etudiantFormation.save(ef);
+		 return ResponseEntity.ok(new ResponseMsg(200,"Etudiant Formation added successfully"));
 	 }
 	
 

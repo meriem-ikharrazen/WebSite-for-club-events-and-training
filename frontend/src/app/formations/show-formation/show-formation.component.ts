@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
 import { Ef } from "app/models/ef.model";
 import { Formation } from "app/models/formation.model";
 import { Student } from "app/models/student.model";
@@ -23,10 +24,11 @@ export class ShowFormationComponent implements AfterViewInit {
     "id",
     "libele",
     "formateur",
-    "status",
     "dateAjout",
     "action",
   ];
+  displayedColumnsSubscribers: string[] = ['prenom', 'nom', 'email', 'diplomePrepare','niveau'];
+
   dataSource: MatTableDataSource<any>;
   user?: User;
   etudiant?:Student;
@@ -36,9 +38,13 @@ export class ShowFormationComponent implements AfterViewInit {
   isStudent:boolean=false;
   check:boolean=false;
   public ef:Ef=new Ef();
+  EFs:Ef[] =[];
+  registers:Student[]=[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild("modal") modal: ElementRef;
+
 
   constructor(
     private formationService: FormationService,
@@ -46,11 +52,22 @@ export class ShowFormationComponent implements AfterViewInit {
     private auth: AuthService,
     private formateurService: FormateurService,
     private etudiantFormation:EfService,
-    private studentServie : StudentService
+    private studentServie : StudentService,
+    private router:Router
   ) {}
 
   ngAfterViewInit() {
     this.getFormations();
+    this.etudiantFormation.getAll().subscribe(res=>{
+      this.EFs = res;
+    })
+  }
+
+  isRegestered(id_etud,id_form){
+    var filter = this.EFs.filter(res => res.key.idEtudiant === id_etud && res.key.idFormation === id_form);
+    if(filter.length<=0){
+      return false;
+    }else return true;
   }
 
   getFormations() {
@@ -88,31 +105,21 @@ export class ShowFormationComponent implements AfterViewInit {
     }
   }
 
-  addFormation(user,formation){
-    // console.log(idUser);
-    // console.log(idFormation);
-    // if(this.etudiantFormation.findById(idUser,idFormation)==null)
-    // {
-    //   this.etudiantFormation.deleteEf(idUser,idFormation);
-    // }else{
-      // console.log(idUser);
-      // console.log(idFormation);
-      // this.ef.id=idUser;
-      // this.ef.id_formation=idFormation;
-      
+  addFormation(formation){      
       console.log(this.etudiant);
       this.ef.etudiant=this.etudiant;
       this.ef.formation=formation;
       console.log(this.ef);
       this.etudiantFormation.addEtudiantFormation(this.ef).subscribe(res=>{
         console.log(res);
+        this.notificationService.showNotification('top','center','Register sucess.','alert-success');
+        this.getFormations();
+      this.ngAfterViewInit();
+
       });
-    // }
   }
   getAllFormations() {
-    console.log("enter1");
     this.formationService.getformations().subscribe((data) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource<any>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -146,5 +153,13 @@ export class ShowFormationComponent implements AfterViewInit {
         this.getFormations();
       });
     }
+  }
+
+  getRegisters(formation){
+    this.formationService.getRegisters(formation).subscribe(res=>{
+      this.registers = res;
+      console.log(this.registers);
+      this.modal.nativeElement.click();
+    })
   }
 }

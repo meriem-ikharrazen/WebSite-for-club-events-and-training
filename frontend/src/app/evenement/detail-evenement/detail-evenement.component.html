@@ -13,8 +13,8 @@
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>{{event.libele}}</h3>
                     <p class="font-italic">{{event.description}}</p>
-                    <p class="font-italic">Start date: {{event.date_ajout}}</p>
-                    <p class="font-italic">End date: {{event.date_fin}}</p>
+                    <p class="font-italic">Start date: {{event.dateAjout | date: "mediumDate"}}</p>
+                    <p class="font-italic">End date: {{event.dateFin | date: "mediumDate"}}</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{path+event.image}}" alt="" class="img-fluid">

@@ -11,4 +11,5 @@ export class Ef {
     etudiant:User;
     formation:Formation;
     date_inscription:Date;
+    key:any;
 }

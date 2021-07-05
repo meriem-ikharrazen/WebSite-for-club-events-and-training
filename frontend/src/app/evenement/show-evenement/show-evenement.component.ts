@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Evenement } from 'app/models/evenement.model';
+import { AuthService } from 'app/services/auth.service';
 import { EvenementService } from 'app/services/evenement.service';
 import { NotificationService } from 'app/services/notification.service';
 
@@ -20,11 +21,15 @@ export class ShowEvenementComponent implements OnInit {
   public startIndex = 0;
   public endIndex = 6;
   public path='http://localhost:8080/public/images/evenements/';
+  role='';
   
-  constructor(private eventService:EvenementService,private notificationService: NotificationService) {}
+  constructor(private eventService:EvenementService,private notificationService: NotificationService,
+    private authService:AuthService) {}
  
   ngOnInit(): void {
     this.getAll();
+    this.role = this.authService.getRole();
+    
   }
 
   public getAll() {
@@ -75,7 +80,7 @@ export class ShowEvenementComponent implements OnInit {
   }
 
   showEventFnction(event:Evenement){
-    // console.log(club);
+    console.log(event);
     this.showEvent = event;
   }
 

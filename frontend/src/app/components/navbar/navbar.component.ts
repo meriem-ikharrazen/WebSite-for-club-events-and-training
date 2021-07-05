@@ -179,6 +179,9 @@ export class NavbarComponent implements OnInit {
       case "/club":
         this.router.navigate(["/club/show"]);
         break;
+        case "/evenement":
+          this.router.navigate(["/evenement/show"]);
+          break;
       default:
         break;
     }

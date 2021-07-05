@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Formateur } from "app/models/formateur.model";
+import { AuthService } from 'app/services/auth.service';
 import { FormateurService } from "app/services/formateur.service";
 import { NotificationService } from 'app/services/notification.service';
 import { GlobalVariables } from 'GlobalVariables';
@@ -17,17 +18,18 @@ export class ShowFormateurComponent implements OnInit {
   public pageSlice:Formateur[] = [];
   public showFormateur : Formateur = new Formateur();
   public searchTxt:string = '';
-  public filterValue:string = ';'
+  public filterValue:string = '';
   public startIndex = 0;
   public endIndex = 6;
   public path = '';
+  public role = '';
   
   constructor(private formateurService: FormateurService,private notificationService: NotificationService,
-    private global:GlobalVariables) {}
+    private global:GlobalVariables,private authService:AuthService) {}
  
   ngOnInit(): void {
     this.path = this.global.url +'/';
-
+    this.role = this.authService.getRole();
     this.getAll();
   }
 

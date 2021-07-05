@@ -48,12 +48,6 @@
       <td mat-cell *matCellDef="let element">{{ element.formateur != null ? element.formateur.nom +' '+  element.formateur.prenom : 'Not added' }}</td>
     </ng-container>
 
-    <!-- Status Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
-    </ng-container>
-
     <!-- Position Column -->
     <ng-container matColumnDef="dateAjout">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Created date</th>
@@ -88,14 +82,20 @@
             <mat-icon>delete_forever</mat-icon>
           </i>
       </a>
-      <a href="javascript:void(0)" (click)="addFormation(user,element)" class="text-red mr-3 " *ngIf="isStudent">
+      <a href="javascript:void(0)" (click)="addFormation(element)" class="text-red mr-3 " *ngIf="isStudent && !isRegestered(user.id,element.id)">
         <i>
           <mat-icon style="color: black;">turned_in</mat-icon>
           <!-- <mat-icon style="color: black;">turned_in_not</mat-icon> -->
         </i>
       </a>
-      <button (click)="addFormation(user.id,element.id)">ADD</button>
+      <a href="javascript:void(0)" class="text-red mr-3 " *ngIf="isStudent && isRegestered(user.id,element.id)">
+        <i>
+          <mat-icon style="color: green;">check</mat-icon>
+          <!-- <mat-icon style="color: black;">turned_in_not</mat-icon> -->
+        </i>
+      </a>
       <button routerLink= "{{ '/formations/content/'+element.id}}"  class="btn btn-primary">Content</button>
+      <button type="button" (click)="getRegisters(element)" class="btn btn-primary">Subscribers</button>
     </div>
       </td>
     </ng-container>
@@ -108,5 +108,68 @@
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
   ></mat-paginator>
+
+  <div class="ml-4">
+    <mat-icon style="color: black;">turned_in</mat-icon> Click to register
+    <br>
+   <mat-icon style="color: green;">check</mat-icon> Already registered
+  </div>
+  <hr>
 </div>
 
+
+<!-- Subscribers -->
+<button type="button" class="btn btn-primary" [hidden]="true" data-toggle="modal" data-target=".bd-example-modal-lg" #modal>Large modal</button>
+
+<div class="modal fade bd-example-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Subscribers</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table mat-table [dataSource]="registers" class="mat-elevation-z8">
+        
+          <!-- prenom Column -->
+          <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Firstname </th>
+            <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+          </ng-container>
+        
+          <!-- prenom Column -->
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+          </ng-container>
+        
+          <!-- email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+        
+          <!-- diplomePrepare Column -->
+          <ng-container matColumnDef="diplomePrepare">
+            <th mat-header-cell *matHeaderCellDef> diplomePrepare </th>
+            <td mat-cell *matCellDef="let element"> {{element.diplomePrepare}} </td>
+          </ng-container>
+
+          <!-- niveau Column -->
+          <ng-container matColumnDef="niveau">
+            <th mat-header-cell *matHeaderCellDef> niveau </th>
+            <td mat-cell *matCellDef="let element"> {{element.niveau}} </td>
+          </ng-container>
+        
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsSubscribers"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsSubscribers;"></tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

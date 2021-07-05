@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Etudiant } from 'app/models/etudiant.model';
 import { Formation } from 'app/models/formation.model';
+import { Student } from 'app/models/student.model';
 import { GlobalVariables } from 'GlobalVariables';
 import { Observable } from 'rxjs';
 
@@ -19,6 +21,9 @@ export class FormationService {
     return this.http.get<Formation[]>(this.globalVar.apiUrl + this.formationUrl);
   }
 
+  public getRegisters(formation):Observable<Student[]> {
+    return this.http.post<Student[]>(this.globalVar.apiUrl + this.formationUrl+'/students',formation);
+  }
   public getFormationByFormateur(id):Observable<Formation[]> {
     return this.http.get<Formation[]>(this.globalVar.apiUrl + this.formationUrl+'/formateur/'+id);
   }

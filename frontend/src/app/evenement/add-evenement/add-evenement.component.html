@@ -119,12 +119,12 @@
                     matInput
                     [matDatepicker]="picker"
                     placeholder="Start Date"
-                    name="date_ajout"
-                    formControlName="date_ajout"
+                    name="dateAjout"
+                    formControlName="dateAjout"
                     (focus)="picker.open()"
                     [ngClass]="{
                       'is-invalid':
-                        submitted && eventFormGroup.controls.date_ajout.errors
+                        submitted && eventFormGroup.controls.dateAjout.errors
                     }"
                   />
                   <mat-datepicker-toggle
@@ -135,13 +135,13 @@
       
                   <div
                     *ngIf="
-                      submitted && eventFormGroup.controls.date_ajout.errors
+                      submitted && eventFormGroup.controls.dateAjout.errors
                     "
                     class="invalid-feedback"
                   >
                     <div
                       *ngIf="
-                      eventFormGroup.controls.date_ajout.errors.required
+                      eventFormGroup.controls.dateAjout.errors.required
                       "
                     >
                       Start Date required.
@@ -186,12 +186,12 @@
                     matInput
                     [matDatepicker]="picker2"
                     placeholder="End Date"
-                    name="date_fin"
-                    formControlName="date_fin"
+                    name="dateFin"
+                    formControlName="dateFin"
                     (focus)="picker2.open()"
                     [ngClass]="{
                       'is-invalid':
-                        submitted && eventFormGroup.controls.date_fin.errors
+                        submitted && eventFormGroup.controls.dateFin.errors
                     }"
                   />
                   <mat-datepicker-toggle
@@ -201,13 +201,13 @@
                   <mat-datepicker #picker2></mat-datepicker>
                   <div
                     *ngIf="
-                      submitted && eventFormGroup.controls.date_fin.errors
+                      submitted && eventFormGroup.controls.dateFin.errors
                     "
                     class="invalid-feedback"
                   >
                     <div
                       *ngIf="
-                      eventFormGroup.controls.date_fin.errors.required
+                      eventFormGroup.controls.dateFin.errors.required
                       "
                     >
                       End Date required.

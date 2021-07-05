@@ -15,6 +15,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',      component: UserProfileComponent },
     { path: 'notifications',      component: NotificationsComponent },
     { path: 'account',      component: AccountComponent },
+    { path: 'evenement',      component: AccountComponent },
 
     // { path: 'exams',   component: ExamComponent}
 

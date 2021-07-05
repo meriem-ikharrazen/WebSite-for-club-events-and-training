@@ -1,8 +1,5 @@
 <section id="doctors" class="doctors">
     <div class="container">
-            <div class="section-title">
-                <h2>Clubs</h2>
-            </div>
                 <div class="row justify-content-between">
                     <div class="col-md-4">
                     
@@ -47,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <a [routerLink]="['/club/add']" class="main-btn main-btn scrollto">Add new club</a>
+                <a [routerLink]="['/club/add']" class="main-btn main-btn scrollto" *ngIf="role == 'admin'">Add new club</a>
             </div>
                 </div>
           <div class="row">
@@ -74,7 +71,7 @@
                     <a href="javascript:void(0)" (click) = "showClubFnction(club)" data-toggle="modal" data-target=".detail_Club_modal">
                         <i><mat-icon>remove_red_eye</mat-icon></i>
                     </a>
-                    <a href="javascript:void(0)" (click)="delete(club)" ><i><mat-icon>delete_outline</mat-icon></i></a>
+                    <a href="javascript:void(0)" (click)="delete(club)" *ngIf="role == 'admin'"><i><mat-icon>delete_outline</mat-icon></i></a>
                   </div>
                 </div>
               </div>

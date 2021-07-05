@@ -1,5 +1,6 @@
 package com.project.elearning.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "etudiantFormation")
-public class EtudiantFormation {
+public class EtudiantFormation implements Serializable {
 
 	@EmbeddedId
     private EtudiantFormationKey key;
@@ -28,13 +29,30 @@ public class EtudiantFormation {
     @JoinColumn(name = "id")
     private Etudiant etudiant;
     
+	
     
+	public EtudiantFormation() {
+		super();
+	}
+
+
+
+	public EtudiantFormation(EtudiantFormationKey key, Formation formation, Etudiant etudiant, Date dateInscription) {
+		super();
+		this.key = new EtudiantFormationKey(formation.getId(),etudiant.getId());
+		this.formation = formation;
+		this.etudiant = etudiant;
+		this.dateInscription = dateInscription;
+	}
+
+
 	private Date dateInscription = new Date(System.currentTimeMillis());
 	
 	public Formation getFormation() {
 		return formation;
 	}
 
+	
 
 	public void setFormation(Formation formation) {
 		this.formation = formation;

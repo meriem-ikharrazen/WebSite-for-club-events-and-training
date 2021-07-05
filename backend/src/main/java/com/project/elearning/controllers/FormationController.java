@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.elearning.Exceptions.MyException;
 import com.project.elearning.entities.Club;
+import com.project.elearning.entities.Etudiant;
+import com.project.elearning.entities.EtudiantFormation;
 import com.project.elearning.entities.Formateur;
 import com.project.elearning.entities.Formation;
 import com.project.elearning.repositories.ClubRepository;
+import com.project.elearning.repositories.EtudiantFormationRepository;
 import com.project.elearning.repositories.FormateurRepository;
 import com.project.elearning.repositories.FormationRepository;
 
@@ -42,9 +46,21 @@ public class FormationController {
 	@Autowired
 	private FormateurRepository formateurRepository;
 	
+	@Autowired EtudiantFormationRepository efrepo;
+	
 	@GetMapping("/formations")
 	List<Formation> getAll() {
 		return formationRepository.findAll();
+	  }
+	
+	@PostMapping("/formations/students")
+	List<Etudiant> getEtudiant(@RequestBody Formation formation) {
+		List<EtudiantFormation> efs = efrepo.findByFormation(formation);
+		List<Etudiant> etudiants = new ArrayList<Etudiant>();
+		for (EtudiantFormation e : efs) {
+			etudiants.add(e.getEtudiant());
+		}
+		return etudiants;
 	  }
 	
 	@GetMapping("/formations/formateur/{id}")
@@ -61,6 +77,8 @@ public class FormationController {
 	    	return formationRepository.findById(id)
 	      .orElseThrow(() -> new MyException("formation not found"));
 	  }
+	
+	
 	@PostMapping("/formations")
 	 ResponseEntity<?> addFormation(@RequestBody Formation formation) {
 		

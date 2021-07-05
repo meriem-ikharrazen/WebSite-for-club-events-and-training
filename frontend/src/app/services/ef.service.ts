@@ -30,4 +30,10 @@ export class EfService {
   public deleteEf(idEtud,idForm){
     return this.http.delete(this.globalVar.apiUrl + this.url + "/"+ idEtud+ "/"+idForm);
   }
+
+  public getAll(){
+    return this.http.get<Ef[]>(this.globalVar.apiUrl + this.url );
+  }
+
+  
 }

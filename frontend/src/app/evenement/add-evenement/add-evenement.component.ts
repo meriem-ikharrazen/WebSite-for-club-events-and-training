@@ -61,10 +61,10 @@ export class AddEvenementComponent implements OnInit {
         ],
       ],
       club: [null, Validators.required],
-      date_ajout: ["", [Validators.required]],
+      dateAjout: ["", [Validators.required]],
       time_ajout: ["", [Validators.required]],
       time_fin: ["", [Validators.required]],
-      date_fin: ["", [Validators.required]],
+      dateFin: ["", [Validators.required]],
     });
   }
 
@@ -112,6 +112,7 @@ export class AddEvenementComponent implements OnInit {
     );
   }
   createEvenement(): void {
+    console.log(this.eventFormGroup.value);
     this.submitted = true;
     if (this.eventFormGroup.invalid) return;
     this.event.description=this.eventFormGroup.value.description;
@@ -120,8 +121,8 @@ export class AddEvenementComponent implements OnInit {
     this.event.image=this.image;
     var timeAjoutParts = this.eventFormGroup.value.time_ajout.split(':');
     var timeFinParts = this.eventFormGroup.value.time_fin.split(':');
-    this.event.data_ajout=(new Date(this.eventFormGroup.value.date_ajout.getYear(),this.eventFormGroup.value.date_ajout.getMonth(),this.eventFormGroup.value.date_ajout.getDate(),timeAjoutParts[0],timeAjoutParts[1],0)).toDateString();
-    this.event.data_fin=(new Date(this.eventFormGroup.value.date_fin.getYear(),this.eventFormGroup.value.date_fin.getMonth(),this.eventFormGroup.value.date_fin.getDate(),timeFinParts[0],timeFinParts[1],0)).toDateString();
+    this.event.dateAjout=this.eventFormGroup.value.dateAjout;
+    this.event.dateFin=this.eventFormGroup.value.dateFin;
     this.postFile(this.selectedFile);
     console.log(this.event);
     // console.log(this.eventFormGroup.value.time_ajout);
