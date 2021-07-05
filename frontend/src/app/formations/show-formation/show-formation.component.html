@@ -95,7 +95,7 @@
         </i>
       </a>
       <button routerLink= "{{ '/formations/content/'+element.id}}"  class="btn btn-primary">Content</button>
-      <button type="button" (click)="getRegisters(element)" class="btn btn-primary">Subscribers</button>
+      <button type="button" (click)="getRegisters(element)" class="btn btn-primary" *ngIf="role != 'etudiant'">Subscribers</button>
     </div>
       </td>
     </ng-container>
@@ -109,7 +109,7 @@
     showFirstLastButtons
   ></mat-paginator>
 
-  <div class="ml-4">
+  <div class="ml-4" *ngIf="role == 'etudiant'">
     <mat-icon style="color: black;">turned_in</mat-icon> Click to register
     <br>
    <mat-icon style="color: green;">check</mat-icon> Already registered

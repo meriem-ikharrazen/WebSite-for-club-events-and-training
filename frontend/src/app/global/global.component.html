@@ -33,7 +33,7 @@
             <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
             <li routerLinkActive="active"> <a *ngIf="!isUserConnected()"[routerLink]="['/signin']">Sign in</a></li>
             <li routerLinkActive="active"><a *ngIf="!isUserConnected()" [routerLink]="['/register']">Register</a></li>
-            <li routerLinkActive="active"><a href="#" *ngIf="isUserConnected()" (click)="signOut()">Logout</a></li>
+            <li routerLinkActive="active"><a href="javascript:void(0)" *ngIf="isUserConnected()" (click)="signOut()">Logout</a></li>
             <!-- <li class="drop-down"><a href="">Drop Down</a>
                 <ul>
                 <li><a href="#">Drop Down 1</a></li>
